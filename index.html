@@ -14,21 +14,20 @@
   <!-- 헤더 -->
   <header class="header">
     <div class="header-inner">
-      <a href="#" class="logo"><img src="asset/dangsa_logo_b&amp;w.jpg" alt="당신의사수" /></a>
+      <a href="#" class="logo"><img src="asset/dangsa_logo.png" alt="당신의사수" /></a>
       <nav class="nav">
-        <a href="#mentors">멘토 보기</a>
-        <a href="#services">서비스</a>
-        <a href="#why">왜 당신의사수</a>
+        <a href="#intro">서비스 소개</a>
+        <a href="#mentors">오늘의 사수</a>
+        <a href="#services">커리큘럼</a>
       </nav>
       <div class="header-cta">
-        <a href="#" class="btn btn-ghost">로그인</a>
-        <a href="#" class="btn btn-primary">회원가입</a>
+        <a href="#" class="btn btn-primary">시작하기</a>
       </div>
     </div>
   </header>
 
-  <!-- 1. 히어로 섹션 -->
-  <section class="hero">
+  <!-- 1. 히어로 섹션 (서비스 소개) -->
+  <section class="hero" id="intro">
     <div class="hero-inner">
       <h1 class="hero-headline">
         <span class="hero-rolling-wrap" aria-hidden="true">
@@ -36,13 +35,13 @@
         </span>
       </h1>
       <p class="hero-subcopy">
-        이직도 전략이 필요한 시대예요.<br />
+        이직도 전략이 필요한 AI 시대<br />
         IT 업계 선배, 헤드헌터, 채용담당자가<br />
-        <strong>당신 옆에서</strong> 커리어 사수가 되어드려요.
+        당신의 <strong>1:1 커리어 사수</strong>가 되어드립니다.
       </p>
       <div class="hero-cta">
-        <a href="#mentors" class="btn btn-primary btn-lg">멘토 구경하기</a>
-        <a href="#services" class="btn btn-outline btn-lg">당신의사수 만나보기</a>
+        <a href="#mentors" class="btn btn-outline btn-lg">멘토 구경하기</a>
+        <a href="#services" class="btn btn-primary btn-lg">내 커리어 사수 만나기</a>
       </div>
       <p class="hero-badges">
         <span>커리어 상담</span>
@@ -57,62 +56,43 @@
   <!-- 2. 오늘의사수 카드 영역 -->
   <section class="section mentors-section" id="mentors">
     <div class="container">
-      <h2 class="section-title">
-        지금 신청 중! <em>오늘의 사수</em>
-      </h2>
-      <p class="section-desc">이번 주에도 많은 분들이 멘토링을 진행하고 있어요.</p>
-      <div class="mentors-badge">
-        <span class="mentors-badge-dot"></span>
-        이번 주 <strong>32명</strong> 멘토링 진행 중
-      </div>
+      <header class="mentors-header">
+        <span class="mentors-tag">지금 신청중!</span>
+        <h2 class="mentors-headline">오늘의 사수</h2>
+        <p class="mentors-desc">
+          이번주 <strong id="mentors-count">32명</strong>이 멘토링을 진행 중이에요 🔥
+        </p>
+      </header>
       <div class="mentor-cards">
-        <article class="mentor-card">
-          <div class="mentor-card-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">김</div>
-          <h3 class="mentor-card-name">김민수</h3>
-          <p class="mentor-card-role">시니어 백엔드 / 네이버</p>
-          <p class="mentor-card-career">12년차 · 이직 3회</p>
-          <ul class="mentor-card-tags">
+        <article class="mentor-card mentor-card--featured">
+          <span class="mentor-card-featured-company">네이버</span>
+          <div class="mentor-card-featured-avatar">
+            <img src="asset/profile_sample.jpg" alt="김민수 멘토" />
+          </div>
+          <h3 class="mentor-card-featured-name">김민수</h3>
+          <p class="mentor-card-featured-role">시니어 백엔드 · 12년차</p>
+          <ul class="mentor-card-tags mentor-card-featured-tags">
             <li>이직 전략</li>
             <li>연봉 협상</li>
             <li>백엔드 포트폴리오</li>
           </ul>
         </article>
-        <article class="mentor-card">
-          <div class="mentor-card-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">이</div>
-          <h3 class="mentor-card-name">이지현</h3>
-          <p class="mentor-card-role">프로덕트 매니저 / 카카오</p>
-          <p class="mentor-card-career">8년차 · 헤드헌터 경력</p>
-          <ul class="mentor-card-tags">
-            <li>PM 이직</li>
-            <li>기업 분석</li>
-            <li>면접 준비</li>
-          </ul>
-        </article>
-        <article class="mentor-card">
-          <div class="mentor-card-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">박</div>
-          <h3 class="mentor-card-name">박준호</h3>
-          <p class="mentor-card-role">테크리드 / 토스</p>
-          <p class="mentor-card-career">10년차 · 채용 인터뷰어</p>
-          <ul class="mentor-card-tags">
-            <li>프론트엔드</li>
-            <li>시니어 이직</li>
+        <article class="mentor-card mentor-card--featured mentor-card--clickable" data-mentor-modal="sim" tabindex="0" role="button" aria-label="심재권 멘토 상세 보기">
+          <span class="mentor-card-featured-company">퍼즐웍스</span>
+          <div class="mentor-card-featured-avatar">
+            <img src="asset/mento_simjaekwon.jpg" alt="심재권 멘토" />
+          </div>
+          <h3 class="mentor-card-featured-name">심재권</h3>
+          <p class="mentor-card-featured-role">헤드헌팅 · 15년차</p>
+          <ul class="mentor-card-tags mentor-card-featured-tags">
+            <li>이직 전략</li>
             <li>연봉 협상</li>
-          </ul>
-        </article>
-        <article class="mentor-card">
-          <div class="mentor-card-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">최</div>
-          <h3 class="mentor-card-name">최서연</h3>
-          <p class="mentor-card-role">데이터 엔지니어 / 쿠팡</p>
-          <p class="mentor-card-career">7년차 · 스타트업→빅테크</p>
-          <ul class="mentor-card-tags">
-            <li>데이터 이직</li>
-            <li>AI 리스킬링</li>
-            <li>커리어 전환</li>
+            <li>면접 코칭</li>
           </ul>
         </article>
       </div>
-      <div class="section-cta">
-        <a href="#" class="btn btn-primary btn-lg">더 많은 멘토 보기</a>
+      <div class="mentors-section-cta">
+        <a href="#" class="btn btn-primary btn-lg">커피챗 신청하기</a>
       </div>
     </div>
   </section>
@@ -120,67 +100,66 @@
   <!-- 3. 서비스 단계 설명 -->
   <section class="section services-section" id="services">
     <div class="container">
-      <h2 class="section-title">당신의사수의 <em>단계별 커리큘럼</em></h2>
-      <p class="section-desc">지금 단계에 맞는 프로그램을 골라보세요.</p>
+      <h2 class="section-title"><em>단계별 커리큘럼</em></h2>
+      <p class="section-desc">커리어 진단부터 이직에 성공할 때까지 올인원 프로그램</p>
       <div class="service-cards">
         <article class="service-card">
-          <span class="service-card-step">①</span>
+          <span class="service-card-step">STEP 1</span>
           <h3 class="service-card-title">커피챗</h3>
-          <p class="service-card-price">60분 / 6만원</p>
+          <p class="service-card-price"><span class="service-card-price-num">6.6</span>만원 <span class="service-card-price-period">/ 60분</span></p>
           <ul class="service-card-features">
             <li>커리어 점검</li>
             <li>이직 방향 상담</li>
           </ul>
-          <div class="service-card-structure">
-            <strong>추천해요</strong>
-            <p>이직 고민이 막 시작됐을 때, 커리어 방향만 먼저 점검하고 싶을 때</p>
+          <div class="service-card-recommend">
+            <strong>이런 분께 추천해요!</strong>
+            <p>이직 고민 시작 단계, 커리어 방향 점검이 필요한 분</p>
           </div>
-          <a href="#" class="btn btn-outline btn-block">자세히 보기</a>
         </article>
         <article class="service-card">
-          <span class="service-card-step">②</span>
+          <span class="service-card-step">STEP 2</span>
           <h3 class="service-card-title">소그룹 컨설팅</h3>
-          <p class="service-card-price">1개월 / 60만원</p>
+          <p class="service-card-price"><span class="service-card-price-num">66</span>만원 <span class="service-card-price-period">/ 1개월</span></p>
           <ul class="service-card-features">
-            <li>실전 프로젝트</li>
+            <li>실전 프로젝트 진행</li>
             <li>포트폴리오 첨삭</li>
             <li>커리어 업스킬</li>
+            <li>주1회 3시간</li>
           </ul>
-          <div class="service-card-structure">
-            <strong>구성</strong>
-            <p>주 1회 3시간 · 실무 프로젝트 진행</p>
+          <div class="service-card-recommend">
+            <strong>이런 분께 추천해요!</strong>
+            <p>회사 프로젝트를 사수에게 피드백 받고 싶은 분 (NDA 계약서 작성)</p>
           </div>
-          <a href="#" class="btn btn-outline btn-block">자세히 보기</a>
         </article>
         <article class="service-card">
-          <span class="service-card-step">③</span>
-          <h3 class="service-card-title">커리큘럼</h3>
-          <p class="service-card-price">3개월 / 180만원</p>
+          <span class="service-card-step">STEP 3</span>
+          <h3 class="service-card-title">리빌딩 커리큘럼</h3>
+          <p class="service-card-price"><span class="service-card-price-num">198</span>만원 <span class="service-card-price-period">/ 3개월</span></p>
           <ul class="service-card-features">
-            <li>AI 리스킬링</li>
+            <li>AI 리스킬링 교육</li>
             <li>IT 커리어 업스킬</li>
+            <li>포트폴리오 제작 및 커리어 전략</li>
           </ul>
-          <div class="service-card-structure">
-            <strong>구성</strong>
-            <p>실무 교육 · 포트폴리오 제작 · 커리어 전략</p>
+          <div class="service-card-recommend">
+            <strong>이런 분께 추천해요!</strong>
+            <p>체계적인 교육과 함께 성공적인 포지션 전환을 노리는 분</p>
           </div>
-          <a href="#" class="btn btn-outline btn-block">자세히 보기</a>
         </article>
         <article class="service-card service-card-featured">
-          <span class="service-card-step">④</span>
+          <span class="service-card-badge">가장 인기</span>
+          <span class="service-card-step">STEP 4</span>
           <h3 class="service-card-title">이직 솔루션</h3>
-          <p class="service-card-price">3개월 / 300만원</p>
+          <p class="service-card-price"><span class="service-card-price-num">330</span>만원 <span class="service-card-price-period">/ 3개월</span></p>
           <ul class="service-card-features">
-            <li>도메인 탐색</li>
-            <li>기업 분석</li>
-            <li>이직 전략</li>
-            <li>연봉 협상</li>
+            <li>도메인 탐색 및 기업 분석</li>
+            <li>1:1 맞춤형 이직 전략 도출</li>
+            <li>서류/면접 합격률 극대화</li>
+            <li>입사 시 연봉 협상 코칭</li>
           </ul>
-          <div class="service-card-structure">
-            <strong>추천해요</strong>
-            <p>진짜 이직을 준비하는 분들께</p>
+          <div class="service-card-recommend">
+            <strong>이런 분께 추천해요!</strong>
+            <p>연봉을 높여 원하는 회사로 이직하고 싶으신 분</p>
           </div>
-          <a href="#" class="btn btn-primary btn-block">자세히 보기</a>
         </article>
       </div>
     </div>
@@ -189,12 +168,14 @@
   <!-- 4. 실제 진행 사례 -->
   <section class="section case-section">
     <div class="container">
-      <h2 class="section-title">실제로 <em>이렇게 진행됐어요</em></h2>
       <div class="case-card">
         <blockquote class="case-quote">
-          이직솔루션 3개월 이용 후, 금융권 1곳 합격했고 2곳은 면접 결과 대기 중이에요. 방향만 알려주는 게 아니라 같이 준비해주셔서 확실히 달랐어요.
+          너무 막막했던 이직 준비, 당신의사수 '이직 솔루션' 3개월 이용 후 <span class="case-quote-highlight">금융권 1군데 최종 합격하고,</span> 현재 2군데 면접 결과 대기중입니다!
         </blockquote>
-        <p class="case-author">강○○님 · 이직 솔루션 3개월</p>
+        <div class="case-author-block">
+          <p class="case-author-name">강**님</p>
+          <p class="case-author-role">2년차 서비스 기획자</p>
+        </div>
       </div>
     </div>
   </section>
@@ -202,23 +183,25 @@
   <!-- 5. 왜 당신의사수인가 -->
   <section class="section why-section" id="why">
     <div class="container">
-      <h2 class="section-title">왜 <em>당신의사수</em>일까요?</h2>
+      <h2 class="section-title">왜 '당신의사수'일까요?</h2>
+      <p class="why-subtitle">조언에서 그치지 않고 결과를 함께 만들어냅니다.</p>
       <div class="why-compare">
         <div class="why-box why-box-old">
           <h3>기존 커리어 상담</h3>
           <ul>
-            <li>방향만 알려주고 끝</li>
-            <li>실제로 뭘 해야 할지 막막함</li>
+            <li>추상적인 방향성 제시에만 머무름</li>
+            <li>결국 혼자 준비해야 해서 막막함</li>
+            <li>실제 업계의 생생한 정보 부족</li>
           </ul>
         </div>
-        <div class="why-arrow" aria-hidden="true">→</div>
+        <div class="why-vs" aria-hidden="true">VS</div>
         <div class="why-box why-box-us">
           <h3>당신의사수</h3>
           <ul>
-            <li><strong>실제 업계 사수</strong>가 옆에서 조언</li>
-            <li><strong>실무 기반</strong>으로 말해줌</li>
-            <li><strong>진짜 이직 전략</strong>부터 같이 설계</li>
-            <li><strong>같이 실행</strong>해 나감</li>
+            <li>현재 필드에서 뛰는 <strong>실제 업계 사수</strong></li>
+            <li>두루뭉술한 조언이 아닌 <strong>실무 기반 조언</strong></li>
+            <li>AI 분석에 따른 <strong>맞춤형 이직 전략</strong></li>
+            <li>합격할 때까지 <strong>동반 실행 및 밀착 과외</strong></li>
           </ul>
         </div>
       </div>
@@ -228,16 +211,16 @@
   <!-- 6. 마지막 CTA -->
   <section class="section cta-section">
     <div class="container">
-      <h2 class="cta-headline">당신만의 사수, 지금 만나보세요</h2>
-      <p class="cta-sub">첫 걸음은 부담 없이. 멘토 구경부터 시작해도 좋아요.</p>
-      <a href="#" class="btn btn-primary btn-xl">당신의사수 만나보기</a>
+      <h2 class="cta-headline">혼자 하는 이직 준비는 이제 끝!</h2>
+      <p class="cta-sub">지금 바로 내 커리어에 날개를 달아줄 사수를 만나보세요.</p>
+      <a href="#" class="btn btn-cta-gradient btn-xl">내 커리어 사수 만나기</a>
     </div>
   </section>
 
   <!-- 푸터 -->
   <footer class="footer">
     <div class="container footer-inner">
-      <a href="#" class="logo">당신의사수</a>
+      <a href="#" class="logo"><img src="asset/dangsa_logo.png" alt="당신의사수" /></a>
       <div class="footer-links">
         <div class="footer-col">
           <strong>서비스</strong>
@@ -256,6 +239,50 @@
       </div>
     </div>
   </footer>
+
+  <!-- 멘토 상세 팝업 -->
+  <div id="mentorModal" class="mentor-modal" role="dialog" aria-modal="true" aria-labelledby="mentorModalTitle" aria-hidden="true">
+    <div class="mentor-modal-overlay"></div>
+    <div class="mentor-modal-content">
+      <button type="button" class="mentor-modal-close" aria-label="팝업 닫기">&times;</button>
+      <div class="mentor-modal-body">
+        <h2 id="mentorModalTitle" class="mentor-modal-title">멘토 소개</h2>
+        <p class="mentor-modal-subtitle"><strong>전) 대기업 전략기획 / 현) 스타트업 CEO</strong></p>
+
+        <h3 class="mentor-modal-h3">🔥 이런 문제를 해결합니다</h3>
+        <ul class="mentor-modal-list">
+          <li>이직 가능성 판단 (지금 vs 6개월 후) 연봉·조건 협상 전략</li>
+          <li>기업/조직 내 합류 여부 판단</li>
+        </ul>
+        <blockquote class="mentor-modal-quote">
+          "지금 결정하지 않으면 손해 보는 선택인지 오늘 기준으로 정리해드립니다."
+        </blockquote>
+
+        <h3 class="mentor-modal-h3">⭐ 실제 후기 (예시)</h3>
+        <blockquote class="mentor-modal-quote">
+          "6개월 고민하던 이직 결정을 30분 만에 정리했습니다." — 스타트업 4년차 PM
+        </blockquote>
+        <blockquote class="mentor-modal-quote">
+          "감정적 편향이 아니라 숫자와 리스크로 설명해줘서 신뢰가 갔습니다." — 대기업 12년차 기획자
+        </blockquote>
+
+        <h3 class="mentor-modal-h3">상세 경력</h3>
+        <ul class="mentor-modal-list">
+          <li>대기업 전략기획 <strong>10년</strong></li>
+          <li>중소기업 스타트업 <strong>Series B~C</strong> 경영진 경험</li>
+          <li>300명 이상 채용·평가 참여</li>
+          <li>연봉 협상·조직 개편 실전 다수</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 카카오톡 채널 FAB -->
+  <a href="http://pf.kakao.com/_fxdxdqX" target="_blank" rel="noopener noreferrer" class="fab-kakao" aria-label="카카오톡 채널 열기">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 3c5.52 0 10 4.03 10 9 0 4.97-4.48 9-10 9-1.5 0-2.9-.35-4.15-.96l-.35-.2-3.65.97 1-3.55C3.47 16.2 2 14.22 2 12c0-4.97 4.48-9 10-9z"/>
+    </svg>
+  </a>
 
   <script src="script.js"></script>
 </body>
