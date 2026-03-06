@@ -77,6 +77,13 @@ img {
   letter-spacing: -0.02em;
 }
 
+.header .logo img {
+  display: block;
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
 .nav {
   display: flex;
   gap: 28px;
