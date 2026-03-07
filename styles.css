@@ -209,6 +209,17 @@ img {
   white-space: nowrap;
 }
 
+/* 히어로 롤링 문구 줄바꿈: 모바일에서만 적용 */
+.hero-br {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .hero-br {
+    display: none;
+  }
+}
+
 .hero-subcopy {
   font-size: 1.125rem;
   color: var(--color-text-secondary);
@@ -322,12 +333,20 @@ img {
   font-weight: 600;
 }
 
+.mentor-cards-wrapper {
+  position: relative;
+}
+
 .mentor-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   max-width: 720px;
   margin: 0 auto;
+}
+
+.mentor-cards-dots {
+  display: none;
 }
 
 .mentor-card {
@@ -589,10 +608,18 @@ img {
   background: transparent;
 }
 
+.service-cards-wrapper {
+  position: relative;
+}
+
 .service-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
+}
+
+.service-cards-dots {
+  display: none;
 }
 
 .service-card {
@@ -975,56 +1002,67 @@ img {
    푸터
 ---------------------------------------- */
 .footer {
-  padding: 48px 24px;
+  padding: 48px 24px 28px;
   border-top: 1px solid var(--color-border);
   background: var(--color-bg);
 }
 
-.footer-inner {
+.footer-top {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.footer .logo {
+.footer-brand {
+  max-width: 420px;
+}
+
+.footer-brand-name {
+  display: inline-block;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
 }
 
-.footer .logo img {
-  display: block;
-  height: 32px;
-  width: auto;
-  object-fit: contain;
+.footer-brand-desc {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  padding-top: 10px;
 }
 
-.footer-col {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.footer-col strong {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.footer-col a {
+.footer-links a {
   font-size: 0.9rem;
   color: var(--color-text-secondary);
+  font-weight: 500;
 }
 
-.footer-col a:hover {
+.footer-links a:hover {
   color: var(--color-text);
+}
+
+.footer-bottom {
+  padding-top: 18px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
 }
 
 /* ----------------------------------------
@@ -1060,13 +1098,192 @@ img {
 /* ----------------------------------------
    반응형
 ---------------------------------------- */
-@media (max-width: 768px) {
-  .nav {
-    display: none;
+/* 태블릿: 서비스 카드 슬라이드 + 왜 당신의사수 섹션 */
+@media (max-width: 900px) {
+  /* 서비스 카드 슬라이드 */
+  .services-section .container {
+    overflow: visible;
+  }
+
+  .service-cards-wrapper {
+    margin: 0 -20px;
+    padding: 0 20px 8px;
+  }
+
+  .service-cards {
+    display: flex;
+    grid-template-columns: unset;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 8px;
+  }
+
+  .service-cards::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .service-cards::-webkit-scrollbar-track {
+    background: var(--color-bg-subtle);
+    border-radius: 3px;
+  }
+
+  .service-cards::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  .service-cards .service-card {
+    flex: 0 0 min(320px, 85vw);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* 모바일/태블릿: 가장 인기 뱃지를 카드 안 우측 상단으로 */
+  .service-card-featured .service-card-badge {
+    left: auto;
+    right: 16px;
+    top: 16px;
+    transform: none;
+  }
+
+  .service-cards-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .service-cards-dots .dot {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition: background 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .service-cards-dots .dot:hover {
+    background: var(--color-text-muted);
+  }
+
+  .service-cards-dots .dot.is-active {
+    background: #5F5DF9;
+    transform: scale(1.2);
+  }
+
+  /* 멘토 카드 슬라이드 */
+  .mentors-section .container {
+    overflow: visible;
+  }
+
+  .mentor-cards-wrapper {
+    margin: 0 -20px;
+    padding: 0 20px 8px;
   }
 
   .mentor-cards {
-    grid-template-columns: 1fr;
+    display: flex;
+    grid-template-columns: unset;
+    max-width: none;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding-bottom: 8px;
+  }
+
+  .mentor-cards::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .mentor-cards::-webkit-scrollbar-track {
+    background: var(--color-bg-subtle);
+    border-radius: 3px;
+  }
+
+  .mentor-cards::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+  }
+
+  .mentor-cards .mentor-card {
+    flex: 0 0 min(320px, 85vw);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .mentor-cards-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .mentor-cards-dots .dot {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition: background 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .mentor-cards-dots .dot:hover {
+    background: var(--color-text-muted);
+  }
+
+  .mentor-cards-dots .dot.is-active {
+    background: #5F5DF9;
+    transform: scale(1.2);
+  }
+
+  .why-compare {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .why-box {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .why-vs {
+    margin: 16px auto;
+    flex-shrink: 0;
+  }
+
+  .why-subtitle {
+    margin-bottom: 32px;
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
   }
 
   .hero {
@@ -1085,12 +1302,70 @@ img {
     padding: 56px 20px;
   }
 
+  .case-card {
+    padding: 28px 20px 24px;
+  }
+
+  .case-quote {
+    font-size: 1rem;
+    padding-left: 2rem;
+  }
+
+  .case-quote::before,
+  .case-quote::after {
+    font-size: 2.25rem;
+  }
+
+  /* 왜 당신의사수: 모바일 패딩·줄바꿈 개선 */
+  .why-compare {
+    max-width: 100%;
+  }
+
+  .why-box {
+    padding: 24px 20px;
+  }
+
+  .why-box ul li {
+    word-break: keep-all;
+    line-height: 1.6;
+  }
+
+  .why-vs {
+    margin: 12px auto;
+  }
+
+  .why-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+  }
+
   .why-arrow {
     width: 100%;
     justify-content: center;
   }
 
-  .footer-inner {
+  .footer-top {
     flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-brand-name {
+    font-size: 1.75rem;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+}
+
+/* 작은 모바일 */
+@media (max-width: 400px) {
+  .why-box {
+    padding: 20px 16px;
+  }
+
+  .why-box ul li {
+    font-size: 0.9rem;
   }
 }

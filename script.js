@@ -3,9 +3,10 @@
  */
 
 (function () {
+  // 모바일에서만 줄바꿈 적용 (hero-br은 CSS에서 모바일에서 block, 데스크톱에서 none)
   const rollingLines = [
-    "IT 이직과 연봉 상승을 위한 1:1 사수",
-    "가장 빠른 성공 이직 지름길",
+    "IT 이직과 연봉 상승<span class=\"hero-br\"></span>을 위한 1:1 사수",
+    "가장 빠른 <span class=\"hero-br\"></span>성공 이직 지름길",
   ];
 
   const el = document.getElementById("heroRolling");
@@ -15,8 +16,8 @@
   const DURATION_MS = 3500;
   const FADE_MS = 400;
 
-  function setText(text) {
-    el.textContent = text;
+  function setText(html) {
+    el.innerHTML = html;
     el.classList.add("rolling-visible");
   }
 
@@ -165,4 +166,103 @@
   modal && modal.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeModal();
   });
+})();
+
+/**
+ * 서비스 카드 슬라이드: 인디케이터 점 생성 및 스크롤 동기화
+ */
+(function () {
+  const cardsEl = document.querySelector(".service-cards");
+  const dotsEl = document.querySelector(".service-cards-dots");
+  if (!cardsEl || !dotsEl) return;
+
+  const cards = cardsEl.querySelectorAll(".service-card");
+  if (cards.length === 0) return;
+
+  // 인디케이터 점 생성
+  cards.forEach(function (_, i) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("aria-label", "슬라이드 " + (i + 1) + "로 이동");
+    dot.addEventListener("click", function () {
+      const card = cards[i];
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      }
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  const dots = dotsEl.querySelectorAll(".dot");
+
+  function updateActiveDot() {
+    const scrollLeft = cardsEl.scrollLeft;
+    const containerWidth = cardsEl.offsetWidth;
+    let activeIndex = 0;
+    let minDist = Infinity;
+    cards.forEach(function (card, i) {
+      const cardLeft = card.offsetLeft;
+      const dist = Math.abs(cardLeft - scrollLeft);
+      if (dist < minDist) {
+        minDist = dist;
+        activeIndex = i;
+      }
+    });
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle("is-active", i === activeIndex);
+    });
+  }
+
+  cardsEl.addEventListener("scroll", updateActiveDot);
+  window.addEventListener("resize", updateActiveDot);
+  updateActiveDot();
+})();
+
+/**
+ * 멘토 카드 슬라이드: 인디케이터 점 생성 및 스크롤 동기화
+ */
+(function () {
+  const cardsEl = document.querySelector(".mentor-cards");
+  const dotsEl = document.querySelector(".mentor-cards-dots");
+  if (!cardsEl || !dotsEl) return;
+
+  const cards = cardsEl.querySelectorAll(".mentor-card");
+  if (cards.length === 0) return;
+
+  cards.forEach(function (_, i) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("aria-label", "멘토 " + (i + 1) + "로 이동");
+    dot.addEventListener("click", function () {
+      const card = cards[i];
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+      }
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  const dots = dotsEl.querySelectorAll(".dot");
+
+  function updateActiveDot() {
+    const scrollLeft = cardsEl.scrollLeft;
+    let activeIndex = 0;
+    let minDist = Infinity;
+    cards.forEach(function (card, i) {
+      const dist = Math.abs(card.offsetLeft - scrollLeft);
+      if (dist < minDist) {
+        minDist = dist;
+        activeIndex = i;
+      }
+    });
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle("is-active", i === activeIndex);
+    });
+  }
+
+  cardsEl.addEventListener("scroll", updateActiveDot);
+  window.addEventListener("resize", updateActiveDot);
+  updateActiveDot();
 })();

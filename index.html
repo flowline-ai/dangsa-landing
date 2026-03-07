@@ -14,14 +14,14 @@
   <!-- 헤더 -->
   <header class="header">
     <div class="header-inner">
-      <a href="#" class="logo"><img src="asset/dangsa_logo.png" alt="당신의사수" /></a>
+      <a href="index.html" class="logo"><img src="asset/dangsa_logo.png" alt="당신의사수" /></a>
       <nav class="nav">
         <a href="#intro">서비스 소개</a>
         <a href="#mentors">오늘의 사수</a>
         <a href="#services">커리큘럼</a>
       </nav>
       <div class="header-cta">
-        <a href="#" class="btn btn-primary">시작하기</a>
+        <a href="https://forms.gle/GRAkY72cYT4f2QbC6" target="_blank" rel="noopener noreferrer" class="btn btn-primary">시작하기</a>
       </div>
     </div>
   </header>
@@ -41,7 +41,7 @@
       </p>
       <div class="hero-cta">
         <a href="#mentors" class="btn btn-outline btn-lg">멘토 구경하기</a>
-        <a href="#services" class="btn btn-primary btn-lg">내 커리어 사수 만나기</a>
+        <a href="https://forms.gle/GRAkY72cYT4f2QbC6" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">내 커리어 사수 만나기</a>
       </div>
       <p class="hero-badges">
         <span>커리어 상담</span>
@@ -63,7 +63,8 @@
           이번주 <strong id="mentors-count">32명</strong>이 멘토링을 진행 중이에요 🔥
         </p>
       </header>
-      <div class="mentor-cards">
+      <div class="mentor-cards-wrapper">
+        <div class="mentor-cards" role="region" aria-label="오늘의 사수 슬라이드">
         <article class="mentor-card mentor-card--featured">
           <span class="mentor-card-featured-company">네이버</span>
           <div class="mentor-card-featured-avatar">
@@ -91,8 +92,10 @@
           </ul>
         </article>
       </div>
+        <div class="mentor-cards-dots" aria-hidden="true"></div>
+      </div>
       <div class="mentors-section-cta">
-        <a href="#" class="btn btn-primary btn-lg">커피챗 신청하기</a>
+        <a href="https://forms.gle/GRAkY72cYT4f2QbC6" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">커피챗 신청하기</a>
       </div>
     </div>
   </section>
@@ -102,10 +105,11 @@
     <div class="container">
       <h2 class="section-title"><em>단계별 커리큘럼</em></h2>
       <p class="section-desc">커리어 진단부터 이직에 성공할 때까지 올인원 프로그램</p>
-      <div class="service-cards">
+      <div class="service-cards-wrapper">
+        <div class="service-cards" role="region" aria-label="단계별 커리큘럼 슬라이드">
         <article class="service-card">
           <span class="service-card-step">STEP 1</span>
-          <h3 class="service-card-title">커피챗</h3>
+          <h3 class="service-card-title">1:1 커피챗</h3>
           <p class="service-card-price"><span class="service-card-price-num">6.6</span>만원 <span class="service-card-price-period">/ 60분</span></p>
           <ul class="service-card-features">
             <li>커리어 점검</li>
@@ -118,7 +122,7 @@
         </article>
         <article class="service-card">
           <span class="service-card-step">STEP 2</span>
-          <h3 class="service-card-title">소그룹 컨설팅</h3>
+          <h3 class="service-card-title">소그룹 포트폴리오 코칭</h3>
           <p class="service-card-price"><span class="service-card-price-num">66</span>만원 <span class="service-card-price-period">/ 1개월</span></p>
           <ul class="service-card-features">
             <li>실전 프로젝트 진행</li>
@@ -133,7 +137,7 @@
         </article>
         <article class="service-card">
           <span class="service-card-step">STEP 3</span>
-          <h3 class="service-card-title">리빌딩 커리큘럼</h3>
+          <h3 class="service-card-title">업스킬링 커리큘럼</h3>
           <p class="service-card-price"><span class="service-card-price-num">198</span>만원 <span class="service-card-price-period">/ 3개월</span></p>
           <ul class="service-card-features">
             <li>AI 리스킬링 교육</li>
@@ -148,7 +152,7 @@
         <article class="service-card service-card-featured">
           <span class="service-card-badge">가장 인기</span>
           <span class="service-card-step">STEP 4</span>
-          <h3 class="service-card-title">이직 솔루션</h3>
+          <h3 class="service-card-title">이직 전략 컨설팅</h3>
           <p class="service-card-price"><span class="service-card-price-num">330</span>만원 <span class="service-card-price-period">/ 3개월</span></p>
           <ul class="service-card-features">
             <li>도메인 탐색 및 기업 분석</li>
@@ -161,6 +165,8 @@
             <p>연봉을 높여 원하는 회사로 이직하고 싶으신 분</p>
           </div>
         </article>
+      </div>
+        <div class="service-cards-dots" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -211,31 +217,27 @@
   <!-- 6. 마지막 CTA -->
   <section class="section cta-section">
     <div class="container">
-      <h2 class="cta-headline">혼자 하는 이직 준비는 이제 끝!</h2>
+      <h2 class="cta-headline">혼자 하는 이직 준비는 <span class="hero-br"></span>이제 끝!</h2>
       <p class="cta-sub">지금 바로 내 커리어에 날개를 달아줄 사수를 만나보세요.</p>
-      <a href="#" class="btn btn-cta-gradient btn-xl">내 커리어 사수 만나기</a>
+      <a href="https://forms.gle/GRAkY72cYT4f2QbC6" target="_blank" rel="noopener noreferrer" class="btn btn-cta-gradient btn-xl">내 커리어 사수 만나기</a>
     </div>
   </section>
 
   <!-- 푸터 -->
   <footer class="footer">
-    <div class="container footer-inner">
-      <a href="#" class="logo"><img src="asset/dangsa_logo.png" alt="당신의사수" /></a>
-      <div class="footer-links">
-        <div class="footer-col">
-          <strong>서비스</strong>
-          <a href="#mentors">멘토 보기</a>
-          <a href="#services">커리큘럼</a>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-brand-name">당신의사수</a>
+          <p class="footer-brand-desc">IT 이직과 연봉 상승을 위한 1:1 사수</p>
         </div>
-        <div class="footer-col">
-          <strong>이용 안내</strong>
-          <a href="#">자주 묻는 질문</a>
-          <a href="#">이용약관</a>
-        </div>
-        <div class="footer-col">
-          <strong>문의</strong>
-          <a href="#">고객센터</a>
-        </div>
+        <nav class="footer-links" aria-label="푸터 메뉴">
+          <a href="terms.html">이용약관</a>
+          <a href="privacy.html">개인정보처리방침</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 당신의사수. All rights reserved.</p>
       </div>
     </div>
   </footer>
