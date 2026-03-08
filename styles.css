@@ -339,9 +339,9 @@ img {
 
 .mentor-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 720px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -520,10 +520,16 @@ img {
   padding: 32px 28px 28px;
 }
 
-.mentor-modal-close {
+.mentor-modal-header {
   position: absolute;
   top: 16px;
   right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mentor-modal-close {
   width: 36px;
   height: 36px;
   display: flex;
@@ -548,6 +554,10 @@ img {
   padding-right: 8px;
 }
 
+.mentor-content-panel[hidden] {
+  display: none;
+}
+
 .mentor-modal-title {
   font-size: 1.5rem;
   font-weight: 700;
@@ -558,9 +568,47 @@ img {
 .mentor-modal-subtitle {
   font-size: 0.95rem;
   color: var(--color-text-secondary);
-  margin: 0 0 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--color-border);
+  margin: 0 0 16px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* 링크드인 버튼: 팝업 우측 상단, 크기 2/3 */
+.mentor-modal-linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  background: #0a66c2;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.mentor-modal-linkedin-btn:hover {
+  background: #004182;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.mentor-modal-linkedin-btn:focus {
+  outline: 2px solid #0a66c2;
+  outline-offset: 2px;
+}
+
+.mentor-modal-linkedin-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.mentor-modal-linkedin-btn.is-hidden {
+  display: none;
 }
 
 .mentor-modal-h3 {

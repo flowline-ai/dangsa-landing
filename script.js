@@ -131,13 +131,42 @@
   const modal = document.getElementById("mentorModal");
   const overlay = modal ? modal.querySelector(".mentor-modal-overlay") : null;
   const closeBtn = modal ? modal.querySelector(".mentor-modal-close") : null;
+  const linkedInBtn = document.getElementById("mentorModalLinkedIn");
   const triggerCards = document.querySelectorAll("[data-mentor-modal]");
 
-  function openModal() {
+  function openModal(triggerCard) {
     if (!modal) return;
+    const mentorId = triggerCard ? triggerCard.getAttribute("data-mentor-modal") : "sim";
+    const contentSim = document.getElementById("mentor-content-sim");
+    const contentPark = document.getElementById("mentor-content-park");
+    const contentJin = document.getElementById("mentor-content-jin");
+    var panels = [contentSim, contentPark, contentJin];
+    panels.forEach(function (p) {
+      if (p) {
+        p.hidden = true;
+        p.setAttribute("aria-hidden", "true");
+      }
+    });
+    var active = mentorId === "park" ? contentPark : mentorId === "jin" ? contentJin : contentSim;
+    if (active) {
+      active.hidden = false;
+      active.setAttribute("aria-hidden", "false");
+    }
+    if (linkedInBtn && triggerCard) {
+      const url = triggerCard.getAttribute("data-mentor-linkedin");
+      if (url && url !== "#") {
+        linkedInBtn.href = url;
+        linkedInBtn.classList.remove("is-hidden");
+      } else {
+        linkedInBtn.href = "#";
+        linkedInBtn.classList.add("is-hidden");
+      }
+    }
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    var contentEl = modal.querySelector(".mentor-modal-content");
+    if (contentEl) contentEl.scrollTop = 0;
     closeBtn && closeBtn.focus();
   }
 
@@ -150,12 +179,12 @@
 
   triggerCards.forEach(function (card) {
     card.addEventListener("click", function () {
-      openModal();
+      openModal(card);
     });
     card.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openModal();
+        openModal(card);
       }
     });
   });
