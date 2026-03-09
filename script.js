@@ -5,8 +5,8 @@
 (function () {
   // 모바일에서만 줄바꿈 적용 (hero-br은 CSS에서 모바일에서 block, 데스크톱에서 none)
   const rollingLines = [
-    "IT 이직과 연봉 상승<span class=\"hero-br\"></span>을 위한 1:1 사수",
-    "가장 빠른 <span class=\"hero-br\"></span>성공 이직 지름길",
+    "혼자 고민하지 마세요",
+    "커리어 이직의 지름길",
   ];
 
   const el = document.getElementById("heroRolling");
