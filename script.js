@@ -1,5 +1,10 @@
 /**
  * 당신의사수 랜딩페이지 - 히어로 텍스트 롤링 애니메이션
+ *
+ * [GA4 유입경로 추적] script.js 하단의 유입 파라미터를 보고서에서 쓰려면
+ * GA4 관리자 > 맞춤 정의 > 맞춤 측정기준에서 아래 이벤트 매개변수를 등록하세요:
+ *   utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+ *   entry_referrer_domain, entry_page
  */
 
 (function () {
@@ -297,15 +302,101 @@
 })();
 
 /**
- * Google Analytics 4 (GA4) 이벤트 트래킹
- * - CTA 클릭(멤버 가입), 멘토 카드 열기, 카카오 채널 클릭 등 전환/참여 이벤트 전송
+ * 유입경로 추적: UTM 파라미터 + 리퍼러를 세션 동안 보관하고 GA 이벤트에 함께 전송
+ * - URL의 utm_source, utm_medium, utm_campaign, utm_content, utm_term 수집
+ * - document.referrer 및 유입 도메인(entry_referrer_domain) 수집
+ * - 세션 최초 유입 시에만 저장하여 '첫 터치' 기준으로 유입 채널 분석 가능
  */
 (function () {
-  function sendGAEvent(eventName, params) {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", eventName, params || {});
+  var STORAGE_KEY = "dangsa_ga_acquisition";
+
+  function parseQuery() {
+    var q = {};
+    var search = typeof window !== "undefined" && window.location ? window.location.search : "";
+    if (!search) return q;
+    search.slice(1).split("&").forEach(function (pair) {
+      var i = pair.indexOf("=");
+      if (i === -1) return;
+      var k = decodeURIComponent(pair.slice(0, i)).replace(/\+/g, " ");
+      var v = decodeURIComponent(pair.slice(i + 1)).replace(/\+/g, " ");
+      q[k] = v;
+    });
+    return q;
+  }
+
+  function getReferrerDomain(referrer) {
+    if (!referrer || typeof referrer !== "string") return "";
+    try {
+      var url = new URL(referrer);
+      var host = url.hostname || "";
+      return host.replace(/^www\./, "");
+    } catch (e) {
+      return "";
     }
   }
+
+  function getStored() {
+    try {
+      var raw = sessionStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveAcquisition() {
+    var stored = getStored();
+    if (stored) return stored;
+    var q = parseQuery();
+    var referrer = typeof document !== "undefined" ? document.referrer || "" : "";
+    var referrerDomain = getReferrerDomain(referrer);
+    var entryPage = typeof window !== "undefined" && window.location ? window.location.pathname || window.location.href : "";
+    var data = {
+      utm_source: q.utm_source || "",
+      utm_medium: q.utm_medium || "",
+      utm_campaign: q.utm_campaign || "",
+      utm_content: q.utm_content || "",
+      utm_term: q.utm_term || "",
+      entry_referrer: referrer,
+      entry_referrer_domain: referrerDomain,
+      entry_page: entryPage || "/"
+    };
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {}
+    return data;
+  }
+
+  saveAcquisition();
+  window.getAcquisitionParams = function () {
+    return getStored() || saveAcquisition();
+  };
+})();
+
+/**
+ * Google Analytics 4 (GA4) 이벤트 트래킹
+ * - CTA 클릭(멤버 가입), 멘토 카드 열기, 카카오 채널 클릭 등 전환/참여 이벤트 전송
+ * - 모든 이벤트에 유입경로 파라미터(UTM, entry_referrer_domain 등) 자동 첨부
+ */
+(function () {
+  function getAcquisitionParams() {
+    return typeof window.getAcquisitionParams === "function" ? window.getAcquisitionParams() : {};
+  }
+
+  function sendGAEvent(eventName, params) {
+    if (typeof window.gtag !== "function") return;
+    var acquisition = getAcquisitionParams();
+    var merged = Object.assign({}, acquisition, params || {});
+    window.gtag("event", eventName, merged);
+  }
+
+  // 세션 시작 시 유입경로 이벤트 1회 전송 (GA4에서 유입 채널 분석용)
+  (function sendSessionStart() {
+    var p = getAcquisitionParams();
+    if (p.utm_source || p.utm_medium || p.utm_campaign || p.entry_referrer_domain) {
+      sendGAEvent("session_start", { event_category: "engagement" });
+    }
+  })();
 
   // 멤버 가입하기 CTA 클릭 (전환)
   document.querySelectorAll('a[href*="forms.gle/GRAkY72cYT4f2QbC6"]').forEach(function (el) {
