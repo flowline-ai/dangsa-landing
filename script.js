@@ -295,3 +295,40 @@
   window.addEventListener("resize", updateActiveDot);
   updateActiveDot();
 })();
+
+/**
+ * Google Analytics 4 (GA4) 이벤트 트래킹
+ * - CTA 클릭(멤버 가입), 멘토 카드 열기, 카카오 채널 클릭 등 전환/참여 이벤트 전송
+ */
+(function () {
+  function sendGAEvent(eventName, params) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, params || {});
+    }
+  }
+
+  // 멤버 가입하기 CTA 클릭 (전환)
+  document.querySelectorAll('a[href*="forms.gle/GRAkY72cYT4f2QbC6"]').forEach(function (el) {
+    el.addEventListener("click", function () {
+      var location = el.closest(".hero-cta") ? "hero" : el.closest(".mentors-section-cta") ? "mentors" : el.closest(".cta-section") ? "cta_bottom" : el.closest(".header") ? "header" : "other";
+      sendGAEvent("cta_click", { cta_label: "member_join", cta_location: location });
+    });
+  });
+
+  // 멘토 카드 클릭 시 팝업 열림 (참여)
+  var triggerCards = document.querySelectorAll("[data-mentor-modal]");
+  triggerCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+      var mentorId = card.getAttribute("data-mentor-modal") || "unknown";
+      sendGAEvent("mentor_card_open", { mentor_id: mentorId });
+    });
+  });
+
+  // 카카오톡 채널 FAB 클릭
+  var kakaoFab = document.querySelector('.fab-kakao');
+  if (kakaoFab) {
+    kakaoFab.addEventListener("click", function () {
+      sendGAEvent("kakao_channel_click", { link_url: "pf.kakao.com" });
+    });
+  }
+})();
