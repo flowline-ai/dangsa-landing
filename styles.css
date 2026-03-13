@@ -1112,6 +1112,96 @@ img {
 }
 
 /* ----------------------------------------
+   당신의사수 Youtube
+---------------------------------------- */
+.youtube-section {
+  background: var(--color-bg);
+}
+
+.youtube-section .section-title {
+  margin-bottom: 28px;
+}
+
+.youtube-grid {
+  display: block;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.youtube-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+  text-decoration: none;
+  color: inherit;
+}
+
+.youtube-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.youtube-card--featured {
+  min-height: 0;
+}
+
+.youtube-card-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-bg-subtle);
+  overflow: hidden;
+}
+
+.youtube-card--featured .youtube-card-thumb {
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+}
+
+.youtube-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.youtube-card-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.youtube-card-play svg {
+  width: 68px;
+  height: 48px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.youtube-card-title {
+  margin: 0;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: #fafafa;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.youtube-card--featured .youtube-card-title {
+  padding: 18px 22px;
+  font-size: 1.05rem;
+}
+
+/* ----------------------------------------
    마지막 CTA
 ---------------------------------------- */
 .cta-section {
@@ -1445,6 +1535,7 @@ img {
     margin-bottom: 32px;
     padding: 0 8px;
   }
+
 }
 
 @media (max-width: 768px) {
