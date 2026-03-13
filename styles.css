@@ -220,15 +220,96 @@ img {
   }
 }
 
-.hero-subcopy {
+/* 히어로 인트로 텍스트 (카드 위) */
+.hero-intro-text {
+  text-align: center;
   font-size: 1.125rem;
-  color: var(--color-text-secondary);
   line-height: 1.7;
-  margin: 0 0 81px; /* 54px × 1.5 */
+  color: var(--color-text-secondary);
+  margin: 0 auto 24px;
+  max-width: 480px;
 }
 
-.hero-subcopy strong {
+/* 히어로 이직 후기 카드 슬라이더 (위아래 오토 슬라이드) */
+.hero-career-slider {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto 48px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  height: 84px;
+}
+
+.hero-career-slider-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s ease;
+}
+
+.hero-career-card {
+  flex: 0 0 72px;
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 14px 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+
+.hero-career-card:last-child {
+  margin-bottom: 0;
+}
+
+.hero-career-card-member {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.hero-career-card-metric {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--color-text);
+  margin: 0;
+}
+
+.hero-career-card-salary {
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: nowrap;
+}
+
+.hero-career-card-salary-num {
+  color: #5F5DF9;
+  font-weight: 700;
+}
+
+.hero-career-card-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.hero-career-card-tag--progress {
+  background: #EBEBFF;
+  color: #5F5DF9;
+}
+
+.hero-career-card-tag--success {
+  background: #d1fae5;
+  color: #047857;
 }
 
 .hero-cta {

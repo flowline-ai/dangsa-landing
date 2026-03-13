@@ -46,6 +46,29 @@
 })();
 
 /**
+ * 히어로 이직 후기 카드: 위아래 방향 오토 슬라이드 (한 개씩 노출)
+ */
+(function () {
+  const track = document.querySelector(".hero-career-slider-track");
+  const cards = document.querySelectorAll(".hero-career-card");
+  if (!track || cards.length === 0) return;
+
+  const CARD_HEIGHT = 72;
+  const CARD_GAP = 12;
+  const STEP = CARD_HEIGHT + CARD_GAP; /* 84px */
+  const DURATION_MS = 4000;
+
+  let index = 0;
+
+  function slide() {
+    index = (index + 1) % cards.length;
+    track.style.transform = "translateY(-" + index * STEP + "px)";
+  }
+
+  setInterval(slide, DURATION_MS);
+})();
+
+/**
  * 멘토링 진행 인원 수: 매주 월요일 랜덤(10~40), 요일별 랜덤 증가폭, 다음 주 월요일 리셋
  */
 (function () {
@@ -398,7 +421,7 @@
     }
   })();
 
-  // 멤버 가입하기 CTA 클릭 (전환)
+  // 커리어 상담받기 CTA 클릭 (전환)
   document.querySelectorAll('a[href*="forms.gle/GRAkY72cYT4f2QbC6"]').forEach(function (el) {
     el.addEventListener("click", function () {
       var location = el.closest(".hero-cta") ? "hero" : el.closest(".mentors-section-cta") ? "mentors" : el.closest(".cta-section") ? "cta_bottom" : el.closest(".header") ? "header" : "other";
