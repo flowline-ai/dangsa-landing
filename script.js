@@ -69,6 +69,32 @@
 })();
 
 /**
+ * 세미나 영역: 오른쪽(전체 일정) 열 높이를 왼쪽 피처 카드와 맞추고, 목록만 스크롤
+ * (CSS만으로는 동적 높이 정렬이 어려워 ResizeObserver 사용)
+ */
+(function () {
+  var BP = 901; /* styles.css의 2열 ↔ 1열 전환(max-width:900px)과 일치 */
+  var featured = document.querySelector(".seminar-featured");
+  var schedule = document.querySelector(".seminar-schedule");
+  if (!featured || !schedule) return;
+
+  function sync() {
+    if (window.innerWidth < BP) {
+      schedule.style.maxHeight = "";
+      return;
+    }
+    schedule.style.maxHeight = featured.offsetHeight + "px";
+  }
+
+  if (typeof ResizeObserver !== "undefined") {
+    var ro = new ResizeObserver(sync);
+    ro.observe(featured);
+  }
+  window.addEventListener("resize", sync);
+  sync();
+})();
+
+/**
  * 멘토링 진행 인원 수: 매주 월요일 랜덤(10~40), 요일별 랜덤 증가폭, 다음 주 월요일 리셋
  */
 (function () {
@@ -168,18 +194,33 @@
     const contentSim = document.getElementById("mentor-content-sim");
     const contentPark = document.getElementById("mentor-content-park");
     const contentJin = document.getElementById("mentor-content-jin");
-    var panels = [contentSim, contentPark, contentJin];
+    const contentParkjw = document.getElementById("mentor-content-parkjw");
+    var panels = [contentSim, contentPark, contentJin, contentParkjw];
     panels.forEach(function (p) {
       if (p) {
         p.hidden = true;
         p.setAttribute("aria-hidden", "true");
       }
     });
-    var active = mentorId === "park" ? contentPark : mentorId === "jin" ? contentJin : contentSim;
+    var active =
+      mentorId === "park"
+        ? contentPark
+        : mentorId === "jin"
+          ? contentJin
+          : mentorId === "parkjw"
+            ? contentParkjw
+            : contentSim;
     if (active) {
       active.hidden = false;
       active.setAttribute("aria-hidden", "false");
     }
+    var titleIds = {
+      sim: "mentorModalTitle-sim",
+      park: "mentorModalTitle-park",
+      jin: "mentorModalTitle-jin",
+      parkjw: "mentorModalTitle-parkjw",
+    };
+    modal.setAttribute("aria-labelledby", titleIds[mentorId] || titleIds.sim);
     if (linkedInBtn && triggerCard) {
       const url = triggerCard.getAttribute("data-mentor-linkedin");
       if (url && url !== "#") {
@@ -426,6 +467,13 @@
     el.addEventListener("click", function () {
       var location = el.closest(".hero-cta") ? "hero" : el.closest(".mentors-section-cta") ? "mentors" : el.closest(".cta-section") ? "cta_bottom" : el.closest(".header") ? "header" : "other";
       sendGAEvent("cta_click", { cta_label: "member_join", cta_location: location });
+    });
+  });
+
+  // 세미나(웨비나) 무료 신청 — 이벤터스 외부 링크
+  document.querySelectorAll(".seminar-featured-cta").forEach(function (el) {
+    el.addEventListener("click", function () {
+      sendGAEvent("cta_click", { cta_label: "webinar_apply", cta_location: "seminar" });
     });
   });
 
