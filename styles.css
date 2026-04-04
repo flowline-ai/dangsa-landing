@@ -75,6 +75,7 @@ img {
   font-weight: 700;
   font-size: 1.125rem;
   letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
 .header .logo img {
@@ -102,6 +103,29 @@ img {
 .header-cta {
   display: flex;
   gap: 12px;
+  flex-shrink: 0;
+}
+
+/* 헤더 중앙: 커피챗 · 이직 전략 컨설팅 */
+.header-service-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  gap: 12px;
+}
+
+.header-service-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  white-space: nowrap;
+}
+
+a.header-service-link[aria-current="page"] {
+  background: var(--color-bg-subtle);
+  color: var(--color-text);
 }
 
 /* 버튼 */
@@ -138,6 +162,15 @@ img {
 .btn-outline:hover {
   background: var(--color-bg-subtle);
   border-color: var(--color-text-muted);
+}
+
+.btn-outline.header-service-link,
+.btn-outline.header-service-link:hover {
+  border: none;
+}
+
+.btn-outline.header-service-link:hover {
+  background: var(--color-bg-subtle);
 }
 
 .btn-ghost {
@@ -1094,6 +1127,18 @@ img {
   border-color: var(--color-text-muted);
 }
 
+/* 서비스 카드 전체를 상세 페이지로 연결할 때 */
+a.service-card--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a.service-card--link:focus {
+  outline: 2px solid #5f5df9;
+  outline-offset: 2px;
+}
+
 .service-card-featured {
   border: 2px solid #5F5DF9;
   background: var(--color-bg);
@@ -1600,6 +1645,29 @@ img {
   color: var(--color-text);
 }
 
+.footer-business {
+  padding: 24px 0 0;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 42rem;
+}
+
+.footer-business p {
+  margin: 0 0 4px;
+}
+
+.footer-business p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-business .footer-business-name {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+
 .footer-bottom {
   padding-top: 18px;
   text-align: center;
@@ -1836,6 +1904,30 @@ img {
 @media (max-width: 768px) {
   .nav {
     display: none;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+
+  .header-service-nav {
+    order: 3;
+    flex-basis: 100%;
+    flex: none;
+    justify-content: stretch;
+    gap: 10px;
+  }
+
+  .header-service-link {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+    justify-content: center;
   }
 
   .seminar-section {

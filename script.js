@@ -494,3 +494,15 @@
     });
   }
 })();
+
+/**
+ * 헤더: 이직 전략 컨설팅 — 페이지 준비 중 안내
+ */
+(function () {
+  document.querySelectorAll(".js-consulting-coming-soon").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      alert("페이지 준비중입니다");
+    });
+  });
+})();
