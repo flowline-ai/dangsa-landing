@@ -496,6 +496,51 @@
 })();
 
 /**
+ * 메인(index) 헤더: 모바일 햄버거 — 서비스 링크 패널 열기/닫기
+ */
+(function () {
+  var header = document.querySelector(".header");
+  var toggle = document.getElementById("header-menu-toggle");
+  var backdrop = document.getElementById("header-menu-backdrop");
+  var nav = document.getElementById("header-service-nav");
+  if (!header || !toggle || !backdrop || !nav) return;
+
+  function setNavOpen(open) {
+    header.classList.toggle("is-nav-open", open);
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+    backdrop.setAttribute("aria-hidden", open ? "false" : "true");
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  toggle.addEventListener("click", function () {
+    setNavOpen(!header.classList.contains("is-nav-open"));
+  });
+
+  backdrop.addEventListener("click", function () {
+    setNavOpen(false);
+  });
+
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      setNavOpen(false);
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && header.classList.contains("is-nav-open")) {
+      setNavOpen(false);
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 768 && header.classList.contains("is-nav-open")) {
+      setNavOpen(false);
+    }
+  });
+})();
+
+/**
  * 헤더: 이직 전략 컨설팅 — 페이지 준비 중 안내
  */
 (function () {

@@ -1,0 +1,449 @@
+/* 당신의사수 이직 전략 컨설팅 랜딩 — coffee-chat.css 확장 */
+
+/* ------------------------------------------------------------------
+   페이지 시각 리듬 통일 (카드·그림자·소제목)
+   ------------------------------------------------------------------ */
+/* coffee-chat.css의 --cc-surface-* 토큰과 동일 값 유지 (별칭) */
+body.cc-page {
+  --cc-consult-radius: var(--cc-surface-radius);
+  --cc-consult-shadow: var(--cc-surface-shadow);
+  --cc-consult-shadow-hover: var(--cc-surface-shadow-hover);
+}
+
+/* 본문 카드류: 동일 모서리·그림자 (가격 보라 테두리 카드 제외) */
+body.cc-page .cc-stat-card,
+body.cc-page .cc-phase-card,
+body.cc-page .cc-benefits-box,
+body.cc-page #authority .cc-authority-checklist-box {
+  border-radius: var(--cc-consult-radius);
+  box-shadow: var(--cc-consult-shadow);
+}
+
+body.cc-page #proof .cc-review-card {
+  border-radius: var(--cc-consult-radius);
+  box-shadow: var(--cc-consult-shadow);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+body.cc-page #proof .cc-review-card:hover {
+  box-shadow: var(--cc-consult-shadow-hover);
+  transform: translateY(-1px);
+}
+
+/* 가격 카드: 그림자 토큰과 호버 강도 맞춤 */
+body.cc-page #pricing .cc-price-card,
+body.cc-page #cta .cc-price-card {
+  box-shadow: var(--cc-consult-shadow);
+}
+
+body.cc-page #pricing .cc-price-card:hover,
+body.cc-page #cta .cc-price-card:hover {
+  box-shadow: var(--cc-consult-shadow-hover);
+  transform: translateY(-1px);
+}
+
+/* 배지 없는 가격 카드 제목 상단 여백 통일 */
+body.cc-page #pricing .cc-price-card > .cc-price-card-title,
+body.cc-page #cta .cc-price-card > .cc-price-card-title {
+  margin-top: 8px;
+}
+
+/* 문제 섹션 리드 / 가격 질문 / 타겟 제목 */
+.cc-problem-lead {
+  text-align: center;
+  max-width: 36em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cc-pricing-question-h2 {
+  margin-bottom: 12px;
+}
+
+.cc-target-section-h2 {
+  margin-bottom: 20px;
+}
+
+/* 솔루션 제목 2행: 앞부분 검정 + 뒷부분 브랜드 컬러 */
+.cc-solution-title-accent.cc-solution-title-accent--split {
+  color: var(--color-text);
+}
+
+.cc-solution-title-accent--split .cc-solution-title-accent-part--dark {
+  color: var(--color-text);
+}
+
+.cc-solution-title-accent--split .cc-solution-title-accent-part--brand {
+  color: var(--cc-purple);
+}
+
+/* 히어로 긴급 배지 — 보라 톤 유지, 채도·대비·그림자로만 눈에 띄게 */
+.cc-hero-urgency {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, #eceaff 0%, #dbd6ff 100%);
+  color: #2a2780;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid rgba(95, 93, 249, 0.52);
+  box-shadow: 0 2px 14px rgba(95, 93, 249, 0.28);
+  letter-spacing: -0.02em;
+}
+
+/* 사회적 증거: 수치 3열 */
+.cc-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+.cc-stat-card {
+  text-align: center;
+  padding: 20px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.cc-stat-value {
+  display: block;
+  font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+  font-weight: 800;
+  color: var(--cc-purple);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.cc-stat-label {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+@media (max-width: 520px) {
+  .cc-stats-row {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+}
+
+/* 후기: 커피챗과 동일 카드 + 넓은 화면 3열 */
+.cc-consulting-review-heading {
+  text-align: center;
+  font-size: var(--cc-section-title-size);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+  margin: 40px 0 8px;
+  color: var(--color-text);
+}
+
+#proof .cc-review-rating {
+  margin-bottom: 28px;
+}
+
+.cc-review-grid.cc-review-grid--consulting {
+  max-width: 1000px;
+}
+
+@media (min-width: 960px) {
+  .cc-review-grid.cc-review-grid--consulting {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+#proof .cc-review-card {
+  padding: 24px 22px 26px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #proof .cc-review-card {
+    transition: none;
+  }
+
+  #proof .cc-review-card:hover {
+    transform: none;
+  }
+}
+
+.cc-proof-hook {
+  text-align: center;
+  font-size: clamp(1.04rem, 2.5vw, 1.22rem);
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0 auto 18px;
+  max-width: 28em;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  opacity: 0.92;
+}
+
+.cc-proof-stats-h2 {
+  margin-bottom: 28px;
+}
+
+/* 멘토진: 체크리스트 박스 가로 가운데, 안쪽 텍스트는 왼쪽 정렬 */
+#authority .cc-authority-checklist-box {
+  max-width: min(640px, 100%);
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 20px 22px 18px;
+  text-align: left;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  box-sizing: border-box;
+}
+
+#authority .cc-authority-checklist-box .cc-list.cc-list--check {
+  display: block;
+  margin: 0;
+  text-align: left;
+}
+
+#authority .cc-authority-checklist-box .cc-list--check li {
+  margin-bottom: 10px;
+}
+
+#authority .cc-authority-checklist-box .cc-list--check li:last-child {
+  margin-bottom: 0;
+}
+
+/* 12주 진행: 5단계 카드 그리드 */
+.cc-phase-section .cc-phase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cc-phase-card {
+  padding: 22px 20px 20px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.cc-phase-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--cc-purple);
+}
+
+.cc-phase-title {
+  margin: 0 0 10px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.cc-phase-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+/* 혜택 + 보너스 2열 */
+.cc-benefits-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.cc-benefits-box {
+  padding: 24px 22px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.cc-benefits-box h3 {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.cc-benefits-box ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+.cc-benefits-box li {
+  margin-bottom: 8px;
+}
+
+.cc-benefits-box--bonus {
+  border-color: rgba(95, 93, 249, 0.35);
+  background: var(--cc-purple-soft);
+}
+
+@media (max-width: 700px) {
+  .cc-benefits-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 가격 3열 */
+.cc-pricing-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+/* 최종 CTA: 가격 2열 */
+.cc-pricing-grid--2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 680px;
+  margin: 0 auto 24px;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .cc-pricing-grid--3 {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cc-pricing-grid--2 {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+
+.cc-risk-intro {
+  max-width: 640px;
+  margin: 0 auto 20px;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* 선결제 아래 성공 보수(+%) 안내 — 눈에 띄게 */
+.cc-price-card-detail {
+  margin: 8px 0 14px;
+  padding: 10px 12px;
+  font-size: clamp(0.98rem, 2.4vw, 1.08rem);
+  line-height: 1.45;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cc-purple);
+  background: var(--cc-purple-soft);
+  border-radius: 10px;
+  border: 1px solid rgba(95, 93, 249, 0.22);
+}
+
+.cc-price-card-detail:last-of-type {
+  margin-bottom: 0;
+}
+
+/* 가격 섹션 상단 강조 한 줄 */
+.cc-pricing-topline {
+  text-align: center;
+  font-size: clamp(1.2rem, 4.2vw, 1.95rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.35;
+  margin: 0 auto 20px;
+  max-width: 36em;
+  color: var(--color-text);
+}
+
+.cc-pricing-topline-accent {
+  color: var(--cc-purple);
+}
+
+/* 가격 헤드 바로 아래: 핵심 산출물 · 보너스 카드 */
+.cc-pricing-includes {
+  margin: 8px auto 40px;
+  max-width: 920px;
+}
+
+/* 이런 분께 딱 맞아요: 배경 흰색 */
+#target.cc-section--alt {
+  background: var(--color-bg);
+}
+
+.cc-faq-lead {
+  text-align: center;
+  font-size: var(--cc-section-title-size);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--color-text);
+}
+
+#faq .cc-faq-lead {
+  margin-bottom: 20px;
+}
+
+.cc-faq--standalone {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 본문 링크 (coffee-chat.css와 동일 토큰) */
+.cc-inline-link {
+  color: var(--cc-purple);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cc-inline-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* 최종 CTA 부가 카피 */
+.cc-final-invest {
+  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 0 auto 20px;
+  max-width: 640px;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+/* 최종 CTA: 부제 삭제 후 제목·카드 사이 여백 */
+body.cc-page #cta .cc-pricing-title {
+  margin-bottom: 24px;
+}
+
+.cc-closing-line {
+  margin: 28px auto 0;
+  max-width: 34em;
+  text-align: center;
+  font-size: clamp(1.08rem, 2.6vw, 1.28rem);
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
