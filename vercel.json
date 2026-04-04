@@ -1,3 +1,20 @@
 {
-  "framework": null
+  "framework": null,
+  "redirects": [
+    {
+      "source": "/coffee-chat.html",
+      "destination": "/coffee-chat/",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy/",
+      "permanent": true
+    }
+  ]
 }
