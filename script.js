@@ -95,6 +95,42 @@
 })();
 
 /**
+ * 세미나 일정 카드 상태 자동 갱신
+ * - 오늘 이전 날짜: '종료됨'
+ * - 오늘/미래 날짜: '예정됨'
+ */
+(function () {
+  var cards = document.querySelectorAll(".seminar-list-card");
+  if (!cards.length) return;
+
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  function parseLocalDate(isoDate) {
+    if (!isoDate) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate.trim());
+    if (!m) return null;
+    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  }
+
+  cards.forEach(function (card) {
+    var status = card.querySelector(".seminar-status");
+    var dateEl = card.querySelector(".seminar-list-date");
+    if (!status || !dateEl) return;
+
+    var seminarDate = parseLocalDate(dateEl.getAttribute("datetime"));
+    if (!seminarDate) return;
+
+    seminarDate.setHours(0, 0, 0, 0);
+    var isEnded = seminarDate < today;
+
+    status.classList.toggle("seminar-status--ended", isEnded);
+    status.classList.toggle("seminar-status--scheduled", !isEnded);
+    status.textContent = isEnded ? "종료됨" : "예정됨";
+  });
+})();
+
+/**
  * 멘토링 진행 인원 수: 매주 월요일 랜덤(10~40), 요일별 랜덤 증가폭, 다음 주 월요일 리셋
  */
 (function () {
