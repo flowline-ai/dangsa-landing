@@ -284,12 +284,22 @@
 
   triggerCards.forEach(function (card) {
     card.addEventListener("click", function () {
-      openModal(card);
+      var link = card.getAttribute("data-mentor-link");
+      if (link) {
+        window.open(link, "_blank", "noopener,noreferrer");
+      } else {
+        openModal(card);
+      }
     });
     card.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openModal(card);
+        var link = card.getAttribute("data-mentor-link");
+        if (link) {
+          window.open(link, "_blank", "noopener,noreferrer");
+        } else {
+          openModal(card);
+        }
       }
     });
   });

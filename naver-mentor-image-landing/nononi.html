@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>노노니 멘토 — 당신의사수</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:             #ffffff;
+      --color-bg-subtle:      #f7f7f8;
+      --color-text:           #1a1a1a;
+      --color-text-secondary: #6b6b6b;
+      --color-text-muted:     #8e8e93;
+      --color-border:         #e5e5e7;
+      --color-primary:        #1a1a1a;
+      --color-purple:         #5f5df9;
+      --color-purple-light:   #ebefff;
+      --radius:               12px;
+      --radius-lg:            16px;
+      --shadow:               0 2px 8px rgba(0,0,0,.06);
+      --shadow-md:            0 4px 16px rgba(0,0,0,.08);
+      --font-sans:            "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-min:             0.875rem;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      max-width: 768px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+      font-size: var(--text-min);
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    .section {
+      padding: 48px 20px;
+    }
+    .section + .section {
+      border-top: 8px solid var(--color-bg-subtle);
+    }
+    .section-title {
+      font-size: clamp(1.25rem, 5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 28px 0;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min);
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 999px;
+    }
+    .tag--purple { background: var(--color-purple-light); color: var(--color-purple); }
+    .tag--gray   { background: #f0f0f2; color: var(--color-text-secondary); }
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .sub-heading {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* ── 히어로 ── */
+    .hero-section {
+      padding: 40px 20px 36px;
+      border-bottom: 8px solid var(--color-bg-subtle);
+    }
+    .mentor-profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .mentor-avatar-placeholder {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0dffe 0%, #c7c6fb 100%);
+      flex-shrink: 0;
+      border: 2.5px solid var(--color-purple);
+    }
+    .mentor-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .mentor-info { flex: 1; min-width: 0; }
+    .mentor-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .mentor-position {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .mentor-company-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .mentor-company {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min);
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 5px 11px;
+      border-radius: var(--radius);
+    }
+    .mentor-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .stat-item {
+      background: var(--color-bg);
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--color-purple);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+    .mentor-tagline {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 14px 16px;
+      background: var(--color-purple-light);
+      border-left: 3px solid var(--color-purple);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* ── 멘토 소개 ── */
+    .intro-text {
+      font-size: var(--text-min);
+      color: var(--color-text);
+      line-height: 1.85;
+      white-space: pre-line;
+    }
+    .intro-highlight {
+      font-weight: 700;
+      color: var(--color-purple);
+    }
+    .achievement-list {
+      list-style: none;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .achievement-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: var(--text-min);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .achievement-list li::before {
+      content: '✓';
+      color: var(--color-purple);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ── 경력 텍스트 ── */
+    .career-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .career-text-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .career-text-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .career-text-period {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .career-text-company {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .career-text-role {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+    }
+
+    /* ── 멘토링 분야 ── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .field-card {
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+    }
+    .field-name {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .field-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── 멘토링 대상 ── */
+    .target-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .target-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+    .target-item--highlight {
+      border-color: var(--color-purple);
+      background: var(--color-purple-light);
+    }
+    .target-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .target-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── 세미나 ── */
+    .seminar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .seminar-card {
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg);
+    }
+    .seminar-card-body {
+      padding: 18px 16px 14px;
+    }
+    .seminar-topic {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .seminar-meta {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      margin-bottom: 14px;
+    }
+    .seminar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 12px;
+      border-radius: var(--radius);
+      font-size: var(--text-min);
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1.5px solid var(--color-border);
+    }
+
+    /* ── SNS ── */
+    .sns-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .sns-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--color-border);
+      font-size: var(--text-min);
+      font-weight: 600;
+      color: var(--color-text);
+      background: var(--color-bg);
+      cursor: pointer;
+    }
+    .sns-btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sns-btn-icon--blog     { background: #03c75a; }
+    .sns-btn-icon--facebook { background: #1877f2; }
+    .sns-btn-icon--kakao    { background: #FEE500; }
+    .sns-btn-label { flex: 1; }
+    .sns-btn-name {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .sns-btn-sub {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .sns-btn-arrow {
+      color: var(--color-text-muted);
+      font-size: var(--text-min);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 기본 정보 -->
+  <section class="hero-section">
+    <div class="mentor-profile">
+      <img class="mentor-avatar" src="mento_nononi.jpg" alt="노노니 프로필 사진" />
+
+      <div class="mentor-info">
+        <h1 class="mentor-name">노노니</h1>
+        <p class="mentor-position">서비스 기획자 · 26년차<br>에이전시·스타트업 실무 전문</p>
+        <div class="mentor-company-list">
+          <span class="mentor-company">희망제작소</span>
+          <span class="mentor-company">쏠스펙트럼</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-stats">
+      <div class="stat-item">
+        <div class="stat-value">100+</div>
+        <div class="stat-label">프로젝트 수행</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">26년</div>
+        <div class="stat-label">현업 경력</div>
+      </div>
+    </div>
+
+    <p class="mentor-tagline">
+      "2000년부터 지금까지, 현장에서 직접 부딪히며 쌓은 서비스 기획 기본기를 나눠드립니다."
+    </p>
+
+    <div class="tag-group">
+      <span class="tag tag--purple">서비스 기획</span>
+      <span class="tag tag--purple">문서화 실무</span>
+      <span class="tag tag--purple">에이전시 기획</span>
+      <span class="tag tag--gray">앱·웹 기획</span>
+      <span class="tag tag--gray">포트폴리오</span>
+    </div>
+  </section>
+
+
+  <!-- 2. 멘토 소개 -->
+  <section class="section">
+    <h2 class="section-title">멘토 소개</h2>
+
+    <p class="intro-text">
+안녕하세요, <span class="intro-highlight">26년차 현직 서비스 기획자 노노니</span>입니다.
+
+2000년 웹PD로 시작해 에이전시·인하우스·프리랜서를 두루 거치며 100개가 넘는 프로젝트를 직접 기획했습니다. 사수 없이 혼자 문서를 만들던 시절을 알기에, 실무에서 바로 쓸 수 있는 이야기를 나눠드릴게요.
+    </p>
+
+    <div class="divider"></div>
+    <p class="sub-heading">주요 이력</p>
+    <ul class="achievement-list">
+      <li>MBC, LG CNS, 두산, 농심 등 대기업·공공기관 고객사 프로젝트 수행</li>
+      <li>앱·웹·관리자 전 영역 기획 경험 (100+ 프로젝트)</li>
+      <li>스타트업 창업자 멘토링 및 서비스 기획자 컨퍼런스 강연</li>
+      <li>웹·앱 서비스 기획 멘토링 카카오 오픈채팅 커뮤니티 운영</li>
+    </ul>
+
+    <div class="divider"></div>
+    <p class="sub-heading">경력 사항</p>
+
+    <div class="career-text">
+      <div class="career-text-item">
+        <span class="career-text-period">2012 — 현재</span>
+        <span class="career-text-company">서비스 기획 프리랜서</span>
+        <span class="career-text-role">사용자 앱·웹·관리자 기획, PM</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2010.09 — 2011.08</span>
+        <span class="career-text-company">쏠스펙트럼</span>
+        <span class="career-text-role">서비스 기획 과장</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2007.06 — 2009.02</span>
+        <span class="career-text-company">희망제작소</span>
+        <span class="career-text-role">온라인 서비스 총괄 팀장</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. 멘토링 분야 -->
+  <section class="section">
+    <h2 class="section-title">멘토링 분야</h2>
+    <p class="section-desc">26년 실무에서 가장 많이 받는 질문들입니다.</p>
+
+    <div class="field-grid">
+      <div class="field-card">
+        <div class="field-name">기획 문서화 실무</div>
+        <div class="field-desc">현실적인 산출물 작성법, 클라이언트가 원하는 문서 구조</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">에이전시·외주 프로세스</div>
+        <div class="field-desc">SI·외주 기획의 흐름, 클라이언트 커뮤니케이션 노하우</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">앱·웹 기획 기본기</div>
+        <div class="field-desc">화면 기획, 플로우 설계, 정책 문서 실전 작성</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">프리랜서 실무 노하우</div>
+        <div class="field-desc">견적·계약·납품까지, 혼자 버텨내는 기획자의 생존법</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">포트폴리오 재정비</div>
+        <div class="field-desc">에이전시 경험을 인하우스 눈높이에 맞게 재구성하는 법</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">스타트업 기획 생존법</div>
+        <div class="field-desc">사수 없이 전체를 혼자 맡은 기획자를 위한 실무 전략</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 4. 멘토링 대상 -->
+  <section class="section">
+    <h2 class="section-title">이런 분께 맞습니다</h2>
+
+    <div class="target-list">
+      <div class="target-item">
+        <div>
+          <div class="target-title">현실 문서화 역량이 약한 서비스 기획자</div>
+          <div class="target-desc">뭘 어떻게 써야 할지 모르겠다면, 실제 납품 문서 기준으로 짚어드립니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div>
+          <div class="target-title">에이전시·SI·외주용역 실무가 많은 프리랜서 기획자</div>
+          <div class="target-desc">외주 현장에서 겪는 실무 고민, 같은 경험을 가진 사수와 이야기해보세요.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div>
+          <div class="target-title">사수 없는 스타트업 주니어 만능 기획자</div>
+          <div class="target-desc">기획·디자인·PM까지 혼자 다 하고 있다면, 우선순위 잡는 법부터 정리해드립니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div>
+          <div class="target-title">에이전시 포트폴리오 재정비 중인 인하우스 전환 준비 기획자</div>
+          <div class="target-desc">에이전시 경력을 인하우스에서 어필하는 방법, 포트폴리오 구성 전략을 함께 고민합니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 5. 멘토 진행 웨비나 -->
+  <section class="section">
+    <h2 class="section-title">멘토 진행 웨비나</h2>
+
+    <div class="seminar-list">
+      <div class="seminar-card">
+        <div class="seminar-card-body">
+          <div class="seminar-topic">26년차 실전기획 노노니 님의 인사이트: AI시대, 서비스 기획자는 대체될까? 더 강화될까?</div>
+          <div class="seminar-meta">2026.04.23 (목) 19:30 · 온라인</div>
+          <a href="#" class="seminar-btn" target="_blank" rel="noopener noreferrer">무료 신청하기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 6. 콘텐츠 & 저서 -->
+  <section class="section">
+    <h2 class="section-title">콘텐츠 & 저서</h2>
+
+    <p class="sub-heading">외부 채널</p>
+    <div class="sns-grid">
+      <a href="https://nononi.kr" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--blog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5 3C4.015 3 2 5.015 2 7.5v9C2 18.985 4.015 21 6.5 21h11c2.485 0 4.5-2.015 4.5-4.5v-9C22 5.015 19.985 3 17.5 3h-11zm0 2h11C18.88 5 20 6.12 20 7.5v9c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 19 4 17.88 4 16.5v-9C4 6.12 5.12 5 6.5 5zM7 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3.5 1a.5.5 0 0 0 0 1H17a.5.5 0 0 0 0-1h-6.5zM7 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3.5 1a.5.5 0 0 0 0 1H17a.5.5 0 0 0 0-1h-6.5zM7 15a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3.5 1a.5.5 0 0 0 0 1H17a.5.5 0 0 0 0-1h-6.5z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">블로그</div>
+          <div class="sns-btn-sub">nononi.kr</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+
+      <a href="https://www.facebook.com/nononikim" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">페이스북</div>
+          <div class="sns-btn-sub">facebook.com/nononikim</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+
+      <a href="https://open.kakao.com/o/gXks9zGb" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--kakao">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#3C1E1E" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.756 1.578 5.187 3.969 6.656L4.9 20.85a.5.5 0 0 0 .713.55l4.2-2.625C10.246 18.924 11.113 19 12 19c5.523 0 10-3.477 10-7.8S17.523 3 12 3z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">카카오 오픈채팅</div>
+          <div class="sns-btn-sub">웹·앱 서비스 기획 멘토링 단톡방</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
