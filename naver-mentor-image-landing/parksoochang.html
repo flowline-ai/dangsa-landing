@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>박수창 멘토 — 당신의사수</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:             #ffffff;
+      --color-bg-subtle:      #f7f7f8;
+      --color-text:           #1a1a1a;
+      --color-text-secondary: #6b6b6b;
+      --color-text-muted:     #8e8e93;
+      --color-border:         #e5e5e7;
+      --color-primary:        #1a1a1a;
+      --color-purple:         #5f5df9;
+      --color-purple-light:   #ebefff;
+      --radius:               12px;
+      --radius-lg:            16px;
+      --shadow:               0 2px 8px rgba(0,0,0,.06);
+      --shadow-md:            0 4px 16px rgba(0,0,0,.08);
+      --font-sans:            "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-min:             0.875rem;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      max-width: 768px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+      font-size: var(--text-min);
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    .section {
+      padding: 48px 20px;
+    }
+    .section + .section {
+      border-top: 8px solid var(--color-bg-subtle);
+    }
+    .section-title {
+      font-size: clamp(1.25rem, 5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 28px 0;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min);
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 999px;
+    }
+    .tag--purple { background: var(--color-purple-light); color: var(--color-purple); }
+    .tag--gray   { background: #f0f0f2; color: var(--color-text-secondary); }
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .sub-heading {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* ── 히어로 ── */
+    .hero-section {
+      padding: 40px 20px 36px;
+      border-bottom: 8px solid var(--color-bg-subtle);
+    }
+    .mentor-profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .mentor-avatar-placeholder {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0dffe 0%, #c7c6fb 100%);
+      flex-shrink: 0;
+    }
+    .mentor-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .mentor-info { flex: 1; min-width: 0; }
+    .mentor-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .mentor-position {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .mentor-company-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .mentor-company {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min);
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 5px 11px;
+      border-radius: var(--radius);
+    }
+    .mentor-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .stat-item {
+      background: var(--color-bg);
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--color-purple);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+    .mentor-tagline {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 14px 16px;
+      background: var(--color-purple-light);
+      border-left: 3px solid var(--color-purple);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* ── 멘토 소개 ── */
+    .intro-text {
+      font-size: var(--text-min);
+      color: var(--color-text);
+      line-height: 1.85;
+      white-space: pre-line;
+    }
+    .intro-highlight {
+      font-weight: 700;
+      color: var(--color-purple);
+    }
+    .achievement-list {
+      list-style: none;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .achievement-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: var(--text-min);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .achievement-list li::before {
+      content: '✓';
+      color: var(--color-purple);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ── 경력 텍스트 ── */
+    .career-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .career-text-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .career-text-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .career-text-period {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .career-text-company {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .career-text-role {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+    }
+
+    /* ── 멘토링 분야 ── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .field-card {
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+    }
+    .field-name {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .field-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── 멘토링 대상 ── */
+    .target-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .target-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+    .target-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .target-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── 세미나 ── */
+    .seminar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .seminar-card {
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg);
+    }
+    .seminar-card-body {
+      padding: 18px 16px 14px;
+    }
+    .seminar-topic {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .seminar-meta {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      margin-bottom: 14px;
+    }
+    .seminar-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 12px;
+      border-radius: var(--radius);
+      font-size: var(--text-min);
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1.5px solid var(--color-border);
+    }
+
+    /* ── SNS ── */
+    .sns-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .sns-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--color-border);
+      font-size: var(--text-min);
+      font-weight: 600;
+      color: var(--color-text);
+      background: var(--color-bg);
+      cursor: pointer;
+    }
+    .sns-btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .sns-btn-icon--linkedin { background: #0a66c2; }
+    .sns-btn-label { flex: 1; }
+    .sns-btn-name {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .sns-btn-sub {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .sns-btn-arrow {
+      color: var(--color-text-muted);
+      font-size: var(--text-min);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 기본 정보 -->
+  <section class="hero-section">
+    <div class="mentor-profile">
+      <img class="mentor-avatar" src="mento_parksoochang.jpg" alt="박수창 프로필 사진" />
+
+      <div class="mentor-info">
+        <h1 class="mentor-name">박수창</h1>
+        <p class="mentor-position">AI 에이전트 기획·PM<br>바이브 코딩 · 데이터 전략</p>
+        <div class="mentor-company-list">
+          <span class="mentor-company">현대카드</span>
+          <span class="mentor-company">라이브데이터</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-stats">
+      <div class="stat-item">
+        <div class="stat-value">20+</div>
+        <div class="stat-label">멘토링 횟수</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">15년</div>
+        <div class="stat-label">현업 경력</div>
+      </div>
+    </div>
+
+    <p class="mentor-tagline">
+      "현대카드 데이터 전략가에서 AI 에이전트 빌더로, 기획자가 AI를 직접 만드는 시대를 안내합니다."
+    </p>
+
+    <div class="tag-group">
+      <span class="tag tag--purple">AI 에이전트</span>
+      <span class="tag tag--purple">바이브 코딩</span>
+      <span class="tag tag--purple">데이터 기반 PM</span>
+      <span class="tag tag--gray">서비스 기획</span>
+      <span class="tag tag--gray">스타트업</span>
+    </div>
+  </section>
+
+
+  <!-- 2. 멘토 소개 -->
+  <section class="section">
+    <h2 class="section-title">멘토 소개</h2>
+
+    <p class="intro-text">
+안녕하세요, <span class="intro-highlight">AI 에이전트 기획·개발을 리드하는 박수창</span>입니다.
+
+현대카드에서 고객분석시스템 '트루노스(True North)'와 Merchant data Framework를 이끌고, 데이터몬드 공동창업을 거쳐 현재 라이브데이터 Agent Foundry팀을 리드하고 있습니다. 바이브 코딩과 AI 에이전트로 서비스를 직접 만드는 기획자로서, AI 시대 기획자에게 필요한 실전 역량을 나눠드립니다.
+    </p>
+
+    <div class="divider"></div>
+    <p class="sub-heading">주요 이력</p>
+    <ul class="achievement-list">
+      <li>대기업 AI 에이전트 개발 프로젝트 수행 및 에이전트 기반 신사업 리드</li>
+      <li>포인트몬스터, 페르소나 파인더, 위드씨이오 등 다수 서비스 기획·런칭</li>
+      <li>현대카드 고객분석시스템 '트루노스(True North)' 리드</li>
+    </ul>
+
+    <div class="divider"></div>
+    <p class="sub-heading">경력 사항</p>
+
+    <div class="career-text">
+      <div class="career-text-item">
+        <span class="career-text-period">현재</span>
+        <span class="career-text-company">라이브데이터</span>
+        <span class="career-text-role">Agent Foundry팀 리드 / PM (이사)</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">前</span>
+        <span class="career-text-company">데이터몬드</span>
+        <span class="career-text-role">공동대표 (창업자)</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">前</span>
+        <span class="career-text-company">현대카드</span>
+        <span class="career-text-role">Digital CLM 팀장 / Merchant data Framework 팀장</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. 멘토링 분야 -->
+  <section class="section">
+    <h2 class="section-title">멘토링 분야</h2>
+    <p class="section-desc">AI·데이터·기획이 교차하는 지점의 실전 노하우를 나눕니다.</p>
+
+    <div class="field-grid">
+      <div class="field-card">
+        <div class="field-name">AI 에이전트 기획</div>
+        <div class="field-desc">에이전트 서비스 구조 설계, 유즈케이스 발굴 및 기획 실전</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">바이브 코딩 실전</div>
+        <div class="field-desc">기획자가 AI로 직접 프로토타입을 만드는 방법과 도구</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">데이터 기반 PM</div>
+        <div class="field-desc">데이터로 의사결정하는 PM의 사고방식과 실무 프로세스</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">서비스 기획 실전</div>
+        <div class="field-desc">대기업·스타트업을 넘나든 서비스 기획의 구조와 문서화</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 4. 멘토링 대상 -->
+  <section class="section">
+    <h2 class="section-title">이런 분께 맞습니다</h2>
+
+    <div class="target-list">
+      <div class="target-item">
+        <div>
+          <div class="target-title">AI 에이전트 서비스를 직접 기획하고 싶은 주니어 기획자</div>
+          <div class="target-desc">에이전트 기반 서비스의 구조와 유즈케이스 설계를 실무 관점에서 안내합니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div>
+          <div class="target-title">바이브 코딩으로 프로토타입을 만들어보고 싶은 기획자</div>
+          <div class="target-desc">코드 없이도 AI 도구로 직접 서비스를 만드는 방법을 단계별로 알려드립니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div>
+          <div class="target-title">데이터 기반 의사결정을 배우고 싶은 PM 지망생</div>
+          <div class="target-desc">현대카드 데이터 전략 현장에서 쌓은 분석·의사결정 프레임을 공유합니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div>
+          <div class="target-title">AI 시대 기획자로서 포지셔닝을 재정의하고 싶은 분</div>
+          <div class="target-desc">AI를 활용하는 기획자 vs. AI에 대체되는 기획자의 차이를 함께 점검합니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 5. 멘토 진행 웨비나 -->
+  <section class="section">
+    <h2 class="section-title">멘토 진행 웨비나</h2>
+
+    <div class="seminar-list">
+      <div class="seminar-card">
+        <div class="seminar-card-body">
+          <div class="seminar-topic">주니어 기획자를 위한 바이브코딩 가이드</div>
+          <div class="seminar-meta">2026.01.22 · 온라인</div>
+          <a href="#" class="seminar-btn" target="_blank" rel="noopener noreferrer">무료 신청하기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 6. 콘텐츠 & 저서 -->
+  <section class="section">
+    <h2 class="section-title">콘텐츠 & 저서</h2>
+
+    <p class="sub-heading">외부 채널</p>
+    <div class="sns-grid">
+      <a href="#" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--linkedin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">LinkedIn</div>
+          <div class="sns-btn-sub">박수창 · 라이브데이터 Agent Foundry</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>

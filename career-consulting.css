@@ -447,3 +447,7 @@ body.cc-page #cta .cc-pricing-title {
   letter-spacing: -0.03em;
   color: var(--color-text);
 }
+
+.cc-page .cc-hero-sub {
+  margin: 0 0 32px;
+}

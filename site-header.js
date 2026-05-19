@@ -20,9 +20,11 @@
   var path = location.pathname.replace(/\/index\.html$/i, "/");
   var coffeeOn = /(^|\/)coffee-chat(\/|$)/.test(path);
   var careerOn = /(^|\/)career-consulting(\/|$)/.test(path);
+  var seminarOn = /(^|\/)seminar(\/|$)/.test(path);
 
   var coffeeCurrent = coffeeOn ? ' aria-current="page"' : "";
   var careerCurrent = careerOn ? ' aria-current="page"' : "";
+  var seminarCurrent = seminarOn ? ' aria-current="page"' : "";
 
   root.outerHTML =
     '<header class="header">' +
@@ -34,6 +36,9 @@
     '<div class="header-menu-cta-wrap">' +
     '<a href="https://forms.gle/GRAkY72cYT4f2QbC6" target="_blank" rel="noopener noreferrer" class="btn btn-primary header-menu-cta">커리어 상담받기</a>' +
     "</div>" +
+    '<a href="/seminar/" class="btn btn-outline header-service-link"' +
+    seminarCurrent +
+    ">세미나</a>" +
     '<a href="/coffee-chat/" class="btn btn-outline header-service-link"' +
     coffeeCurrent +
     ">커피챗</a>" +

@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>멘토 상세페이지 — 당신의사수</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:             #ffffff;
+      --color-bg-subtle:      #f7f7f8;
+      --color-text:           #1a1a1a;
+      --color-text-secondary: #6b6b6b;
+      --color-text-muted:     #8e8e93;
+      --color-border:         #e5e5e7;
+      --color-primary:        #1a1a1a;
+      --color-purple:         #5f5df9;
+      --color-purple-light:   #ebefff;
+      --color-dark-bg:        #151722;
+      --color-dark-card:      #1e2030;
+      --radius:               12px;
+      --radius-lg:            16px;
+      --shadow:               0 2px 8px rgba(0,0,0,.06);
+      --shadow-md:            0 4px 16px rgba(0,0,0,.08);
+      --font-sans:            "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-min:             0.875rem; /* 14px 최소 폰트 */
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      max-width: 768px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+      font-size: var(--text-min);
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ── Section Wrapper ── */
+    .section {
+      padding: 48px 20px;
+    }
+    .section + .section {
+      border-top: 8px solid var(--color-bg-subtle);
+    }
+    .section--dark {
+      background: var(--color-dark-bg);
+      color: #fff;
+    }
+    .section--subtle {
+      background: var(--color-bg);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-purple);
+      background: var(--color-purple-light);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.25rem, 5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 28px 0;
+    }
+
+    /* ── Tag Chip ── */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min); /* 14px */
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 999px;
+      gap: 4px;
+    }
+    .tag--purple {
+      background: var(--color-purple-light);
+      color: var(--color-purple);
+    }
+    .tag--gray {
+      background: #f0f0f2;
+      color: var(--color-text-secondary);
+    }
+    .tag--dark {
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.85);
+    }
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       1. 멘토 기본 정보 섹션
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .hero-section {
+      padding: 40px 20px 36px;
+      border-bottom: 8px solid var(--color-bg-subtle);
+    }
+
+    /* 브랜드 뱃지 */
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .brand-badge-dot {
+      width: 7px; height: 7px;
+      background: var(--color-purple);
+      border-radius: 50%;
+    }
+    .brand-badge-text {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    /* 멘토 프로필 레이아웃 */
+    .mentor-profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .mentor-avatar-wrap {
+      flex-shrink: 0;
+      position: relative;
+    }
+    .mentor-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid var(--color-purple);
+      background: var(--color-bg-subtle);
+    }
+    .mentor-avatar-placeholder {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0dffe 0%, #c7c6fb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      border: 2.5px solid var(--color-purple);
+    }
+    .mentor-avatar-verified {
+      position: absolute;
+      bottom: 2px; right: 2px;
+      width: 22px; height: 22px;
+      background: var(--color-purple);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mentor-avatar-verified svg { width: 11px; height: 11px; }
+
+    .mentor-info { flex: 1; min-width: 0; }
+    .mentor-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .mentor-position {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .mentor-company-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .mentor-company {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 5px 11px;
+      border-radius: var(--radius);
+    }
+
+    /* 멘토 스탯 */
+    .mentor-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .stat-item {
+      background: var(--color-bg);
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--color-purple);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+
+    /* 한줄 소개 */
+    .mentor-tagline {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 14px 16px;
+      background: var(--color-purple-light);
+      border-left: 3px solid var(--color-purple);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       2. 멘토링 분야
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .field-card {
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field-card:hover {
+      border-color: var(--color-purple);
+      box-shadow: var(--shadow);
+    }
+    .field-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    .field-name {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .field-desc {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       2-1. 멘토링 대상
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    .target-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .target-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+    .target-item--highlight {
+      border-color: var(--color-purple);
+      background: var(--color-purple-light);
+    }
+    .target-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      background: var(--color-bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .target-item--highlight .target-icon {
+      background: rgba(255,255,255,.7);
+    }
+    .target-body { flex: 1; }
+    .target-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .target-desc {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+    .target-item--highlight .target-title,
+    .target-item--highlight .target-desc {
+      color: var(--color-text);
+    }
+
+    .not-target-box {
+      margin-top: 16px;
+      padding: 16px;
+      background: #fafafa;
+      border: 1.5px dashed var(--color-border);
+      border-radius: var(--radius);
+    }
+    .not-target-label {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+    .not-target-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .not-target-list li {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .not-target-list li::before {
+      content: '✕';
+      color: #dc2626;
+      font-size: 0.75rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       3. 멘토 경력 섹션
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /* 소개 블록 */
+    .intro-text {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text);
+      line-height: 1.85;
+      white-space: pre-line;
+    }
+    .intro-highlight {
+      font-weight: 700;
+      color: var(--color-purple);
+    }
+
+    /* 타임라인 경력 */
+    .career-timeline {
+      margin-top: 28px;
+      position: relative;
+    }
+    .career-timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--color-border);
+    }
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .timeline-dot-wrap {
+      flex-shrink: 0;
+      width: 38px;
+      display: flex;
+      justify-content: center;
+    }
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-purple);
+      border: 2.5px solid #fff;
+      outline: 2px solid var(--color-purple);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .timeline-dot--muted {
+      background: var(--color-border);
+      outline-color: var(--color-border);
+    }
+    .timeline-body { flex: 1; }
+    .timeline-period {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: 3px;
+    }
+    .timeline-company {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 2px;
+    }
+    .timeline-role {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      margin-bottom: 6px;
+    }
+    .timeline-detail {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      background: var(--color-bg-subtle);
+      padding: 10px 12px;
+      border-radius: var(--radius);
+    }
+
+    /* 학력/자격증 */
+    .edu-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+    }
+    .edu-card + .edu-card {
+      border-top: 1px solid var(--color-border);
+    }
+    .edu-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      background: var(--color-purple-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .edu-info { flex: 1; }
+    .edu-name {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 3px;
+    }
+    .edu-sub {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+    }
+
+    /* 성과 배지 */
+    .achievement-list {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .achievement-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .achievement-list li::before {
+      content: '✓';
+      color: var(--color-purple);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       4. 멘토 프로모션 섹션
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /* SNS 링크 */
+    .sns-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .sns-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--color-border);
+      font-size: var(--text-min); /* 14px */
+      font-weight: 600;
+      color: var(--color-text);
+      background: var(--color-bg);
+      transition: box-shadow .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .sns-btn:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--color-text-muted);
+    }
+    .sns-btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .sns-btn-icon--linkedin { background: #0a66c2; }
+    .sns-btn-icon--youtube  { background: #ff0000; }
+    .sns-btn-icon--insta    { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .sns-btn-icon--blog     { background: #03c75a; }
+    .sns-btn-icon--twitter  { background: #000; }
+    .sns-btn-label { flex: 1; }
+    .sns-btn-name {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .sns-btn-sub {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .sns-btn-arrow {
+      color: var(--color-text-muted);
+      font-size: var(--text-min);
+      flex-shrink: 0;
+    }
+
+    /* 책 목록 */
+    .book-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .book-card {
+      display: flex;
+      gap: 14px;
+      padding: 14px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-bg);
+      box-shadow: var(--shadow);
+    }
+    .book-cover {
+      width: 64px;
+      height: 88px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #e0dffe 0%, #c7c6fb 100%);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .book-info { flex: 1; min-width: 0; }
+    .book-title {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+    .book-publisher {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+    }
+    .book-desc {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* 강의 목록 */
+    .lecture-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .lecture-card {
+      padding: 14px 16px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .lecture-platform {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--color-bg-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .lecture-info { flex: 1; }
+    .lecture-title {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .lecture-meta {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-muted);
+    }
+    .lecture-badge {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      align-self: flex-start;
+      white-space: nowrap;
+    }
+    .lecture-badge--live {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .lecture-badge--new {
+      background: #d1fae5;
+      color: #047857;
+    }
+    .lecture-badge--popular {
+      background: var(--color-purple-light);
+      color: var(--color-purple);
+    }
+
+    /* ── 다크 섹션: 멘토 한마디 ── */
+    .quote-section {
+      padding: 48px 20px;
+      background: var(--color-dark-bg);
+    }
+    .quote-mark {
+      font-size: 3.5rem;
+      line-height: 1;
+      color: var(--color-purple);
+      font-family: Georgia, serif;
+      margin-bottom: 8px;
+    }
+    .quote-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      line-height: 1.75;
+      letter-spacing: -0.01em;
+    }
+    .quote-author {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .quote-author-line {
+      width: 24px;
+      height: 2px;
+      background: var(--color-purple);
+      flex-shrink: 0;
+    }
+    .quote-author-name {
+      font-size: var(--text-min); /* 14px */
+      color: rgba(255,255,255,.5);
+      font-weight: 500;
+    }
+
+    /* ── CTA 섹션 ── */
+    .cta-section {
+      padding: 48px 20px;
+      text-align: center;
+      background: var(--color-bg);
+      border-top: 8px solid var(--color-bg-subtle);
+    }
+    .cta-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .cta-logo-dot {
+      width: 10px; height: 10px;
+      background: var(--color-purple);
+      border-radius: 50%;
+    }
+    .cta-logo-text {
+      font-size: var(--text-min); /* 14px */
+      font-weight: 700;
+      color: var(--color-text-secondary);
+    }
+    .cta-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .cta-desc {
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .btn-cta {
+      display: block;
+      width: 100%;
+      padding: 17px 24px;
+      background: var(--color-purple);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: var(--radius);
+      letter-spacing: -0.01em;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, box-shadow .2s;
+    }
+    .btn-cta:hover {
+      background: #4846e0;
+      box-shadow: 0 8px 24px rgba(95,93,249,.3);
+    }
+    .btn-cta-sub {
+      display: block;
+      width: 100%;
+      padding: 15px 24px;
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-size: var(--text-min); /* 14px */
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--color-border);
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background .2s, border-color .2s;
+    }
+    .btn-cta-sub:hover {
+      background: var(--color-bg-subtle);
+      border-color: var(--color-text-muted);
+    }
+    .cta-note {
+      margin-top: 14px;
+      font-size: var(--text-min); /* 14px */
+      color: var(--color-text-muted);
+    }
+
+    /* ── 경력 텍스트 ── */
+    .career-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .career-text-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .career-text-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .career-text-period {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .career-text-company {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .career-text-role {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+    }
+
+    /* ── 세미나 섹션 ── */
+    .seminar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .seminar-card {
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-bg);
+    }
+    .seminar-card-body {
+      padding: 18px 16px 14px;
+    }
+    .seminar-status {
+      display: inline-block;
+      font-size: var(--text-min);
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .seminar-status--done {
+      background: #f0f0f2;
+      color: var(--color-text-muted);
+    }
+    .seminar-status--upcoming {
+      background: var(--color-purple-light);
+      color: var(--color-purple);
+    }
+    .seminar-topic {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .seminar-meta {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      margin-bottom: 14px;
+    }
+    .seminar-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .seminar-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 12px;
+      border-radius: var(--radius);
+      font-size: var(--text-min);
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+    .seminar-btn--primary {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+    }
+    .seminar-btn--outline {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1.5px solid var(--color-border);
+    }
+
+    /* ── 공통 소제목 ── */
+    .sub-heading {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 멘토 기본 정보 -->
+  <section class="hero-section">
+    <div class="mentor-profile">
+      <!-- 프로필 사진 있을 경우:
+      <div class="mentor-avatar-wrap">
+        <img class="mentor-avatar" src="[사진 URL]" alt="멘토 프로필 사진" />
+      </div>
+      -->
+      <div class="mentor-avatar-placeholder"></div>
+
+      <div class="mentor-info">
+        <h1 class="mentor-name">홍길동 멘토</h1>
+        <p class="mentor-position">Product Manager<br>전략 기획 · B2B SaaS 전문</p>
+        <div class="mentor-company-list">
+          <span class="mentor-company">네이버 클라우드</span>
+          <span class="mentor-company">카카오엔터프라이즈</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-stats">
+      <div class="stat-item">
+        <div class="stat-value">240+</div>
+        <div class="stat-label">멘토링 횟수</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">7년</div>
+        <div class="stat-label">현업 경력</div>
+      </div>
+    </div>
+
+    <p class="mentor-tagline">
+      "대기업 PM으로 3번 이직하며 익힌 커리어 전략, 실무 그대로 알려드립니다."
+    </p>
+
+    <div class="tag-group">
+      <span class="tag tag--purple">이직 전략</span>
+      <span class="tag tag--purple">PM 커리어</span>
+      <span class="tag tag--purple">연봉 협상</span>
+      <span class="tag tag--gray">포트폴리오</span>
+      <span class="tag tag--gray">면접 코칭</span>
+    </div>
+  </section>
+
+
+  <!-- 2. 멘토 소개 -->
+  <section class="section">
+    <h2 class="section-title">멘토 소개</h2>
+
+    <p class="intro-text">
+안녕하세요, <span class="intro-highlight">네이버 클라우드에서 PM으로 근무 중인 홍길동</span>입니다.
+
+스타트업에서 시작해 중견기업, 대기업까지 총 3번의 이직을 경험했고, 매번 연봉을 평균 23% 이상 올리며 커리어를 성장시켜왔습니다.
+
+그 과정에서 수많은 시행착오를 겪었고, 지금은 그 경험을 멘티분들과 나누며 불필요한 시간 낭비 없이 목표 회사에 입사할 수 있도록 돕고 있습니다.
+    </p>
+
+    <div class="divider"></div>
+    <p class="sub-heading">주요 성과</p>
+    <ul class="achievement-list">
+      <li>3번 이직 전부 목표 회사 첫 번째 지원에서 최종 합격</li>
+      <li>240명+ 멘티 이직 성공, 평균 연봉 상승률 21%</li>
+      <li>대기업·유니콘 스타트업 동시 오퍼 경험 보유</li>
+      <li>신입~10년차 다양한 연차의 PM 멘토링 경험</li>
+    </ul>
+
+    <div class="divider"></div>
+    <p class="sub-heading">경력 사항</p>
+
+    <div class="career-text">
+      <div class="career-text-item">
+        <span class="career-text-period">2022.03 — 현재</span>
+        <span class="career-text-company">네이버 클라우드</span>
+        <span class="career-text-role">Product Manager · B2B SaaS</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2020.01 — 2022.02</span>
+        <span class="career-text-company">카카오엔터프라이즈</span>
+        <span class="career-text-role">서비스 기획 · AI 플랫폼</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2017.07 — 2019.12</span>
+        <span class="career-text-company">스타트업 A사</span>
+        <span class="career-text-role">기획 · 운영 · 그로스 해킹</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. 멘토링 분야 -->
+  <section class="section section--subtle">
+    <h2 class="section-title">멘토링 분야</h2>
+    <p class="section-desc">멘티분들이 가장 많이 요청하는 분야예요.</p>
+
+    <div class="field-grid">
+      <div class="field-card">
+        <div class="field-name">이직 전략 수립</div>
+        <div class="field-desc">목표 회사·직무 설정부터 로드맵 설계까지</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">이력서·포트폴리오</div>
+        <div class="field-desc">합격하는 PM 이력서 구조와 어필 포인트</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">면접 준비</div>
+        <div class="field-desc">실전 케이스 인터뷰 & 컬처핏 피드백</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">연봉 협상</div>
+        <div class="field-desc">오퍼 비교·협상 스크립트 실전 코칭</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">커리어 방향성</div>
+        <div class="field-desc">5·10년 커리어 목표 설정과 의사결정</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">회사·조직 적응</div>
+        <div class="field-desc">입사 후 빠른 온보딩 & 성과 내기</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 4. 멘토링 대상 -->
+  <section class="section">
+    <h2 class="section-title">이런 분께 맞습니다</h2>
+
+    <div class="target-list">
+      <div class="target-item target-item--highlight">
+        <div class="target-body">
+          <div class="target-title">이직을 결심했지만 어디서 시작할지 모르는 분</div>
+          <div class="target-desc">방향 설정부터 로드맵까지, 첫 세션에서 명확하게 잡아드립니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">3~8년차 IT 기획·PM 직군</div>
+          <div class="target-desc">중급자가 대기업·유니콘으로 레벨업하는 실전 전략을 집중 코칭합니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">PM·기획으로 전직을 원하는 분</div>
+          <div class="target-desc">개발·디자인·마케팅 직군에서 PM으로 피벗하는 경험이 많습니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">연봉 협상을 앞두고 있는 분</div>
+          <div class="target-desc">오퍼레터 분석, 협상 스크립트, 카운터오퍼 전략까지 실전 대비합니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">목표 회사가 명확하게 있는 분</div>
+          <div class="target-desc">네이버·카카오·라인·쿠팡 등 특정 회사 맞춤 준비를 도와드립니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 5. 세미나 -->
+  <section class="section section--subtle">
+    <h2 class="section-title">멘토 진행 웨비나</h2>
+
+    <div class="seminar-list">
+      <div class="seminar-card">
+        <div class="seminar-card-body">
+          <div class="seminar-topic">IT PM 이직 전략 : 서류·면접 합격률 높이는 법</div>
+          <div class="seminar-meta">2024.11.02 · 온라인 · 참가자 120명</div>
+          <div class="seminar-actions">
+            <a href="#" class="seminar-btn seminar-btn--outline" target="_blank" rel="noopener noreferrer">세미나 리포트 구매</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="seminar-card">
+        <div class="seminar-card-body">
+          <div class="seminar-topic">연봉 협상 실전 워크숍 : 오퍼레터 분석부터 카운터오퍼까지</div>
+          <div class="seminar-meta">2024.08.17 · 온라인 · 참가자 85명</div>
+          <div class="seminar-actions">
+            <a href="#" class="seminar-btn seminar-btn--outline" target="_blank" rel="noopener noreferrer">세미나 리포트 구매</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="seminar-card">
+        <div class="seminar-card-body">
+          <div class="seminar-topic">비PM → PM 전직 로드맵 : 포트폴리오 없이 합격하는 법</div>
+          <div class="seminar-meta">2025.02.15 · 온라인 · 선착순 80명</div>
+          <div class="seminar-actions">
+            <a href="#" class="seminar-btn seminar-btn--outline" target="_blank" rel="noopener noreferrer">세미나 리포트 구매</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 6. 멘토 활동 -->
+  <section class="section section--subtle">
+    <h2 class="section-title">콘텐츠 & 저서</h2>
+
+    <p class="sub-heading">외부 채널</p>
+    <div class="sns-grid">
+      <a href="#" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--linkedin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">LinkedIn</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+
+      <a href="#" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--youtube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">YouTube</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+
+      <a href="#" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--blog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5 3C4.015 3 2 5.015 2 7.5v9C2 18.985 4.015 21 6.5 21h11c2.485 0 4.5-2.015 4.5-4.5v-9C22 5.015 19.985 3 17.5 3h-11zm0 2h11C18.88 5 20 6.12 20 7.5v9c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 19 4 17.88 4 16.5v-9C4 6.12 5.12 5 6.5 5zM7 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3.5 1a.5.5 0 0 0 0 1H17a.5.5 0 0 0 0-1h-6.5zM7 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3.5 1a.5.5 0 0 0 0 1H17a.5.5 0 0 0 0-1h-6.5zM7 15a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm3.5 1a.5.5 0 0 0 0 1H17a.5.5 0 0 0 0-1h-6.5z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">네이버 블로그</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+
+      <a href="#" class="sns-btn" target="_blank" rel="noopener noreferrer">
+        <div class="sns-btn-icon sns-btn-icon--insta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+        <div class="sns-btn-label">
+          <div class="sns-btn-name">Instagram</div>
+        </div>
+        <span class="sns-btn-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="divider"></div>
+    <p class="sub-heading">출판 도서</p>
+    <div class="book-list">
+      <div class="book-card">
+        <div class="book-cover"></div>
+        <div class="book-info">
+          <div class="book-title">이직의 기술 : IT PM이 3번 이직하며 깨달은 것들</div>
+          <div class="book-publisher">○○출판사 · 2024</div>
+          <div class="book-desc">스타트업→대기업 3번의 이직 실전 경험을 담은 PM 커리어 전략서. 예스24 취업 분야 베스트셀러.</div>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-cover"></div>
+        <div class="book-info">
+          <div class="book-title">데이터로 말하는 PM : 숫자 없이 설득하지 마라</div>
+          <div class="book-publisher">△△출판사 · 2022</div>
+          <div class="book-desc">PM이 알아야 할 데이터 분석과 의사결정 프레임워크를 실무 사례 중심으로 정리한 책.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <p class="sub-heading">강의 · 콘텐츠</p>
+    <div class="lecture-list">
+      <a href="#" class="lecture-card" target="_blank" rel="noopener noreferrer">
+        <div class="lecture-info">
+          <div class="lecture-title">PM 이직 올인원 : 이력서부터 오퍼 협상까지</div>
+          <div class="lecture-meta">클래스101 · 수강생 1,240명 · ★ 4.9</div>
+        </div>
+        <span class="lecture-badge lecture-badge--popular">인기</span>
+      </a>
+      <a href="#" class="lecture-card" target="_blank" rel="noopener noreferrer">
+        <div class="lecture-info">
+          <div class="lecture-title">데이터 기반 PM 의사결정 실전 워크숍</div>
+          <div class="lecture-meta">패스트캠퍼스 · 수강생 680명 · ★ 4.8</div>
+        </div>
+        <span class="lecture-badge lecture-badge--new">신규</span>
+      </a>
+      <a href="#" class="lecture-card" target="_blank" rel="noopener noreferrer">
+        <div class="lecture-info">
+          <div class="lecture-title">커리어 피벗 전략 : 비PM → PM 전직 완전 가이드</div>
+          <div class="lecture-meta">탈잉 · 수강생 420명 · ★ 4.9</div>
+        </div>
+        <span class="lecture-badge lecture-badge--live">LIVE</span>
+      </a>
+    </div>
+  </section>
+
+
+
+</body>
+</html>
