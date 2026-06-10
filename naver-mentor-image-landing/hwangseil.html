@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>sale님 멘토 — 당신의사수</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:             #ffffff;
+      --color-bg-subtle:      #f7f7f8;
+      --color-text:           #1a1a1a;
+      --color-text-secondary: #6b6b6b;
+      --color-text-muted:     #8e8e93;
+      --color-border:         #e5e5e7;
+      --color-primary:        #1a1a1a;
+      --color-purple:         #5f5df9;
+      --color-purple-light:   #ebefff;
+      --color-dark-bg:        #151722;
+      --color-dark-card:      #1e2030;
+      --radius:               12px;
+      --radius-lg:            16px;
+      --shadow:               0 2px 8px rgba(0,0,0,.06);
+      --shadow-md:            0 4px 16px rgba(0,0,0,.08);
+      --font-sans:            "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-min:             0.875rem;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      max-width: 768px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+      font-size: var(--text-min);
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    .section {
+      padding: 48px 20px;
+    }
+    .section + .section {
+      border-top: 8px solid var(--color-bg-subtle);
+    }
+    .section--subtle {
+      background: var(--color-bg);
+    }
+
+    .section-title {
+      font-size: clamp(1.25rem, 5vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 28px 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min);
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 999px;
+      gap: 4px;
+    }
+    .tag--purple {
+      background: var(--color-purple-light);
+      color: var(--color-purple);
+    }
+    .tag--gray {
+      background: #f0f0f2;
+      color: var(--color-text-secondary);
+    }
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    /* ── 1. Hero ── */
+    .hero-section {
+      padding: 40px 20px 36px;
+      border-bottom: 8px solid var(--color-bg-subtle);
+    }
+
+    .mentor-profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .mentor-avatar-placeholder {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0dffe 0%, #c7c6fb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      border: 2.5px solid var(--color-purple);
+    }
+    .mentor-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--color-bg-subtle);
+      flex-shrink: 0;
+    }
+
+    .mentor-info { flex: 1; min-width: 0; }
+    .mentor-name {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .mentor-position {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .mentor-company-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .mentor-company {
+      display: inline-flex;
+      align-items: center;
+      font-size: var(--text-min);
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 5px 11px;
+      border-radius: var(--radius);
+    }
+
+    .mentor-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .stat-item {
+      background: var(--color-bg);
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--color-purple);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+
+    .mentor-tagline {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.6;
+      padding: 14px 16px;
+      background: var(--color-purple-light);
+      border-left: 3px solid var(--color-purple);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    /* ── 2. 소개 ── */
+    .intro-text {
+      font-size: var(--text-min);
+      color: var(--color-text);
+      line-height: 1.85;
+      white-space: pre-line;
+    }
+    .intro-highlight {
+      font-weight: 700;
+      color: var(--color-purple);
+    }
+
+    .achievement-list {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .achievement-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: var(--text-min);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    .achievement-list li::before {
+      content: '✓';
+      color: var(--color-purple);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .career-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .career-text-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .career-text-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .career-text-period {
+      font-size: var(--text-min);
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .career-text-company {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+    .career-text-role {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+    }
+
+    /* ── 3. 멘토링 분야 ── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .field-card {
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 16px 14px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field-card:hover {
+      border-color: var(--color-purple);
+      box-shadow: var(--shadow);
+    }
+    .field-name {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .field-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── 4. 멘토링 대상 ── */
+    .target-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .target-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius);
+    }
+    .target-item--highlight {
+      border-color: var(--color-purple);
+      background: var(--color-purple-light);
+    }
+    .target-body { flex: 1; }
+    .target-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .target-desc {
+      font-size: var(--text-min);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ── sub-heading ── */
+    .sub-heading {
+      font-size: var(--text-min);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 멘토 기본 정보 -->
+  <section class="hero-section">
+    <div class="mentor-profile">
+      <img class="mentor-avatar" src="mento_hwangseil.png" alt="sale님 프로필 사진" />
+
+      <div class="mentor-info">
+        <h1 class="mentor-name">sale님 멘토</h1>
+        <p class="mentor-position">Product & UX Design Lead<br>데이터 드리븐 프로덕트 조직 전문</p>
+        <div class="mentor-company-list">
+          <span class="mentor-company">강남언니</span>
+          <span class="mentor-company">콴다</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentor-stats">
+      <div class="stat-item">
+        <div class="stat-value">10+</div>
+        <div class="stat-label">멘토링 횟수</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">20년</div>
+        <div class="stat-label">현업 경력</div>
+      </div>
+    </div>
+
+    <p class="mentor-tagline">
+      "데이터 얘기만 나오면 주눅드는 기획자, 20년 현장 경험으로 그 약점 정확히 짚어드립니다."
+    </p>
+
+    <div class="tag-group">
+      <span class="tag tag--purple">데이터 기반 의사결정</span>
+<span class="tag tag--purple">인하우스 전환</span>
+      <span class="tag tag--gray">프로덕트 전략</span>
+      <span class="tag tag--gray">커리어 방향성</span>
+    </div>
+  </section>
+
+
+  <!-- 2. 멘토 소개 -->
+  <section class="section">
+    <h2 class="section-title">멘토 소개</h2>
+
+    <p class="intro-text">저는 이베이코리아에서 커머스 UX로 시작해 네이버, LG전자 유럽 R&D를 거쳐, 지금은 <span class="intro-highlight">강남언니</span>에서 데이터 드리븐 프로덕트 조직의 디자인 챕터를 이끌고 있습니다. 20년 동안 도메인마다 다른 조직 문화와 데이터 활용 방식을 직접 겪어왔습니다.
+
+<span class="intro-highlight">에이전시 출신 기획자분들이 인하우스에서 가장 먼저 막히는 지점은 대부분 데이터</span>입니다. 기획력의 문제가 아니라, 인하우스가 요구하는 설득 방식이 다른 것입니다. "그래서 숫자는요?" 한 마디에 기획안이 흔들리는 경험, 한 번쯤 있으실 거예요.
+
+<span class="intro-highlight">어떤 데이터를 어디서 가져와 어떻게 기획서에 녹여야 하는지</span> — 현장에서 다듬어온 방법을 함께 정리해 드리겠습니다.</p>
+
+    <div class="divider"></div>
+    <p class="sub-heading">주요 이력</p>
+    <ul class="achievement-list">
+      <li>강남언니·콴다 등 데이터 드리븐 조직에서 디자인 챕터·본부 리딩</li>
+      <li>커머스(GS SHOP·이베이), 플랫폼(네이버), 게임(라이엇), 글로벌 R&D(LG전자) 등 다양한 도메인 UX 경험</li>
+      <li>에이전시 → 인하우스 전환 멘토링 다수, 데이터 의사결정 실전 코칭</li>
+    </ul>
+
+    <div class="divider"></div>
+    <p class="sub-heading">경력 사항</p>
+
+    <div class="career-text">
+      <div class="career-text-item">
+        <span class="career-text-period">2025.09 — 현재</span>
+        <span class="career-text-company">강남언니</span>
+        <span class="career-text-role">Product Design Chapter Lead</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2022.08 — 2025.09</span>
+        <span class="career-text-company">화해글로벌</span>
+        <span class="career-text-role">Design Lead</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2012.01 — 2015.04</span>
+        <span class="career-text-company">네이버</span>
+        <span class="career-text-role">Platform UX Team Lead</span>
+      </div>
+      <div class="career-text-item">
+        <span class="career-text-period">2010.01 — 2012.01</span>
+        <span class="career-text-company">LG전자 유럽 R&D (Paris)</span>
+        <span class="career-text-role">UX Part Leader</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3. 멘토링 분야 -->
+  <section class="section section--subtle">
+    <h2 class="section-title">멘토링 분야</h2>
+    <p class="section-desc">멘티분들이 가장 많이 요청하는 분야예요.</p>
+
+    <div class="field-grid">
+      <div class="field-card">
+        <div class="field-name">데이터 기반 의사결정</div>
+        <div class="field-desc">기획·디자인 결정을 숫자로 근거화하는 실전 방법론</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">에이전시 → 인하우스 전환</div>
+        <div class="field-desc">인하우스 문화와 데이터 활용 방식에 빠르게 적응하는 법</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">UX·프로덕트 커리어 전략</div>
+        <div class="field-desc">디자인 리드·챕터장까지 성장하는 커리어 로드맵</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">프로덕트 조직 이해</div>
+        <div class="field-desc">데이터 드리븐 조직 구조와 일하는 방식 실전 가이드</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 4. 멘토링 대상 -->
+  <section class="section">
+    <h2 class="section-title">이런 분께 추천합니다</h2>
+
+    <div class="target-list">
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">에이전시에서 인하우스로 이직을 준비 중인 분</div>
+          <div class="target-desc">인하우스가 원하는 기획자의 언어가 무엇인지, 어떻게 준비해야 서류·면접에서 통하는지 함께 잡아드립니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">기획안에 숫자 근거를 어디서, 어떻게 가져와야 할지 모르는 분</div>
+          <div class="target-desc">데이터를 찾고, 해석하고, 기획서에 녹여내는 실전 프레임워크를 알려드립니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">결정권자가 "그래서 데이터는요?"라고 물을 때 버벅이는 분</div>
+          <div class="target-desc">현장에서 검증된 설득 구조로, 질문이 나오기 전에 선제적으로 대응하는 방법을 코칭합니다.</div>
+        </div>
+      </div>
+      <div class="target-item">
+        <div class="target-body">
+          <div class="target-title">UX·기획 직군에서 리드·챕터장으로 성장하고 싶은 분</div>
+          <div class="target-desc">디자인 조직을 리딩한 경험을 바탕으로 시니어·리드 레벨 전환을 함께 설계합니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</body>
+</html>

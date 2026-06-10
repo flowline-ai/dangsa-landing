@@ -271,25 +271,35 @@
       <p class="cc-risk-intro">그 걱정 알고 있어요. 그래서 멘티별 상황에 맞게 여러가지 옵션을 준비했습니다.</p>
       <div class="cc-pricing">
         <div class="cc-pricing-grid cc-pricing-grid--3">
-          <article class="cc-price-card">
+          <article class="cc-price-card cc-price-card--a">
+            <span class="cc-price-card-tag">가장 낮은 선결제</span>
             <h3 class="cc-price-card-title">옵션 A</h3>
-            <p class="cc-price-card-price"><span class="cc-price-card-price-num">99</span>만원 <span class="service-card-price-period">선결제</span></p>
-            <p class="cc-price-card-detail">+ 이직 성공 시 연봉 상승분의 50%</p>
+            <p class="cc-price-card-price"><span class="cc-price-card-price-num">99</span><span class="cc-price-card-unit">만원</span></p>
+            <p class="cc-price-card-period">선결제</p>
+            <div class="cc-price-card-detail">+ 이직 성공 시 연봉 상승분의 <strong>50%</strong></div>
             <p class="cc-price-card-note">지금 당장 부담을 줄이고 싶은 분을 위한 옵션. 연봉이 많이 오를수록 추가 비용도 함께 커집니다.</p>
           </article>
-          <article class="cc-price-card">
+          <article class="cc-price-card cc-price-card--b">
+            <span class="cc-price-card-badge">가장 많이 선택</span>
+            <span class="cc-price-card-tag">균형잡힌 선택</span>
             <h3 class="cc-price-card-title">옵션 B</h3>
-            <p class="cc-price-card-price"><span class="cc-price-card-price-num">198</span>만원 <span class="service-card-price-period">선결제</span></p>
-            <p class="cc-price-card-detail">+ 이직 성공 시 연봉 상승분의 30%</p>
+            <p class="cc-price-card-price"><span class="cc-price-card-price-num">198</span><span class="cc-price-card-unit">만원</span></p>
+            <p class="cc-price-card-period">선결제</p>
+            <div class="cc-price-card-detail">+ 이직 성공 시 연봉 상승분의 <strong>30%</strong></div>
             <p class="cc-price-card-note">선결제를 높이는 대신 성공 보수 비율을 낮춘 옵션입니다.</p>
           </article>
-          <article class="cc-price-card">
+          <article class="cc-price-card cc-price-card--c">
+            <span class="cc-price-card-tag">추가 비용 없음</span>
             <h3 class="cc-price-card-title">옵션 C</h3>
-            <p class="cc-price-card-price"><span class="cc-price-card-price-num">396</span>만원 <span class="service-card-price-period">선결제</span></p>
+            <p class="cc-price-card-price"><span class="cc-price-card-price-num">396</span><span class="cc-price-card-unit">만원</span></p>
+            <p class="cc-price-card-period">선결제 · 성공 보수 없음</p>
+            <div class="cc-price-card-detail cc-price-card-detail--dark">추가금 <strong>0원</strong> — 몇 번 도전하든 동일</div>
             <p class="cc-price-card-note">연봉이 얼마나 오르든, 이직에 몇 번 도전하든 별도의 추가금을 받지 않습니다.</p>
           </article>
         </div>
-        <a href="https://smartstore.naver.com/flowcamp/products/13407714629" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-xl">지금 신청하기</a>
+        <div style="text-align: center; margin-top: 8px;">
+          <a href="https://smartstore.naver.com/flowcamp/products/13407714629" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-xl">지금 신청하기</a>
+        </div>
       </div>
     </div>
   </section>
@@ -344,26 +354,28 @@
   </section>
 
   <!-- Section 12: Final CTA -->
-  <section class="cc-section" id="cta" aria-labelledby="cs-cta-h2">
-    <div class="cc-section-inner cc-section-inner--wide">
-      <div class="cc-pricing">
-        <p class="cc-final-invest">&quot;지금 투자한 300만원이 당신의 다음 10년을 바꿉니다.&quot;</p>
-        <h2 id="cs-cta-h2" class="cc-pricing-title">부담을 낮추는 두 가지 선택지</h2>
-        <div class="cc-pricing-grid cc-pricing-grid--2">
-          <article class="cc-price-card">
-            <h3 class="cc-price-card-title">옵션 A</h3>
-            <p class="cc-price-card-price"><span class="cc-price-card-price-num">99</span>만원</p>
-            <p class="cc-price-card-detail">+ 이직 성공 시 연봉 상승분의 50%</p>
-          </article>
-          <article class="cc-price-card">
-            <h3 class="cc-price-card-title">옵션 B</h3>
-            <p class="cc-price-card-price"><span class="cc-price-card-price-num">198</span>만원</p>
-            <p class="cc-price-card-detail">+ 이직 성공 시 연봉 상승분의 30%</p>
-          </article>
-        </div>
-        <a href="https://smartstore.naver.com/flowcamp/products/13407714629" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-xl">지금 신청하기</a>
-        <p class="cc-closing-line">우리는 당신의 성공을 확신하기에, 결과로 증명하겠습니다.</p>
+  <section class="cc-cta-dark" id="cta" aria-labelledby="cs-cta-h2">
+    <div class="cc-cta-dark-inner">
+      <p class="cc-cta-dark-eyebrow">지금 바로 시작하세요</p>
+      <h2 id="cs-cta-h2" class="cc-cta-dark-title">지금 투자한 300만원이<br />당신의 다음 10년을 바꿉니다.</h2>
+      <p class="cc-cta-dark-sub">부담을 낮추는 두 가지 선택지</p>
+      <div class="cc-cta-cards">
+        <article class="cc-cta-card">
+          <span class="cc-cta-card-tag">가장 낮은 선결제</span>
+          <h3 class="cc-cta-card-name">옵션 A</h3>
+          <p class="cc-cta-card-price"><span class="cc-cta-card-num">99</span><span class="cc-cta-card-unit">만원</span></p>
+          <div class="cc-cta-card-detail">+ 이직 성공 시 연봉 상승분의 <strong>50%</strong></div>
+        </article>
+        <article class="cc-cta-card cc-cta-card--highlight">
+          <span class="cc-cta-card-badge">가장 많이 선택</span>
+          <span class="cc-cta-card-tag">균형잡힌 선택</span>
+          <h3 class="cc-cta-card-name">옵션 B</h3>
+          <p class="cc-cta-card-price"><span class="cc-cta-card-num">198</span><span class="cc-cta-card-unit">만원</span></p>
+          <div class="cc-cta-card-detail">+ 이직 성공 시 연봉 상승분의 <strong>30%</strong></div>
+        </article>
       </div>
+      <a href="https://smartstore.naver.com/flowcamp/products/13407714629" target="_blank" rel="noopener noreferrer" class="btn cc-cta-dark-btn">지금 신청하기</a>
+      <p class="cc-cta-dark-closing">우리는 당신의 성공을 확신하기에, 결과로 증명하겠습니다.</p>
     </div>
   </section>
 

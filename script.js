@@ -10,8 +10,8 @@
 (function () {
   // 모바일에서만 줄바꿈 적용 (hero-br은 CSS에서 모바일에서 block, 데스크톱에서 none)
   const rollingLines = [
+    "더 좋은 IT 회사로 가는 지름길",
     "혼자 고민하지 마세요",
-    "커리어 이직의 지름길",
   ];
 
   const el = document.getElementById("heroRolling");
@@ -100,7 +100,7 @@
  * - 오늘/미래 날짜: '예정됨'
  */
 (function () {
-  var cards = document.querySelectorAll(".seminar-list-card");
+  var cards = document.querySelectorAll(".sp-card");
   if (!cards.length) return;
 
   var today = new Date();
@@ -115,7 +115,7 @@
 
   cards.forEach(function (card) {
     var status = card.querySelector(".seminar-status");
-    var dateEl = card.querySelector(".seminar-list-date");
+    var dateEl = card.querySelector(".sp-card-date");
     if (!status || !dateEl) return;
 
     var seminarDate = parseLocalDate(dateEl.getAttribute("datetime"));
@@ -127,6 +127,15 @@
     status.classList.toggle("seminar-status--ended", isEnded);
     status.classList.toggle("seminar-status--scheduled", !isEnded);
     status.textContent = isEnded ? "종료됨" : "예정됨";
+    card.classList.toggle("sp-card--upcoming", !isEnded);
+
+    if (isEnded) {
+      var btn = card.querySelector(".sp-card-btn");
+      if (btn) {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-outline", "sp-card-btn--report");
+      }
+    }
   });
 })();
 
@@ -508,18 +517,19 @@
     }
   })();
 
-  // 커리어 상담받기 CTA 클릭 (전환)
-  document.querySelectorAll('a[href*="forms.gle/GRAkY72cYT4f2QbC6"]').forEach(function (el) {
+  // 커리어 진단 CTA 클릭 (전환) — 체크리스트로 연결되는 버튼 3개
+  document.querySelectorAll('a[href*="checklist"]').forEach(function (el) {
     el.addEventListener("click", function () {
-      var location = el.closest(".hero-cta") ? "hero" : el.closest(".mentors-section-cta") ? "mentors" : el.closest(".cta-section") ? "cta_bottom" : el.closest(".header") ? "header" : "other";
+      var location = el.closest(".diag-banner") ? "diag_banner" : el.closest(".cta-section") ? "cta_bottom" : (el.closest(".header-menu-cta-wrap") || el.closest(".header-cta")) ? "header" : "other";
       sendGAEvent("cta_click", { cta_label: "member_join", cta_location: location });
     });
   });
 
   // 세미나(웨비나) 무료 신청 — 이벤터스 외부 링크
-  document.querySelectorAll(".seminar-featured-cta").forEach(function (el) {
+  document.querySelectorAll(".spf-cta, .sp-card-btn").forEach(function (el) {
     el.addEventListener("click", function () {
-      sendGAEvent("cta_click", { cta_label: "webinar_apply", cta_location: "seminar" });
+      var location = el.closest(".sp-featured-section") ? "seminar_featured" : el.closest(".sp-card") ? "seminar_card" : "seminar";
+      sendGAEvent("cta_click", { cta_label: "webinar_apply", cta_location: location });
     });
   });
 
@@ -539,51 +549,6 @@
       sendGAEvent("kakao_channel_click", { link_url: "pf.kakao.com" });
     });
   }
-})();
-
-/**
- * 메인(index) 헤더: 모바일 햄버거 — 서비스 링크 패널 열기/닫기
- */
-(function () {
-  var header = document.querySelector(".header");
-  var toggle = document.getElementById("header-menu-toggle");
-  var backdrop = document.getElementById("header-menu-backdrop");
-  var nav = document.getElementById("header-service-nav");
-  if (!header || !toggle || !backdrop || !nav) return;
-
-  function setNavOpen(open) {
-    header.classList.toggle("is-nav-open", open);
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
-    backdrop.setAttribute("aria-hidden", open ? "false" : "true");
-    document.body.style.overflow = open ? "hidden" : "";
-  }
-
-  toggle.addEventListener("click", function () {
-    setNavOpen(!header.classList.contains("is-nav-open"));
-  });
-
-  backdrop.addEventListener("click", function () {
-    setNavOpen(false);
-  });
-
-  nav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      setNavOpen(false);
-    });
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && header.classList.contains("is-nav-open")) {
-      setNavOpen(false);
-    }
-  });
-
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 768 && header.classList.contains("is-nav-open")) {
-      setNavOpen(false);
-    }
-  });
 })();
 
 /**

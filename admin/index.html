@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 | 당신의사수</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="144x144" href="/asset/favicon_144.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+
+  <!-- ===== 로그인 화면 ===== -->
+  <div id="login-phase" class="ad-login-wrap">
+    <div class="ad-login-card">
+      <p class="ad-login-logo">당신의사수</p>
+      <h1 class="ad-login-title">관리자 로그인</h1>
+      <form id="login-form" novalidate>
+        <div class="ad-field">
+          <label for="login-email">이메일</label>
+          <input id="login-email" type="email" placeholder="admin@example.com" autocomplete="email" />
+        </div>
+        <div class="ad-field">
+          <label for="login-password">비밀번호</label>
+          <input id="login-password" type="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <p class="ad-login-error" id="login-error"></p>
+        <button type="submit" class="ad-btn-primary ad-btn-full" id="login-btn">로그인</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== 대시보드 ===== -->
+  <div id="dashboard-phase" hidden>
+
+    <!-- 헤더 -->
+    <header class="ad-header">
+      <div class="ad-header-inner">
+        <span class="ad-header-logo">당신의사수 · 관리자</span>
+        <button type="button" class="ad-btn-ghost" id="logout-btn">로그아웃</button>
+      </div>
+    </header>
+
+    <main class="ad-wrap">
+
+      <!-- 상단 통계 -->
+      <div class="ad-stat-row" id="stat-row"></div>
+
+      <!-- 점수 로직 안내 -->
+      <details class="ad-logic-box">
+        <summary class="ad-logic-summary">점수 로직 안내 (2025.06 개편)</summary>
+        <div class="ad-logic-body">
+          <p><strong>응답 방식</strong> — 3단계 척도: 1 아니다 / 2 가끔 그렇다 / 3 매우 그렇다</p>
+          <p><strong>점수 계산</strong> — 영역별 응답값 합산 × 가중치 ÷ 영역 max × 100</p>
+          <table class="ad-logic-table">
+            <thead><tr><th>영역</th><th>문항 수</th><th>가중치</th><th>max</th></tr></thead>
+            <tbody>
+              <tr><td>A 이직 활동 현황</td><td>3</td><td>1.5</td><td>13.5</td></tr>
+              <tr><td>B 실무 경험 구성</td><td>3</td><td>2.0</td><td>18.0</td></tr>
+              <tr><td>C 서류 준비 상태</td><td>2</td><td>1.8</td><td>10.8</td></tr>
+              <tr><td>D 커리어 방향성</td><td>4</td><td>1.6</td><td>19.2</td></tr>
+              <tr><td colspan="3"><strong>TOTAL MAX</strong></td><td><strong>61.5</strong></td></tr>
+            </tbody>
+          </table>
+          <p><strong>유형 기준</strong></p>
+          <table class="ad-logic-table">
+            <thead><tr><th>유형</th><th>기준 점수</th><th>기준점 참고</th></tr></thead>
+            <tbody>
+              <tr><td>장기 정체형</td><td>65점 이상</td><td>가끔 그렇다 all = 67점</td></tr>
+              <tr><td>방향 탐색형</td><td>40~64점</td><td>아니다 all = 33점</td></tr>
+              <tr><td>준비 시작형</td><td>39점 이하</td><td>이직 고민 초기 / 미시작</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <!-- 필터 + CSV -->
+      <div class="ad-toolbar">
+        <div class="ad-filter-group">
+          <button class="ad-filter-btn active" data-type="all">전체</button>
+          <button class="ad-filter-btn" data-type="TYPE_HIGH">장기 정체형</button>
+          <button class="ad-filter-btn" data-type="TYPE_MID">방향 탐색형</button>
+          <button class="ad-filter-btn" data-type="TYPE_LOW">준비 시작형</button>
+        </div>
+        <button type="button" class="ad-btn-secondary" id="csv-btn">CSV 내보내기</button>
+      </div>
+
+      <!-- 테이블 -->
+      <div class="ad-table-wrap">
+        <table class="ad-table" id="response-table">
+          <thead>
+            <tr>
+              <th>제출 일시</th>
+              <th>닉네임</th>
+              <th>이메일</th>
+              <th>유형</th>
+              <th>전체</th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div class="ad-empty" id="table-empty" hidden>응답 데이터가 없습니다.</div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===== 상세 모달 ===== -->
+  <div id="detail-modal" class="ad-modal" hidden>
+    <div class="ad-modal-overlay" id="modal-overlay"></div>
+    <div class="ad-modal-content">
+      <div class="ad-modal-header">
+        <h2 class="ad-modal-title">응답 상세</h2>
+        <button type="button" class="ad-modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="ad-modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
