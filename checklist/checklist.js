@@ -383,6 +383,8 @@ async function handleSubmit(e) {
   document.getElementById('form-phase').hidden = true;
   document.getElementById('result-phase').hidden = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (typeof fbq === 'function') fbq('track', 'Lead');
 }
 
 // ============================================================
