@@ -73,17 +73,17 @@ const PROGRAM_MENTORS = {
     { img: '/asset/mento_parksoochang.jpg', name: '박수창' },
     { img: '/asset/mento_jinyongjin.jpg', name: '진용진' },
     { img: '/asset/mento_nononi.jpg', name: '노노니' },
-    { img: '/asset/mento_hwangseil.png', name: 'sale님' },
+    { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
   '2주 스프린트 (6명 소수 정예)': [
     { img: '/asset/mento_parksoochang.jpg', name: '박수창' },
     { img: '/asset/mento_jinyongjin.jpg', name: '진용진' },
     { img: '/asset/mento_nononi.jpg', name: '노노니' },
-    { img: '/asset/mento_hwangseil.png', name: 'sale님' },
+    { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
   '1:1 이직 전략 컨설팅': [
     { img: '/asset/mento_simjaekwon.jpg', name: '심재권' },
-    { img: '/asset/mento_hwangseil.png', name: 'sale님' },
+    { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
   '무료 웨비나': [],
 };

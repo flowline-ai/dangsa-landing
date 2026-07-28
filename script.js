@@ -95,34 +95,44 @@
 })();
 
 /**
- * 세미나 일정 카드 상태 자동 갱신
- * - 오늘 이전 날짜: '종료됨'
- * - 오늘/미래 날짜: '예정됨'
+ * 세미나 일정 상태 자동 갱신 (시작 시간 기준)
+ * - data-time 속성이 있으면 해당 시각 이후 종료 처리
+ * - 없으면 날짜 자정 기준 (기존 동작)
  */
 (function () {
-  var cards = document.querySelectorAll(".sp-card");
-  if (!cards.length) return;
+  var now = new Date();
 
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  function parseLocalDate(isoDate) {
-    if (!isoDate) return null;
-    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate.trim());
-    if (!m) return null;
-    return new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  function parseSeminarDateTime(dateAttr, timeAttr) {
+    var dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec((dateAttr || "").trim());
+    if (!dm) return null;
+    var tm = /^(\d{1,2}):(\d{2})$/.exec((timeAttr || "").trim());
+    var h = tm ? Number(tm[1]) : 0;
+    var min = tm ? Number(tm[2]) : 0;
+    return new Date(Number(dm[1]), Number(dm[2]) - 1, Number(dm[3]), h, min, 0, 0);
   }
 
-  cards.forEach(function (card) {
+  function disableBtn(btn) {
+    btn.removeAttribute("href");
+    btn.setAttribute("aria-disabled", "true");
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-outline", "sp-card-btn--report");
+    btn.style.pointerEvents = "none";
+    btn.style.opacity = "0.45";
+  }
+
+  // 카드 그리드
+  document.querySelectorAll(".sp-card").forEach(function (card) {
     var status = card.querySelector(".seminar-status");
     var dateEl = card.querySelector(".sp-card-date");
     if (!status || !dateEl) return;
 
-    var seminarDate = parseLocalDate(dateEl.getAttribute("datetime"));
-    if (!seminarDate) return;
+    var seminarDT = parseSeminarDateTime(
+      dateEl.getAttribute("datetime"),
+      dateEl.getAttribute("data-time")
+    );
+    if (!seminarDT) return;
 
-    seminarDate.setHours(0, 0, 0, 0);
-    var isEnded = seminarDate < today;
+    var isEnded = seminarDT <= now;
 
     status.classList.toggle("seminar-status--ended", isEnded);
     status.classList.toggle("seminar-status--scheduled", !isEnded);
@@ -131,12 +141,30 @@
 
     if (isEnded) {
       var btn = card.querySelector(".sp-card-btn");
-      if (btn) {
-        btn.classList.remove("btn-primary");
-        btn.classList.add("btn-outline", "sp-card-btn--report");
-      }
+      if (btn) disableBtn(btn);
     }
   });
+
+  // Featured 섹션
+  var featured = document.querySelector(".sp-featured-section");
+  if (!featured) return;
+
+  var featuredTimeEl = featured.querySelector("time[datetime]");
+  if (!featuredTimeEl) return;
+
+  var featuredDT = parseSeminarDateTime(
+    featuredTimeEl.getAttribute("datetime"),
+    featuredTimeEl.getAttribute("data-time")
+  );
+  if (!featuredDT) return;
+
+  if (featuredDT <= now) {
+    var cta = featured.querySelector(".spf-cta");
+    if (cta) disableBtn(cta);
+
+    var badge = featured.querySelector(".seminar-count-badge");
+    if (badge) badge.textContent = "신청 마감";
+  }
 })();
 
 /**
