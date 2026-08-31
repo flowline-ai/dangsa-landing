@@ -79,6 +79,12 @@
   text-align: left;
 }
 
+@media (min-width: 900px) {
+  .sp2-hero .cc-hero-inner {
+    left: 40%;
+  }
+}
+
 /* .hero-cta is a flex column with align-items:center site-wide (styles.css);
    left-aligning the text but leaving the CTA centered would look inconsistent,
    so re-align the button to the same left edge as the text inside this hero. */
@@ -501,6 +507,19 @@
   font-weight: 700;
   color: var(--color-text);
   letter-spacing: -0.01em;
+}
+
+.sp2-curriculum-mode {
+  display: inline-block;
+  margin-left: 2px;
+  padding: 2px 8px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  vertical-align: middle;
 }
 
 .sp2-curriculum-desc {
