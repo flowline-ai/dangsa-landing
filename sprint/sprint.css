@@ -12,7 +12,7 @@
      establishes this section's height any more — without min-height the
      section would collapse to just its own padding and clip both the
      text block and the background illustration below it. */
-  min-height: 740px;
+  min-height: 840px;
 }
 
 .sp2-hero-badges {
@@ -56,7 +56,7 @@
   background-image: url("../asset/sprint_hero_bg.png");
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-size: 80% auto;
+  background-size: 70% auto;
   opacity: 1;
   z-index: 0;
 }
