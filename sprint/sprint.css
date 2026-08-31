@@ -15,6 +15,40 @@
   min-height: 740px;
 }
 
+.sp2-hero-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+
+.sp2-hero-badges .cc-hero-urgency {
+  margin: 0;
+}
+
+.sp2-hero-deadline-tag {
+  /* Same chip shape as .cc-hero-urgency, colors inverted (solid orange bg,
+     white text) so it reads as a distinct badge right next to it. */
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: 999px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .sp2-hero-deadline-tag {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
 .sp2-hero::before {
   content: "";
   position: absolute;
