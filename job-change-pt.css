@@ -1,0 +1,414 @@
+/* 4주 이직PT 전용 CSS — prefix: jpt- */
+
+/* ============================================================
+   Hero
+============================================================ */
+.jpt-hero .cc-hero-inner {
+  max-width: 760px;
+}
+
+.jpt-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 0 28px;
+}
+
+.jpt-hero-chips span {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--color-bg-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   Target 섹션
+============================================================ */
+.jpt-target-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.jpt-target-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.jpt-target-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jpt-target-item p {
+  margin: 0;
+  padding-top: 2px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* ============================================================
+   Outcome 카드 (Before/After + 결과물)
+============================================================ */
+.jpt-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.jpt-outcome-card:nth-child(4) { grid-column: 1 / 2; }
+.jpt-outcome-card:nth-child(5) { grid-column: 2 / 3; }
+
+@media (max-width: 860px) {
+  .jpt-outcome-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jpt-outcome-card:nth-child(4),
+  .jpt-outcome-card:nth-child(5) { grid-column: auto; }
+}
+
+@media (max-width: 560px) {
+  .jpt-outcome-grid { grid-template-columns: 1fr; }
+}
+
+.jpt-outcome-card {
+  padding: 24px 22px 26px;
+  background: var(--color-bg-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.jpt-outcome-card:hover {
+  border-color: rgba(255, 107, 53, 0.4);
+  transform: translateY(-2px);
+}
+
+.jpt-outcome-num {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-orange);
+  margin-bottom: 10px;
+}
+
+.jpt-outcome-title {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 10px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.jpt-outcome-desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   Curriculum — 4회 커리큘럼
+============================================================ */
+.jpt-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto 32px;
+}
+
+.jpt-session {
+  border: 2px solid var(--color-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.jpt-session-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 28px;
+  background: var(--color-bg-subtle);
+  border-bottom: 1.5px solid var(--color-border);
+}
+
+.jpt-session-badge {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.jpt-session-badge--s2 { background: #e05a1e; }
+.jpt-session-badge--s3 { background: #c44e18; }
+.jpt-session-badge--s4 { background: #1d1d1d; }
+
+.jpt-session-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.jpt-session-body {
+  padding: 22px 28px;
+}
+
+.jpt-session-list {
+  margin: 0 0 16px;
+  padding-left: 1.1rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+
+.jpt-session-list li { margin-bottom: 4px; }
+
+.jpt-session-tag-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.jpt-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--color-bg-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.jpt-tag-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--color-orange);
+  background: var(--color-orange-weak);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* 세션 간 과제 블록 */
+.jpt-homework {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 22px 28px;
+  background: #1d1d1d;
+  border-radius: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.jpt-homework-label {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.45);
+  padding-top: 2px;
+  text-transform: uppercase;
+}
+
+.jpt-homework-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.jpt-homework-list li {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jpt-homework-list li::before {
+  content: "✓";
+  color: var(--color-orange);
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .jpt-session-header { padding: 16px 20px; }
+  .jpt-session-body { padding: 18px 20px; }
+  .jpt-homework { padding: 18px 20px; }
+}
+
+/* ============================================================
+   코칭 원칙 섹션
+============================================================ */
+.jpt-principle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .jpt-principle-grid { grid-template-columns: 1fr; }
+}
+
+.jpt-principle-card {
+  padding: 24px 22px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 14px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.jpt-principle-card:hover {
+  border-color: rgba(255, 107, 53, 0.35);
+  transform: translateY(-2px);
+}
+
+.jpt-principle-num {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--color-orange);
+  margin-bottom: 8px;
+}
+
+.jpt-principle-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 8px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.jpt-principle-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   Pricing 섹션
+============================================================ */
+.jpt-pricing-accent {
+  color: var(--color-text);
+  font-weight: 900;
+}
+
+.jpt-pricing-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+@media (max-width: 600px) {
+  .jpt-pricing-info { grid-template-columns: 1fr; }
+}
+
+.jpt-pricing-detail {
+  background: var(--color-bg-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.jpt-pricing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9375rem;
+}
+
+.jpt-pricing-row:last-child { border-bottom: none; }
+
+.jpt-pricing-label {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.jpt-pricing-value {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.jpt-pricing-value--accent { color: var(--color-orange); }
+
+.jpt-pricing-includes {
+  background: #1d1d1d;
+  border-radius: 16px;
+  padding: 24px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.jpt-pricing-includes-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.jpt-pricing-includes ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.jpt-pricing-includes li { margin-bottom: 4px; }

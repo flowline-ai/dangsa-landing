@@ -3,7 +3,7 @@
 // ============================================================
 const SUPABASE_URL = 'https://fexfxmuefvekurydgdlk.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleGZ4bXVlZnZla3VyeWRnZGxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MzEyNjEsImV4cCI6MjA5NjQwNzI2MX0.tPNuGEGHitrPBJ3ZoOlzxh30SqMf1iUK325-Kq4FoAM';
-const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_fxdxdqX';
+const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_fxdxdqX';
 
 // ============================================================
 // 문항 데이터 (PRD 기준)
@@ -75,7 +75,7 @@ const PROGRAM_MENTORS = {
     { img: '/asset/mento_nononi.jpg', name: '노노니' },
     { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
-  '2주 스프린트 (6명 소수 정예)': [
+  '2주 이직특공대 (6명 소수 정예)': [
     { img: '/asset/mento_parksoochang.jpg', name: '박수창' },
     { img: '/asset/mento_jinyongjin.jpg', name: '진용진' },
     { img: '/asset/mento_nononi.jpg', name: '노노니' },
@@ -104,7 +104,7 @@ const TYPE_META = {
     desc: '이직을 준비하며 움직이고 있지만, 내가 제대로 된 방향으로 가고 있는지 확신이 서지 않는 단계예요. 방향과 우선순위를 잡으면 속도가 훨씬 빨라질 수 있어요.',
     products: [
       { rank: 1, name: '1:1 커피챗', price: '1시간 66,000원~', desc: '현직 사수와 1:1로 이직 방향과 전략을 점검합니다.', link: '/coffee-chat/' },
-      { rank: 2, name: '2주 스프린트 (6명 소수 정예)', price: '330,000원', desc: '지원기업 발굴, 이력서 및 포폴 업그레이드', link: '/career-consulting/' },
+      { rank: 2, name: '2주 이직특공대 (6명 소수 정예)', price: '440,000원', desc: '지원기업 발굴, 이력서 및 포폴 업그레이드', link: '/sprint/' },
     ],
   },
   TYPE_LOW: {

@@ -3,8 +3,82 @@
 /* ============================================================
    Hero 추가 요소
 ============================================================ */
+.sp2-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 0 24px;
+  background: #fff;
+  /* .cc-hero-inner is now position:absolute (out of flow), so nothing
+     establishes this section's height any more — without min-height the
+     section would collapse to just its own padding and clip both the
+     text block and the background illustration below it. */
+  min-height: 740px;
+}
+
+.sp2-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../asset/sprint_hero_bg.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 80% auto;
+  opacity: 1;
+  z-index: 0;
+}
+
 .sp2-hero .cc-hero-inner {
+  /* Absolute elements resolve a bare "left: auto" to the flow-static
+     position, which is the section's raw left padding edge — not centered
+     like the rest of the site's content (.container / .cc-section-inner
+     max-width + margin:0 auto). Center this box the same way so the text
+     lines up with every other section instead of hugging the browser edge. */
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
   max-width: 760px;
+  box-sizing: border-box;
+  padding: 0 24px;
+  z-index: 1;
+  text-align: left;
+}
+
+/* .hero-cta is a flex column with align-items:center site-wide (styles.css);
+   left-aligning the text but leaving the CTA centered would look inconsistent,
+   so re-align the button to the same left edge as the text inside this hero. */
+.sp2-hero .hero-cta {
+  align-items: flex-start;
+}
+
+.sp2-hero .hero-cta .btn-outline {
+  /* Higher specificity than the global .btn-outline:hover rule, so it was
+     winning even on hover and leaving hover's light text unreadable on a
+     white background — set both states explicitly here instead. */
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.sp2-hero .hero-cta .btn-outline:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+@media (max-width: 560px) {
+  .sp2-hero {
+    padding: 0 20px;
+    min-height: 515px;
+  }
+
+  .sp2-hero::before {
+    background-size: 100% auto;
+  }
+
+  .sp2-hero .cc-hero-inner {
+    padding: 0 20px;
+  }
 }
 
 .sp2-hero-chips {
@@ -16,14 +90,22 @@
 }
 
 .sp2-hero-chips span {
-  display: inline-block;
-  padding: 6px 14px;
-  background: var(--color-bg-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--color-bg);
   border: 1.5px solid var(--color-border);
   border-radius: 999px;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-secondary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.sp2-hero-chips span strong {
+  color: var(--color-text);
+  font-weight: 700;
 }
 
 /* ============================================================
@@ -70,8 +152,151 @@
   color: var(--color-text);
 }
 
-@media (max-width: 600px) {
-  .sp2-target-grid { grid-template-columns: 1fr; }
+/* ============================================================
+   Schedule 섹션
+============================================================ */
+.sp2-schedule-section {
+  /* cc-section--alt's default var(--color-bg-subtle) is a touch darker;
+     match the hero section's lighter beige instead. */
+  background: var(--color-bg);
+  /* Default Korean line-breaking splits between any two syllables, so long
+     titles (e.g. "리빌딩") were breaking mid-word at narrow widths.
+     keep-all breaks at spaces/punctuation like Latin text instead. */
+  word-break: keep-all;
+}
+
+.sp2-schedule-subtitle {
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.sp2-schedule-subtitle--primary {
+  margin-top: 8px;
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.sp2-schedule-subtitle--secondary {
+  margin-top: 6px;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.sp2-schedule-section .cc-howflow-sub {
+  font-size: 0.84rem; /* 1.05rem × 0.8 */
+}
+
+.sp2-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto 24px;
+}
+
+.sp2-schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 14px;
+  transition: border-color 0.2s;
+}
+
+.sp2-schedule-item:hover {
+  border-color: rgba(255,107,53,0.35);
+}
+
+.sp2-schedule-badge {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.sp2-schedule-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sp2-schedule-date {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  min-width: 80px;
+}
+
+.sp2-schedule-time {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.sp2-schedule-dur {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  background: var(--color-orange-weak);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.sp2-schedule-note {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.sp2-schedule-cta {
+  margin-top: 32px;
+  padding: 28px 24px;
+  background: var(--color-orange-weak, rgba(255,107,53,0.08));
+  border-radius: 16px;
+  text-align: center;
+}
+
+.sp2-schedule-cta-main {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.sp2-schedule-cta-sub {
+  margin: 8px 0 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-orange);
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .sp2-schedule-cta { padding: 22px 18px; }
+  .sp2-schedule-cta-main { font-size: 1.0625rem; }
+  .sp2-schedule-cta-sub { font-size: 0.9375rem; }
+}
+
+@media (max-width: 560px) {
+  .sp2-schedule-item { padding: 14px 18px; gap: 12px; }
+  .sp2-schedule-info { gap: 8px; }
+  .sp2-schedule-date { font-size: 0.9375rem; }
 }
 
 /* ============================================================
@@ -147,36 +372,39 @@
 }
 
 /* ============================================================
-   Curriculum — 2주차 카드
+   Curriculum — 회차별 테이블형 레이아웃
 ============================================================ */
-.sp2-weeks {
+.sp2-curriculum {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 860px;
+  gap: 28px;
+  max-width: 760px;
   margin: 0 auto 40px;
 }
 
-.sp2-week {
-  border: 2px solid var(--color-border);
+.sp2-curriculum-group {
+  border: 1.5px solid var(--color-border);
   border-radius: 16px;
   overflow: hidden;
   background: var(--color-bg);
 }
 
-.sp2-week-header {
+.sp2-curriculum-group-bar {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px 28px;
-  background: var(--color-bg-subtle);
-  border-bottom: 1.5px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding: 14px 24px;
+  background: var(--color-orange-weak);
 }
 
-.sp2-week-badge {
+.sp2-curriculum-group-bar--dark {
+  background: #1d1d1d;
+}
+
+.sp2-curriculum-group-week {
   flex-shrink: 0;
-  display: inline-block;
-  padding: 6px 16px;
+  padding: 4px 14px;
   background: var(--color-orange);
   color: #fff;
   font-size: 0.8125rem;
@@ -185,106 +413,102 @@
   white-space: nowrap;
 }
 
-.sp2-week-badge--dark {
-  background: #1d1d1d;
+.sp2-curriculum-group-week--dark {
+  background: #fff;
+  color: var(--color-text);
 }
 
-.sp2-week-title {
-  font-size: 1.0625rem;
+.sp2-curriculum-group-title {
+  font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
-  margin: 0;
   letter-spacing: -0.02em;
-  line-height: 1.4;
 }
 
-.sp2-week-body {
-  padding: 24px 28px;
+.sp2-curriculum-group-title--on-dark {
+  color: #fff;
 }
 
-.sp2-week-list {
-  margin: 0 0 20px;
-  padding-left: 1.1rem;
-  color: var(--color-text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.8;
-}
-
-.sp2-week-list li { margin-bottom: 4px; }
-
-.sp2-week-tasks {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.sp2-task {
+.sp2-curriculum-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: var(--color-bg-subtle);
-  border: 1.5px solid var(--color-border);
-  border-radius: 10px;
-  font-size: 0.875rem;
-  color: var(--color-text);
+  gap: 20px;
+  padding: 20px 24px;
+  border-top: 1.5px solid var(--color-border);
 }
 
-.sp2-task-label {
-  font-size: 0.72rem;
+.sp2-curriculum-when {
+  flex: 0 0 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sp2-curriculum-round {
+  font-size: 0.8125rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  color: var(--color-orange);
+}
+
+.sp2-curriculum-date {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+.sp2-curriculum-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.sp2-curriculum-title {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.sp2-curriculum-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.sp2-curriculum-outcome {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
   color: var(--color-orange);
   background: var(--color-orange-weak);
-  padding: 2px 8px;
+  padding: 7px 16px;
   border-radius: 999px;
   white-space: nowrap;
 }
 
-/* 2주차 멘토 세션 */
-.sp2-mentor-sessions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
+@media (max-width: 640px) {
+  .sp2-curriculum-row {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 18px 20px;
+  }
 
-@media (max-width: 700px) {
-  .sp2-mentor-sessions { grid-template-columns: 1fr; }
-}
+  .sp2-curriculum-when {
+    flex: 0 0 auto;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+  }
 
-.sp2-mentor-session {
-  padding: 18px 18px 20px;
-  background: var(--color-bg-subtle);
-  border: 1.5px solid var(--color-border);
-  border-radius: 12px;
-}
+  .sp2-curriculum-main {
+    flex: 1 1 100%;
+    order: 1;
+  }
 
-.sp2-mentor-session-head {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 10px;
-}
-
-.sp2-mentor-role {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-orange);
-}
-
-.sp2-mentor-name {
-  font-size: 1.0625rem;
-  font-weight: 800;
-  color: var(--color-text);
-  letter-spacing: -0.02em;
-}
-
-.sp2-mentor-desc {
-  margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.65;
-  color: var(--color-text-secondary);
+  .sp2-curriculum-outcome {
+    order: 2;
+  }
 }
 
 /* 공통 운영 */
@@ -325,8 +549,6 @@
 }
 
 @media (max-width: 600px) {
-  .sp2-week-header { padding: 16px 20px; }
-  .sp2-week-body { padding: 20px 20px; }
   .sp2-ops { padding: 20px; }
 }
 
@@ -438,6 +660,78 @@
 }
 
 /* ============================================================
+   Process 섹션
+============================================================ */
+.sp2-process-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.sp2-process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 180px;
+  padding: 28px 20px;
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.sp2-process-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+}
+
+.sp2-process-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.sp2-process-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.sp2-process-arrow {
+  font-size: 1.5rem;
+  color: var(--color-orange);
+  padding: 0 12px;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+@media (max-width: 640px) {
+  .sp2-process-steps { flex-direction: column; gap: 0; }
+  .sp2-process-step { width: 100%; min-width: unset; border-radius: 0; }
+  .sp2-process-step:first-child { border-radius: 16px 16px 0 0; }
+  .sp2-process-step:last-child { border-radius: 0 0 16px 16px; }
+  .sp2-process-arrow { transform: rotate(90deg); padding: 4px 0; }
+}
+
+/* ============================================================
    Pricing 섹션
 ============================================================ */
 .sp2-pricing-accent {
@@ -466,6 +760,33 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+
+.sp2-pricing-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 20px;
+  margin-bottom: 6px;
+  border-bottom: 1.5px solid var(--color-border);
+}
+
+.sp2-pricing-hero-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.sp2-pricing-hero-value {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: var(--color-text);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+@media (max-width: 600px) {
+  .sp2-pricing-hero-value { font-size: 2.25rem; }
 }
 
 .sp2-pricing-row {
@@ -509,12 +830,320 @@
   margin: 0 0 16px;
 }
 
-.sp2-pricing-includes ul {
-  margin: 0;
-  padding-left: 1.1rem;
-  font-size: 0.9375rem;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.8);
+.sp2-includes-grid {
+  /* 2열 그리드는 이 패널 폭 안에서는 좁아서 설명이 어색하게 줄바꿈됐다 —
+     아이콘+텍스트를 한 줄로 넉넉하게 읽을 수 있도록 1열 리스트로 변경 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.sp2-pricing-includes li { margin-bottom: 4px; }
+.sp2-includes-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+}
+
+.sp2-includes-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 107, 53, 0.15);
+  color: var(--color-orange);
+}
+
+.sp2-includes-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.sp2-includes-keyword {
+  margin: 0 0 3px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sp2-includes-desc {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ============================================================
+   Pricing 마감일 강조
+============================================================ */
+.sp2-pricing-deadline {
+  max-width: 800px;
+  margin: 28px auto 0;
+  padding: 32px 28px;
+  background: #1d1d1d;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.sp2-pricing-deadline-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sp2-deadline-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sp2-deadline-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.sp2-countdown {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.sp2-countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 76px;
+}
+
+.sp2-countdown-num {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.sp2-countdown-label {
+  margin-top: 6px;
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.sp2-countdown-sep {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.25);
+  padding-top: 6px;
+}
+
+.sp2-deadline-note {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 560px) {
+  .sp2-pricing-deadline { padding: 24px 20px; }
+  .sp2-countdown { gap: 8px; }
+  .sp2-countdown-num { font-size: 2.25rem; }
+  .sp2-countdown-unit { min-width: 50px; }
+  .sp2-countdown-sep { font-size: 1.75rem; padding-top: 2px; }
+}
+
+/* ============================================================
+   완주자 혜택 섹션
+============================================================ */
+.sp2-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 620px) {
+  .sp2-benefit-grid { grid-template-columns: 1fr; }
+}
+
+.sp2-benefit-card {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sp2-benefit-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sp2-benefit-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.sp2-benefit-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.sp2-benefit-highlight {
+  background: var(--color-orange-weak, rgba(255,107,53,0.08));
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-align: center;
+}
+
+.sp2-benefit-amount {
+  font-size: 1.375rem;
+  font-weight: 900;
+  color: var(--color-orange);
+  letter-spacing: -0.03em;
+}
+
+.sp2-benefit-cond {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.sp2-benefit-cond strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.sp2-benefit-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sp2-benefit-list li {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp2-benefit-list li::before {
+  content: "✓";
+  color: var(--color-orange);
+  font-weight: 800;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.sp2-benefit-list li strong {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+/* ============================================================
+   CTA(dark) 섹션 추가 요소
+============================================================ */
+.sp2-cta-highlight {
+  font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-orange);
+  margin: 0 0 14px;
+}
+
+.sp2-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* .cc-cta-dark-btn already carries its own margin-bottom for the
+   single-button layout this section originally had — let the wrapper
+   above own that spacing instead so it isn't doubled. */
+.sp2-cta-actions .cc-cta-dark-btn {
+  margin-bottom: 0;
+}
+
+.sp2-cta-dark-btn-outline {
+  background: #000;
+  color: #fff;
+  border: 2px solid var(--color-orange);
+  padding: 16px 46px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  border-radius: 999px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.sp2-cta-dark-btn-outline:hover {
+  background: #1a1a1a;
+  border-color: #e85a22;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 560px) {
+  .sp2-cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sp2-cta-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   모바일 전용 줄바꿈
+============================================================ */
+.sp2-mobile-break {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  .sp2-mobile-break {
+    display: block;
+  }
+}
+
+/* 데스크톱에서만 보이는 줄바꿈 — 모바일에서는 숨겨서 한 줄로 붙인다 */
+@media (max-width: 560px) {
+  .sp2-desktop-break {
+    display: none;
+  }
+}

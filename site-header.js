@@ -22,11 +22,13 @@
   var careerOn = /(^|\/)career-consulting(\/|$)/.test(path);
   var seminarOn = /(^|\/)seminar(\/|$)/.test(path);
   var sprintOn = /(^|\/)sprint(\/|$)/.test(path);
+  var jobPtOn = /(^|\/)job-change-pt(\/|$)/.test(path);
 
   var coffeeCurrent = coffeeOn ? ' aria-current="page"' : "";
   var careerCurrent = careerOn ? ' aria-current="page"' : "";
   var seminarCurrent = seminarOn ? ' aria-current="page"' : "";
   var sprintCurrent = sprintOn ? ' aria-current="page"' : "";
+  var jobPtCurrent = jobPtOn ? ' aria-current="page"' : "";
 
   root.outerHTML =
     '<header class="header">' +
@@ -46,7 +48,12 @@
     ">커피챗</a>" +
     '<a href="/sprint/" class="btn btn-outline header-service-link"' +
     sprintCurrent +
-    ">2주 스프린트</a>" +
+    ">2주 이직특공대</a>" +
+    /* 4주 이직 PT — 임시 히든
+    '<a href="/job-change-pt/" class="btn btn-outline header-service-link"' +
+    jobPtCurrent +
+    ">4주 이직 PT</a>" +
+    */
     '<a href="/career-consulting/" class="btn btn-outline header-service-link"' +
     careerCurrent +
     ">이직 전략 컨설팅</a>" +
@@ -66,6 +73,22 @@
     "</div>" +
     '<div class="header-menu-backdrop" id="header-menu-backdrop" aria-hidden="true"></div>' +
     "</header>";
+
+  // 카카오톡 채널 플로팅 버튼 — 링크를 여기 한 곳에서만 관리하면
+  // 헤더를 쓰는 모든 페이지에 동일하게 반영됩니다.
+  if (!document.querySelector(".fab-kakao")) {
+    var kakaoFab = document.createElement("a");
+    kakaoFab.href = "https://pf.kakao.com/_fxdxdqX";
+    kakaoFab.target = "_blank";
+    kakaoFab.rel = "noopener noreferrer";
+    kakaoFab.className = "fab-kakao";
+    kakaoFab.setAttribute("aria-label", "카카오톡 채널 열기");
+    kakaoFab.innerHTML =
+      '<svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<path d="M12 3c5.52 0 10 4.03 10 9 0 4.97-4.48 9-10 9-1.5 0-2.9-.35-4.15-.96l-.35-.2-3.65.97 1-3.55C3.47 16.2 2 14.22 2 12c0-4.97 4.48-9 10-9z"></path>' +
+      "</svg>";
+    document.body.appendChild(kakaoFab);
+  }
 
   // 모바일 햄버거 메뉴 토글 (헤더를 쓰는 모든 페이지에서 동작)
   var header = document.querySelector(".header");
