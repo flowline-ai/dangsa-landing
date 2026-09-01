@@ -327,10 +327,16 @@
   line-height: 1.5;
 }
 
+.sp2-schedule-cta-btn {
+  display: inline-flex;
+  margin-top: 20px;
+}
+
 @media (max-width: 560px) {
   .sp2-schedule-cta { padding: 22px 18px; }
   .sp2-schedule-cta-main { font-size: 1.0625rem; }
   .sp2-schedule-cta-sub { font-size: 0.9375rem; }
+  .sp2-schedule-cta-btn { width: 100%; }
 }
 
 @media (max-width: 560px) {
