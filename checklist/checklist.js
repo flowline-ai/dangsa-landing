@@ -69,7 +69,7 @@ const TOTAL_MAX = 61.5;
 // 프로그램별 추천 멘토 데이터
 const PROGRAM_MENTORS = {
   '1:1 커피챗': [
-    { img: '/asset/mento_simjaekwon.jpg', name: '심재권' },
+    { img: '/asset/mento_simjaekwon.jpg', name: '퍼즐맨' },
     { img: '/asset/mento_parksoochang.jpg', name: '박수창' },
     { img: '/asset/mento_jinyongjin.jpg', name: '진용진' },
     { img: '/asset/mento_nononi.jpg', name: '노노니' },
@@ -82,7 +82,7 @@ const PROGRAM_MENTORS = {
     { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
   '1:1 이직 전략 컨설팅': [
-    { img: '/asset/mento_simjaekwon.jpg', name: '심재권' },
+    { img: '/asset/mento_simjaekwon.jpg', name: '퍼즐맨' },
     { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
   '무료 웨비나': [],
