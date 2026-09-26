@@ -264,36 +264,18 @@
   function openModal(triggerCard) {
     if (!modal) return;
     const mentorId = triggerCard ? triggerCard.getAttribute("data-mentor-modal") : "sim";
-    const contentSim = document.getElementById("mentor-content-sim");
-    const contentPark = document.getElementById("mentor-content-park");
-    const contentJin = document.getElementById("mentor-content-jin");
-    const contentParkjw = document.getElementById("mentor-content-parkjw");
-    var panels = [contentSim, contentPark, contentJin, contentParkjw];
+    var panels = modal.querySelectorAll(".mentor-content-panel");
     panels.forEach(function (p) {
-      if (p) {
-        p.hidden = true;
-        p.setAttribute("aria-hidden", "true");
-      }
+      p.hidden = true;
+      p.setAttribute("aria-hidden", "true");
     });
-    var active =
-      mentorId === "park"
-        ? contentPark
-        : mentorId === "jin"
-          ? contentJin
-          : mentorId === "parkjw"
-            ? contentParkjw
-            : contentSim;
+    var active = document.getElementById("mentor-content-" + mentorId) || panels[0];
     if (active) {
       active.hidden = false;
       active.setAttribute("aria-hidden", "false");
+      var title = active.querySelector(".mentor-modal-title");
+      if (title && title.id) modal.setAttribute("aria-labelledby", title.id);
     }
-    var titleIds = {
-      sim: "mentorModalTitle-sim",
-      park: "mentorModalTitle-park",
-      jin: "mentorModalTitle-jin",
-      parkjw: "mentorModalTitle-parkjw",
-    };
-    modal.setAttribute("aria-labelledby", titleIds[mentorId] || titleIds.sim);
     if (linkedInBtn && triggerCard) {
       const url = triggerCard.getAttribute("data-mentor-linkedin");
       if (url && url !== "#") {
