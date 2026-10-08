@@ -140,7 +140,8 @@
     card.classList.toggle("sp-card--upcoming", !isEnded);
 
     if (isEnded) {
-      var btn = card.querySelector(".sp-card-btn");
+      // 상세 페이지 링크는 종료 후에도 유지
+      var btn = card.querySelector(".sp-card-btn:not(.sp-card-btn--detail)");
       if (btn) disableBtn(btn);
     }
   });
@@ -159,7 +160,7 @@
   if (!featuredDT) return;
 
   if (featuredDT <= now) {
-    var cta = featured.querySelector(".spf-cta");
+    var cta = featured.querySelector(".spf-cta:not(.spf-cta--detail)");
     if (cta) disableBtn(cta);
 
     var badge = featured.querySelector(".seminar-count-badge");
@@ -536,10 +537,17 @@
   });
 
   // 세미나(웨비나) 무료 신청 — 이벤터스 외부 링크
-  document.querySelectorAll(".spf-cta, .sp-card-btn").forEach(function (el) {
+  document.querySelectorAll(".spf-cta:not(.spf-cta--detail), .sp-card-btn:not(.sp-card-btn--detail)").forEach(function (el) {
     el.addEventListener("click", function () {
       var location = el.closest(".sp-featured-section") ? "seminar_featured" : el.closest(".sp-card") ? "seminar_card" : "seminar";
       sendGAEvent("cta_click", { cta_label: "webinar_apply", cta_location: location });
+    });
+  });
+
+  // 세미나 카드 → 상세 페이지 이동
+  document.querySelectorAll(".sp-card-btn--detail, .spf-cta--detail").forEach(function (el) {
+    el.addEventListener("click", function () {
+      sendGAEvent("seminar_detail_open", { link_url: el.getAttribute("href") || "" });
     });
   });
 

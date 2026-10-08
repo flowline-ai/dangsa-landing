@@ -3044,6 +3044,19 @@ a.service-card--link:focus {
   transform: none;
 }
 
+/* 상세 페이지가 있는 카드: 카드 전체를 상세 링크로 확장 */
+.sp-card--link {
+  position: relative;
+  cursor: pointer;
+}
+
+.sp-card--link .sp-card-btn--detail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
 
 @media (max-width: 1024px) {
   .sp-grid {

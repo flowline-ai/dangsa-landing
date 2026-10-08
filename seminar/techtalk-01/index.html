@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1346473380886517');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1346473380886517&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>당신의사수 Tech Talk #1 | AX 시대의 새로운 협업법</title>
+  <meta name="description" content="AI 사용법을 배우는 세미나가 아니라, AI 때문에 애매해진 기획자·디자이너·개발자의 일의 경계를 이야기하는 Tech Talk. 10월 29일(목) 오후 7시 30분 온라인." />
+  <meta property="og:title" content="당신의사수 Tech Talk #1 — AX 시대의 새로운 협업법" />
+  <meta property="og:description" content="같은 팀에서는 차마 못 물어봤던 것들, 오늘은 서로에게 편하게 물어보세요. 10.29(목) 19:30 온라인" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.flowcamp.co.kr/seminar/techtalk-01/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:url" content="https://www.flowcamp.co.kr/seminar/techtalk-01/" />
+  <meta property="og:site_name" content="당신의사수" />
+  <meta property="og:image" content="https://www.flowcamp.co.kr/asset/og_image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" sizes="144x144" href="../../asset/favicon_144.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <!-- 사이트 공통 헤더·카카오톡 버튼 스타일 (아래 페이지 전용 <style>이 우선 적용) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css?v=7" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9JL32SRHV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-N9JL32SRHV');
+  </script>
+  <style>
+    :root {
+      --cream: #F5F1E6;
+      --paper: #FBF8F1;
+      --white: #FFFFFF;
+      --ink: #1A1A1A;
+      --ink-2: #3A352E;
+      --muted: #6B655B;
+      --line: #DDD5C4;
+      --orange: #FF6B47;
+      --orange-soft: #FFE9E2;
+      /* 직군 컬러 */
+      --pm: #FF6B47;
+      --ds: #7B61FF;
+      --dev: #12A26F;
+      --radius: 20px;
+      --max: 1120px;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Noto Sans KR', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 640px) { .wrap { padding: 0 16px; } }
+
+    .mono { font-family: var(--mono); letter-spacing: 0; }
+
+    /* ---------- 공통 ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 12px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+    .h2 {
+      font-size: clamp(28px, 4.2vw, 44px); font-weight: 800;
+      line-height: 1.28; letter-spacing: -0.03em;
+    }
+    .h2 em { font-style: normal; color: var(--orange); }
+    .lead { font-size: clamp(16px, 1.6vw, 18px); color: var(--muted); margin-top: 16px; max-width: 640px; }
+    section { padding: clamp(80px, 11vw, 140px) 0; }
+
+    /* 버튼: 사이트 공통 헤더(.header .btn)에 영향 없도록 본문·하단 CTA로 한정 */
+    main .btn, .mobile-cta .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 56px; padding: 0 28px; border-radius: 999px;
+      font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    main .btn-primary, .mobile-cta .btn-primary { background: var(--orange); color: var(--white); box-shadow: 0 8px 24px rgba(255,107,71,.32); }
+    main .btn-primary:hover, .mobile-cta .btn-primary:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255,107,71,.4); }
+    main .btn svg { width: 18px; height: 18px; }
+
+    .role { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; }
+    .role::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+    .role.pm { --c: var(--pm); } .role.ds { --c: var(--ds); } .role.dev { --c: var(--dev); }
+
+    /* 스크롤 등장 */
+    .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- 사이트 공통 헤더 (site-header.js · styles.css) ---------- */
+    .header { font-family: var(--font-sans); }
+
+    /* 카카오톡 채널 버튼: 모바일 하단 CTA가 보일 때 위로 비켜서기 */
+    .fab-kakao { transition: transform .2s ease, box-shadow .2s ease, bottom .25s ease; }
+    @media (max-width: 760px) {
+      body.mobile-cta-on .fab-kakao { bottom: calc(92px + env(safe-area-inset-bottom)); }
+    }
+
+    /* ---------- HERO ---------- */
+    /* styles.css 메인 .hero의 배경·overflow 상속 차단 */
+    .hero { padding: clamp(48px, 7vw, 96px) 0 clamp(64px, 8vw, 110px); position: relative; background: transparent; overflow: visible; text-align: left; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white); border: 1.5px solid var(--ink); border-radius: 999px;
+      padding: 7px 16px 7px 8px; font-size: 14px; font-weight: 700; margin-bottom: 28px;
+    }
+    .hero-tag .live {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--ink); color: var(--white); border-radius: 999px;
+      padding: 3px 10px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+    }
+    .hero-tag .live::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange);
+      animation: blink 1.6s infinite;
+    }
+    @keyframes blink { 50% { opacity: .25; } }
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 80px); font-weight: 900;
+      line-height: 1.12; letter-spacing: -0.045em;
+    }
+    .hero h1 .edge {
+      position: relative; color: var(--orange); white-space: nowrap;
+    }
+    .hero h1 .edge::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: .02em; height: 4px;
+      background-image: linear-gradient(90deg, var(--orange) 55%, transparent 0);
+      background-size: 14px 4px; opacity: .55;
+    }
+    .hero h1 .hedge {
+      display: inline-block; margin-left: .25em; white-space: nowrap;
+      font-size: .42em; font-weight: 700; letter-spacing: -0.02em; color: var(--muted);
+      transform: rotate(-4deg); transform-origin: left bottom;
+    }
+    .hero .sub {
+      margin-top: 22px; font-size: clamp(18px, 2.2vw, 24px); font-weight: 700;
+      letter-spacing: -0.02em; color: var(--ink-2);
+    }
+    .hero .sub .x { color: var(--orange); font-weight: 800; padding: 0 2px; }
+    .hero .desc { margin-top: 18px; font-size: 17px; color: var(--muted); max-width: 540px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+    .meta {
+      margin-top: clamp(48px, 6vw, 72px);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--white); border: 1.5px solid var(--ink); border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .meta > div { padding: 22px 24px; border-right: 1px solid var(--line); }
+    .meta > div:last-child { border-right: 0; }
+    .meta dt { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+    .meta dd { margin-top: 6px; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
+    .meta dd small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+    .dday {
+      display: inline-block; margin-left: 6px; vertical-align: 2px;
+      background: var(--orange); color: var(--white); border-radius: 6px;
+      font-family: var(--mono); font-size: 11px; padding: 2px 7px;
+    }
+
+    /* 벤 다이어그램 */
+    .venn { position: relative; width: min(460px, 100%); aspect-ratio: 1 / .96; margin: 0 auto; }
+    .venn .c {
+      position: absolute; width: 58%; aspect-ratio: 1; border-radius: 50%;
+      mix-blend-mode: multiply; opacity: .9;
+    }
+    .venn .c.pm  { background: #FFB39F; left: 0;  top: 0;  animation: driftA 7s ease-in-out infinite; }
+    .venn .c.ds  { background: #C3B6FF; right: 0; top: 0;  animation: driftB 7s ease-in-out infinite; }
+    .venn .c.dev { background: #A6E3C9; left: 21%; bottom: 0; animation: driftC 7s ease-in-out infinite; }
+    @keyframes driftA { 50% { transform: translate(5%, 4%); } }
+    @keyframes driftB { 50% { transform: translate(-5%, 4%); } }
+    @keyframes driftC { 50% { transform: translate(0, -5%); } }
+    .venn .lbl {
+      position: absolute; z-index: 2; text-align: center;
+      font-size: clamp(14px, 1.6vw, 17px); font-weight: 800; letter-spacing: -0.02em;
+    }
+    .venn .lbl span { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-2); opacity: .7; letter-spacing: .04em; }
+    .venn .lbl.pm  { left: 13%; top: 22%; }
+    .venn .lbl.ds  { right: 11%; top: 22%; }
+    .venn .lbl.dev { left: 50%; bottom: 13%; transform: translateX(-50%); }
+    .venn .core {
+      position: absolute; z-index: 3; left: 50%; top: 45%; transform: translate(-50%, -50%);
+      background: var(--ink); color: var(--white); border-radius: 999px;
+      padding: 10px 18px; font-size: 14px; font-weight: 800; white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(26,26,26,.25);
+    }
+    .venn .chip {
+      position: absolute; z-index: 3; background: var(--white); border: 1.5px solid var(--ink);
+      border-radius: 10px; padding: 5px 10px; font-family: var(--mono); font-size: 12px; font-weight: 700;
+      animation: float 5s ease-in-out infinite;
+    }
+    .venn .chip.k1 { left: -2%; bottom: 22%; }
+    .venn .chip.k2 { right: -3%; bottom: 30%; animation-delay: -2s; }
+    .venn .chip.k3 { left: 40%; top: -4%; animation-delay: -3.5s; }
+    @keyframes float { 50% { transform: translateY(-8px); } }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .venn { width: min(340px, 86%); }
+      .meta { grid-template-columns: 1fr 1fr; }
+      .meta > div:nth-child(2) { border-right: 0; }
+      .meta > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 480px) {
+      .meta > div { padding: 18px 16px; }
+      .meta dd { font-size: 15px; }
+      .hero-actions .btn { flex: 1 1 100%; }
+    }
+
+    /* ---------- 한 줄 정의 ---------- */
+    .define { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .define-statement {
+      font-size: clamp(26px, 4vw, 46px); font-weight: 800; line-height: 1.4; letter-spacing: -0.035em;
+    }
+    .define-statement .no { color: #AFA797; text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: var(--orange); }
+    .define-statement .yes { background: linear-gradient(transparent 62%, var(--orange-soft) 0); }
+    .mood { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+    .mood-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px;
+    }
+    .mood-card .num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--orange); }
+    .mood-card h3 { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin: 12px 0 8px; }
+    .mood-card p { font-size: 15px; color: var(--muted); }
+    @media (max-width: 800px) { .mood { grid-template-columns: 1fr; } }
+
+    /* ---------- 컨셉: 못 물어봤던 질문들 ---------- */
+    .concept { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
+    .concept::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .concept .wrap { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; }
+    .concept .h2 em { color: var(--orange); }
+    .concept .lead { color: rgba(255,255,255,.65); }
+    .concept-copy { position: sticky; top: 120px; }
+    .concept-note {
+      margin-top: 32px; padding: 18px 20px; border-radius: 14px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      font-size: 15px; color: rgba(255,255,255,.8);
+    }
+    .concept-note strong { color: var(--white); }
+
+    .chat { display: flex; flex-direction: column; gap: 18px; }
+    .msg { max-width: 88%; }
+    .msg.r { align-self: flex-end; text-align: right; }
+    .msg.r .who { justify-content: flex-end; }
+    .msg .who {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+      font-size: 13px; color: rgba(255,255,255,.6);
+    }
+    .msg .who .role { color: var(--white); }
+    .msg .who .arrow { font-family: var(--mono); color: rgba(255,255,255,.4); }
+    .bubble {
+      display: inline-block; text-align: left;
+      background: var(--white); color: var(--ink);
+      padding: 16px 20px; border-radius: 6px 20px 20px 20px;
+      font-size: clamp(16px, 1.7vw, 18px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.5;
+    }
+    .msg.r .bubble { border-radius: 20px 6px 20px 20px; background: var(--orange); color: var(--white); }
+    .msg.you .bubble {
+      background: transparent; color: var(--white); border: 1.5px dashed rgba(255,255,255,.4);
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .typing { display: inline-flex; gap: 4px; }
+    .typing i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.7); animation: typing 1.2s infinite; }
+    .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing { 0%, 60%, 100% { transform: none; opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+    @media (max-width: 900px) {
+      .concept .wrap { grid-template-columns: 1fr; gap: 48px; }
+      .concept-copy { position: static; }
+      .msg { max-width: 94%; }
+    }
+
+    /* ---------- 대상 ---------- */
+    .target-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+    .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+    .role-card {
+      background: var(--white); border: 1.5px solid var(--ink); border-radius: var(--radius);
+      padding: 32px 28px; position: relative; overflow: hidden;
+    }
+    .role-card::after {
+      content: ""; position: absolute; right: -40px; top: -40px; width: 120px; height: 120px;
+      border-radius: 50%; background: var(--c); opacity: .18;
+    }
+    .role-card.pm { --c: var(--pm); } .role-card.ds { --c: var(--ds); } .role-card.dev { --c: var(--dev); }
+    .role-card .tag { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--c); }
+    .role-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin: 10px 0 12px; }
+    .role-card p { font-size: 15px; color: var(--muted); }
+    .common {
+      margin-top: 16px; display: flex; align-items: center; gap: 16px;
+      background: var(--orange-soft); border-radius: var(--radius); padding: 22px 28px;
+      font-size: 17px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .common .plus {
+      flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--white);
+      display: grid; place-items: center; font-size: 20px; font-weight: 800;
+    }
+    @media (max-width: 800px) { .roles { grid-template-columns: 1fr; } .common { font-size: 15px; padding: 20px; } }
+
+    /* ---------- 프로그램 ---------- */
+    .program { background: var(--paper); border-top: 1px solid var(--line); }
+    .timebar {
+      margin-top: 48px; display: flex; height: 44px; border-radius: 12px; overflow: hidden;
+      border: 1.5px solid var(--ink); background: var(--white);
+      font-family: var(--mono); font-size: 12px; font-weight: 700;
+    }
+    .timebar a { display: flex; align-items: center; justify-content: center; gap: 8px; border-right: 1.5px solid var(--ink); transition: background .15s; }
+    .timebar a:last-child { border-right: 0; }
+    .timebar a:hover { background: var(--orange-soft); }
+    .timebar a { flex: 1; }
+    .timebar b { color: var(--orange); }
+
+    .parts { margin-top: 24px; display: flex; flex-direction: column; gap: 20px; }
+    .part {
+      display: grid; grid-template-columns: 260px 1fr; gap: 40px;
+      background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: 40px;
+    }
+    .part-side .no { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--muted); }
+    .part-side .name { font-family: var(--mono); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-top: 6px; }
+    .part-side .dur {
+      display: inline-block; margin-top: 14px; padding: 5px 12px; border-radius: 999px;
+      background: var(--ink); color: var(--white); font-size: 13px; font-weight: 700;
+    }
+    .part h3 { font-size: clamp(21px, 2.4vw, 26px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.4; }
+    .part .p-desc { margin-top: 10px; color: var(--muted); font-size: 16px; }
+
+    .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; }
+    .flow span { background: var(--cream); border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 700; }
+    .flow span.hl { background: var(--orange); color: var(--white); }
+    .flow i { font-style: normal; color: var(--muted); font-family: var(--mono); }
+
+    .qlist { list-style: none; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .qlist li {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: var(--paper); border-radius: 12px; padding: 14px 16px; font-size: 15px; font-weight: 600;
+    }
+    .qlist li::before { content: "Q"; font-family: var(--mono); color: var(--orange); font-weight: 700; }
+    .quote-line {
+      margin-top: 20px; padding-left: 16px; border-left: 3px solid var(--orange);
+      color: var(--ink-2); font-size: 15px;
+    }
+    @media (max-width: 900px) {
+      .part { grid-template-columns: 1fr; gap: 20px; padding: 28px 22px; }
+      .qlist { grid-template-columns: 1fr; }
+      .timebar { font-size: 10px; } .timebar a { gap: 4px; }
+    }
+
+    /* ---------- 연사 ---------- */
+    .speaker { padding-top: 0; }
+    .speaker-card {
+      margin-top: 48px; display: grid; grid-template-columns: 360px 1fr;
+      background: var(--white); border: 1.5px solid var(--ink); border-radius: 24px; overflow: hidden;
+    }
+    .speaker-photo {
+      background: var(--orange-soft); position: relative; min-height: 420px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 40px 24px;
+    }
+    .speaker-photo::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(rgba(255,107,71,.18) 1px, transparent 1px); background-size: 18px 18px;
+    }
+    .avatar-wrap { position: relative; width: 220px; height: 220px; }
+    .avatar-wrap img { width: 100%; height: 100%; border-radius: 50%; border: 2px solid var(--ink); background: var(--white); }
+    .sp-chip {
+      position: absolute; background: var(--white); border: 1.5px solid var(--ink); border-radius: 10px;
+      padding: 5px 10px; font-family: var(--mono); font-size: 12px; font-weight: 700; white-space: nowrap;
+      animation: float 5s ease-in-out infinite;
+    }
+    .sp-chip.c1 { left: -36px; top: 26px; color: var(--ds); }
+    .sp-chip.c2 { right: -28px; top: 92px; animation-delay: -2s; }
+    .sp-chip.c3 { left: -10px; bottom: 6px; color: var(--dev); animation-delay: -3.5s; }
+    .sp-flow { position: relative; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--ink-2); }
+    .sp-flow b { color: var(--orange); }
+    .speaker-body { padding: 44px 44px 40px; }
+    .speaker-body .tag { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ds); }
+    .speaker-body h3 { font-size: clamp(28px, 3.4vw, 36px); font-weight: 800; letter-spacing: -0.03em; margin-top: 10px; }
+    .speaker-body h3 small { font-size: .55em; font-weight: 700; color: var(--muted); margin-left: 6px; }
+    .speaker-body .role-line { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--ink-2); margin-top: 4px; }
+    .speaker-body .intro { margin-top: 20px; font-size: 16px; color: var(--ink-2); }
+    .creds { list-style: none; margin-top: 24px; border-top: 1px solid var(--line); }
+    .creds li { display: grid; grid-template-columns: 76px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; font-weight: 600; }
+    .creds li span { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--orange); padding-top: 3px; }
+    .honest {
+      margin-top: 24px; background: var(--cream); border-radius: 14px; padding: 18px 20px;
+      font-size: 15px; font-weight: 600;
+    }
+    .honest .ok { color: var(--dev); } .honest .hard { color: var(--orange); }
+    @media (max-width: 900px) {
+      .speaker-card { grid-template-columns: 1fr; }
+      .speaker-body { padding: 28px 22px; }
+      .speaker-photo { min-height: 0; padding: 48px 24px 32px; }
+      .avatar-wrap { width: 180px; height: 180px; }
+      .creds li { grid-template-columns: 64px 1fr; gap: 12px; font-size: 14px; }
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-list { margin-top: 40px; border-top: 1.5px solid var(--ink); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-item summary {
+      list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 24px 4px; font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--ink);
+      display: grid; place-items: center; font-weight: 500; font-size: 20px; line-height: 1; transition: transform .2s;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); background: var(--ink); color: var(--white); }
+    .faq-item p { padding: 0 4px 24px; color: var(--muted); font-size: 16px; max-width: 760px; }
+    @media (max-width: 640px) { .faq-item summary { font-size: 16px; padding: 20px 2px; } }
+
+    /* ---------- 마지막 CTA ---------- */
+    .final { padding-top: 0; }
+    .final-box {
+      background: var(--orange); color: var(--white); border-radius: 32px;
+      padding: clamp(48px, 7vw, 88px) clamp(24px, 6vw, 80px); text-align: center; position: relative; overflow: hidden;
+    }
+    .final-box::before, .final-box::after {
+      content: ""; position: absolute; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.35);
+      width: 340px; height: 340px;
+    }
+    .final-box::before { left: -120px; top: -140px; }
+    .final-box::after { right: -110px; bottom: -160px; }
+    .final-box .kicker { font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .08em; opacity: .85; }
+    .final-box h2 { font-size: clamp(28px, 4.4vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.3; margin-top: 14px; position: relative; }
+    .final-box p { margin-top: 16px; font-size: 17px; opacity: .92; position: relative; }
+    .final-box .btn { margin-top: 36px; background: var(--ink); color: var(--white); position: relative; height: 60px; padding: 0 36px; font-size: 17px; }
+    .final-box .btn:hover { transform: translateY(-2px); }
+
+    /* ---------- 푸터 ---------- */
+    footer { padding: 40px 0 56px; border-top: 1px solid var(--line); }
+    footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    footer img { height: 18px; width: auto; opacity: .8; }
+    footer small { color: var(--muted); font-size: 13px; }
+
+    /* ---------- 모바일 하단 고정 CTA ---------- */
+    .mobile-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(245,241,230,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      transform: translateY(110%); transition: transform .25s ease;
+    }
+    .mobile-cta.show { transform: none; }
+    .mobile-cta .btn { width: 100%; height: 52px; }
+    .mobile-cta .btn small { font-weight: 600; opacity: .85; font-size: 13px; }
+    @media (max-width: 760px) { .mobile-cta { display: block; } footer { padding-bottom: 110px; } }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 96px; z-index: 80; transform: translate(-50%, 20px);
+      background: var(--ink); color: var(--white); padding: 12px 20px; border-radius: 999px;
+      font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none; transition: all .25s;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header-root"></div>
+  <script src="../../site-header.js"></script>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-tag reveal"><span class="live">ONLINE</span>당신의사수 Tech Talk #1</div>
+            <h1 class="reveal">AX 시대의<br /><span class="edge">새로운 협업법</span><span class="hedge">...이랄까?</span></h1>
+            <p class="sub reveal">기획자, 디자이너가 코드를 가져온다면<br />개발자는 무얼 해야 할까?</p>
+            <p class="desc reveal">코드까지 직접 만들기 시작한 디자이너의 사례에서 출발해, 세 직군이 서로의 생각을 솔직하게 나눕니다.</p>
+            <div class="hero-actions reveal">
+              <a href="#apply" class="btn btn-primary js-apply">
+                Tech Talk 신청하기
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal" aria-hidden="true">
+            <div class="venn">
+              <div class="c pm"></div><div class="c ds"></div><div class="c dev"></div>
+              <div class="lbl pm"><span>PLANNER</span>기획자</div>
+              <div class="lbl ds"><span>DESIGNER</span>디자이너</div>
+              <div class="lbl dev"><span>DEVELOPER</span>개발자</div>
+              <div class="core">어디까지가 내 일?</div>
+              <div class="chip k1">Figma</div>
+              <div class="chip k2">&lt;/&gt;</div>
+              <div class="chip k3">MVP</div>
+            </div>
+          </div>
+        </div>
+
+        <dl class="meta reveal">
+          <div><dt>Date</dt><dd>10월 29일 (목)<span class="dday" id="dday" hidden></span><small>2026년</small></dd></div>
+          <div><dt>Time</dt><dd>오후 7시 30분<small>약 90분 진행</small></dd></div>
+          <div><dt>Where</dt><dd>온라인<small>Tech Talk</small></dd></div>
+          <div><dt>For</dt><dd>기획·디자인·개발<small>실무자 누구나</small></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 한 줄 정의 + 분위기 -->
+    <section class="define">
+      <div class="wrap">
+        <p class="eyebrow">What is this</p>
+        <p class="define-statement reveal">
+          <span class="no">AI 사용법을 배우는 세미나</span>가 아니라,<br />
+          <span class="yes">AI 때문에 애매해진 일의 경계</span>를<br />이야기하는 Tech Talk.
+        </p>
+        <div class="mood">
+          <div class="mood-card reveal">
+            <div class="num">01</div>
+            <h3>정답보다 경험</h3>
+            <p>AI 시대의 개발 방법론에 대한 정답을 찾는 자리가 아니에요. 변화를 먼저 겪은 디자이너의 실제 경험에서 시작합니다.</p>
+          </div>
+          <div class="mood-card reveal">
+            <div class="num">02</div>
+            <h3>성공담만큼 시행착오도</h3>
+            <p>“여기까지는 해볼 만했는데, 여기부터는 생각보다 어려웠다.” 잘 된 이야기만큼 막혔던 지점도 솔직하게 나눕니다.</p>
+          </div>
+          <div class="mood-card reveal">
+            <div class="num">03</div>
+            <h3>토론이 아닌 대화</h3>
+            <p>누가 맞는지 가리기보다 “우리 회사에서는 이렇게 하고 있어요.” 서로 다른 현장의 사례를 듣는 시간이에요.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 컨셉 -->
+    <section class="concept" id="concept">
+      <div class="wrap">
+        <div class="concept-copy">
+          <p class="eyebrow">Concept</p>
+          <h2 class="h2 reveal">같은 팀에서는<br />차마 못 물어봤던 것들,<br /><em>오늘은 서로에게<br />편하게 물어보세요.</em></h2>
+          <p class="lead reveal">같은 회사 안에서는 업무 관계 때문에 직접 묻기 어려운 질문이 있죠.
+            회사도 이해관계도 다른 기획자·디자이너·개발자가 모이는 자리라서, 조금 더 솔직해질 수 있어요.</p>
+          <div class="concept-note reveal"><strong>신청할 때 사전 질문을 받아요.</strong><br />다른 직군에게 평소 궁금했던 걸 남겨주시면 PART 2 크로스톡에서 함께 이야기합니다.</div>
+        </div>
+
+        <div class="chat" aria-label="참가자들이 서로에게 묻고 싶은 질문 예시">
+          <div class="msg reveal">
+            <div class="who"><span class="role ds">디자이너</span><span class="arrow">→</span><span class="role dev">개발자</span></div>
+            <div class="bubble">제가 만든 코드, 개발자 입장에서는 솔직히 어떤가요?</div>
+          </div>
+          <div class="msg r reveal">
+            <div class="who"><span class="role dev">개발자</span><span class="arrow">→</span><span class="role ds">디자이너</span></div>
+            <div class="bubble">왜 코드까지 직접 만들려고 하나요?</div>
+          </div>
+          <div class="msg reveal">
+            <div class="who"><span class="role pm">기획자</span><span class="arrow">→</span><span class="role dev">개발자</span></div>
+            <div class="bubble">기획자가 MVP까지 만들어오면 부담스럽지는 않나요?</div>
+          </div>
+          <div class="msg r reveal">
+            <div class="who"><span class="role pm">기획자</span><span class="arrow">→</span><span class="role ds">디자이너</span></div>
+            <div class="bubble">개발자가 디자인대로 구현하지 않았을 때 어떻게 느끼나요?</div>
+          </div>
+          <div class="msg reveal">
+            <div class="who"><span class="role ds">디자이너</span><span class="arrow">→</span><span class="role dev">개발자</span></div>
+            <div class="bubble">개발자는 왜 자꾸 “이건 다시 만들어야 한다”고 하나요?</div>
+          </div>
+          <div class="msg r reveal">
+            <div class="who"><span class="role dev">개발자</span><span class="arrow">→</span><span class="role ds">디자이너</span></div>
+            <div class="bubble">개발팀이 어디서부터 개입해주기를 기대하나요?</div>
+          </div>
+          <div class="msg you reveal">
+            <div class="who"><span class="role" style="--c:#fff">나</span><span class="arrow">→</span><span>?</span></div>
+            <a href="#apply" class="bubble js-apply">당신이 묻고 싶은 질문은? <span class="typing"><i></i><i></i><i></i></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 대상 -->
+    <section class="target">
+      <div class="wrap">
+        <div class="target-head">
+          <div>
+            <p class="eyebrow">Who should join</p>
+            <h2 class="h2 reveal">이런 분들을 초대합니다</h2>
+          </div>
+        </div>
+        <div class="roles">
+          <div class="role-card ds reveal">
+            <div class="tag">DESIGNER</div>
+            <h3>프로덕트 · UX/UI 디자이너</h3>
+            <p>디자인을 직접 코드로 구현하고 검증하는 프로세스를 경험해보고 싶은 분</p>
+          </div>
+          <div class="role-card dev reveal">
+            <div class="tag">DEVELOPER</div>
+            <h3>백엔드 · 풀스택 개발자</h3>
+            <p>바이브코딩 코드 리뷰 때문에 병목을 경험하신 분</p>
+          </div>
+          <div class="role-card pm reveal">
+            <div class="tag">PLANNER</div>
+            <h3>기획자 · PM</h3>
+            <p>바이브코딩으로 MVP까지 직접 만들어볼까 고민해본 적 있는 분</p>
+          </div>
+        </div>
+        <div class="common reveal">
+          <span class="plus">+</span>
+          <span>무엇보다, AI와 바이브코딩으로 내 업무 영역이 넓어지고 있다고 느끼는 실무자라면 누구나</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연사 -->
+    <section class="speaker" id="speaker">
+      <div class="wrap">
+        <p class="eyebrow">Speaker</p>
+        <h2 class="h2 reveal">디자인을 직접 코드로 만드는<br /><em>디자이너</em>의 이야기</h2>
+
+        <div class="speaker-card reveal">
+          <div class="speaker-photo">
+            <div class="avatar-wrap">
+              <img src="../../asset/mento_leehayeon.webp" alt="이하연 멘토 프로필" />
+              <span class="sp-chip c1" aria-hidden="true">Figma</span>
+              <span class="sp-chip c2" aria-hidden="true">&lt;/&gt;</span>
+              <span class="sp-chip c3" aria-hidden="true">✓ Verify</span>
+            </div>
+            <div class="sp-flow" aria-hidden="true">DESIGN <b>→</b> CODE <b>→</b> VERIFY</div>
+          </div>
+          <div class="speaker-body">
+            <div class="tag">CASE TALK SPEAKER</div>
+            <h3>이하연<small>멘토</small></h3>
+            <p class="role-line">AX Design Engineer</p>
+            <p class="intro">10년 넘게 프로덕트 디자인을 해오며, 지금은 AI를 활용해 디자인을 직접 코드로 구현하고 검증하는 일에 집중하고 있습니다.
+              Figma 플러그인 ‘Design System AI’를 직접 기획부터 개발·배포까지 해내며, 디자인과 개발의 경계를 실무에서 넘나들고 있어요.</p>
+            <ul class="creds">
+              <li><span>CAREER</span>Product Design 10년 이상</li>
+              <li><span>NOW</span>AX Design Engineer</li>
+              <li><span>BUILT</span>Figma 플러그인 ‘Design System AI’ 기획 · 개발 · 배포</li>
+              <li><span>FOCUS</span>디자인을 직접 코드로 구현하고 검증하는 작업</li>
+            </ul>
+            <div class="honest">디자인 AX의 시행착오와 성공 사례를 함께 공유합니다.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 프로그램 -->
+    <section class="program" id="program">
+      <div class="wrap">
+        <p class="eyebrow">Program</p>
+        <h2 class="h2 reveal">사례에서 시작해,<br /><em>서로의 현장</em>으로 넓혀갑니다</h2>
+
+        <nav class="timebar reveal" aria-label="파트별 바로가기">
+          <a href="#part1"><span class="lbl">CASE TALK</span><b>30′</b></a>
+          <a href="#part2"><span class="lbl">CROSS TALK</span><b>30′</b></a>
+          <a href="#part3"><span class="lbl">OPEN TALK</span><b>30′</b></a>
+        </nav>
+
+        <div class="parts">
+          <!-- PART 1 -->
+          <article class="part reveal" id="part1">
+            <div class="part-side">
+              <div class="no">PART 01</div>
+              <div class="name">CASE TALK</div>
+              <span class="dur">약 30분</span>
+            </div>
+            <div>
+              <h3>Figma에서 코드까지,<br />디자이너는 실제로 어디까지 만들 수 있을까?</h3>
+              <p class="p-desc">단순한 AI 툴 데모가 아니라, 연사님의 실제 프로젝트를 따라가며 일하는 방식이 어떻게 바뀌었는지 들어봅니다. 대외비가 아닌 작업물과 간단한 시연도 함께해요.</p>
+              <div class="flow">
+                <span>기존 업무 방식</span><i>→</i>
+                <span>코드까지 만들게 된 과정</span><i>→</i>
+                <span>개발팀과의 협업</span><i>→</i>
+                <span class="hl">달라진 점</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PART 2 -->
+          <article class="part reveal" id="part2">
+            <div class="part-side">
+              <div class="no">PART 02</div>
+              <div class="name">CROSS TALK</div>
+              <span class="dur">약 30분</span>
+            </div>
+            <div>
+              <h3>같은 팀에서는 차마 못 물어봤던 것들</h3>
+              <p class="p-desc">사전 질문을 바탕으로 연사님과 패널 중심으로 AX 시대 디자인, 개발의 새로운 협업법에 대해 가볍고 솔직하게 이야기하는 시간입니다.</p>
+              <ul class="qlist">
+                <li>바이브코딩으로 만든 결과물을 배포할 때, 이 코드의 책임은 누구에게 있을까요?</li>
+                <li>바이브코딩 코드 리뷰 시간이 처음부터 개발하는 시간보다 길어진다면?</li>
+                <li>기획자·디자이너가 백엔드 API까지 AI로 만들어오기 시작하면, 개발팀은 어디까지 허용하는 것이 좋을까요?</li>
+                <li>만약 프론트 구현의 상당 부분을 기획자나 디자이너가 할 수 있게 된다면, 개발자 입장에서 가장 먼저 없어졌으면 하는 비효율은 무엇인가요?</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- PART 3 -->
+          <article class="part reveal" id="part3">
+            <div class="part-side">
+              <div class="no">PART 03</div>
+              <div class="name">OPEN TALK</div>
+              <span class="dur">약 30분</span>
+            </div>
+            <div>
+              <h3>앞으로 세 직군의 업무 경계는 어떻게 달라질까요?</h3>
+              <p class="p-desc">참가자분들의 실시간 질문과 경험을 함께 받습니다.</p>
+              <p class="quote-line">각 도메인에서 AX가 어떻게 진행되고 있는지 나누어봅니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="h2 reveal">자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>코딩이나 AI 툴을 잘 몰라도 참여할 수 있나요?</summary>
+            <p>네. AI 사용법이나 개발 방법론을 배우는 세미나가 아니라, AI와 바이브코딩 때문에 애매해진 직군 간 일의 경계와 협업 방식을 이야기하는 자리예요.</p>
+          </details>
+          <details class="faq-item">
+            <summary>사전 질문은 어떻게 남기나요?</summary>
+            <p>행사 신청 단계에서 다른 직군에게 평소 궁금했던 질문을 받아요. 남겨주신 질문은 PART 2 크로스톡에서 연사님·패널과 함께 이야기합니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>행사 중에도 질문하거나 경험을 공유할 수 있나요?</summary>
+            <p>네. PART 3 오픈톡에서 참가자분들의 실시간 질문과 각자 회사의 사례를 함께 받습니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>어떻게 참여하나요?</summary>
+            <p>10월 29일(목) 오후 7시 30분에 온라인으로 진행돼요. 참여 방법은 신청해주신 분들께 따로 안내드릴 예정입니다.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 마지막 CTA -->
+    <section class="final" id="apply">
+      <div class="wrap">
+        <div class="final-box reveal">
+          <div class="kicker">DANGSA TECH TALK #1 · 10.29 THU 19:30</div>
+          <h2>코드 리뷰가 병목이 되기 전에,<br />새로운 협업법을 먼저 이야기해요</h2>
+          <p>신청할 때 다른 직군에게 묻고 싶은 질문을 함께 남겨주세요.</p>
+          <a href="#apply" class="btn js-apply">
+            Tech Talk 신청하기
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <img src="../../asset/dangsa_logo.svg" alt="당신의사수" />
+      <small>© 당신의사수. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" id="mobileCta">
+    <a href="#apply" class="btn btn-primary js-apply">Tech Talk 신청하기 <small>· 10.29(목) 19:30</small></a>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // 참가 신청 구글폼
+    const APPLY_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSefamJ4qZh_SKEJCqD1SChS_aXRalnHOkzVCOzPJ2GOMG_sjg/viewform?usp=sharing&ouid=101170141525498184185';
+    const EVENT_DATE = new Date('2026-10-29T19:30:00+09:00');
+
+    document.documentElement.classList.add('js');
+
+    // 신청 버튼
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    document.querySelectorAll('.js-apply').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_label: 'webinar_apply', cta_location: 'seminar_detail' });
+        if (APPLY_URL) { window.open(APPLY_URL, '_blank', 'noopener'); return; }
+        toast.textContent = '신청 링크를 준비하고 있어요. 곧 열릴 예정이에요!';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+      });
+    });
+
+    // D-day
+    const dday = document.getElementById('dday');
+    const today = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    today.setHours(0, 0, 0, 0);
+    const target = new Date(2026, 9, 29);
+    const diff = Math.round((target - today) / 86400000);
+    if (diff > 0) { dday.textContent = 'D-' + diff; dday.hidden = false; }
+    else if (diff === 0) { dday.textContent = 'D-DAY'; dday.hidden = false; }
+
+    // 모바일 CTA (노출 시 카카오톡 버튼도 위로 이동)
+    const mobileCta = document.getElementById('mobileCta');
+    const finalBox = document.getElementById('apply');
+    const onScroll = () => {
+      const y = window.scrollY;
+      const finalTop = finalBox.getBoundingClientRect().top;
+      const show = y > 520 && finalTop > window.innerHeight;
+      mobileCta.classList.toggle('show', show);
+      document.body.classList.toggle('mobile-cta-on', show);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // 스크롤 등장
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 60 + 'ms';
+      io.observe(el);
+    });
+  </script>
+  <script src="../../script.js"></script>
+</body>
+</html>
