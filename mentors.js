@@ -89,7 +89,7 @@ var MENTORS = [
       <ul class="mentor-modal-list">
         <li><strong>LAIVDATA</strong> 이사 (2025.4~)</li>
         <li><strong>티맥스핀에이아이</strong> 상무 (2024.7~9)</li>
-        <li><strong>데이타몬드</strong> 공동대표(창업) (2021.7~2024.3)</li>
+        <li><strong>데이터몬드</strong> 공동대표(창업) (2021.7~2024.3)</li>
         <li><strong>METAPERSONALAB</strong> CEO (2022.1~2024.2)</li>
         <li><strong>현대카드</strong> Digital CLM 팀장 (2017~2021)</li>
         <li>현대자동차 사내스타트업 육성 프로그램 참여 (2019~2021)</li>
