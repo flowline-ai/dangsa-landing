@@ -202,17 +202,6 @@ var MENTORS = [
     tags: ["데이터 기반 의사결정", "인하우스 전환", "프로덕트 전략"],
     detail: "",
   },
-  {
-    id: "leehayeon",
-    company: "LG전자·현대카드 프로젝트",
-    name: "이하연",
-    role: "Product Designer · 15년차",
-    image: "/asset/mento_leehayeon.webp",
-    link: "https://smartstore.naver.com/flowcamp/products/13808336195",
-    linkedin: "",
-    tags: ["디자인 시스템", "B2B SaaS UX", "AI 제품 UX"],
-    detail: "",
-  },
 ];
 
 (function () {
