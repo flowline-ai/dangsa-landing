@@ -62,6 +62,7 @@
       --pm: #FF6B47;
       --ds: #7B61FF;
       --dev: #12A26F;
+      --fde: #2F7DE1;
       --radius: 20px;
       --max: 1120px;
       --mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -148,6 +149,10 @@
     .hero-tag .live::before {
       content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange);
       animation: blink 1.6s infinite;
+    }
+    .hero-tag .free {
+      display: inline-flex; align-items: center; background: var(--orange); color: var(--white);
+      border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 800; letter-spacing: .02em;
     }
     @keyframes blink { 50% { opacity: .25; } }
     .hero h1 {
@@ -309,7 +314,7 @@
 
     /* ---------- 대상 ---------- */
     .target-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
-    .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+    .roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
     .role-card {
       background: var(--white); border: 1.5px solid var(--ink); border-radius: var(--radius);
       padding: 32px 28px; position: relative; overflow: hidden;
@@ -318,7 +323,7 @@
       content: ""; position: absolute; right: -40px; top: -40px; width: 120px; height: 120px;
       border-radius: 50%; background: var(--c); opacity: .18;
     }
-    .role-card.pm { --c: var(--pm); } .role-card.ds { --c: var(--ds); } .role-card.dev { --c: var(--dev); }
+    .role-card.pm { --c: var(--pm); } .role-card.ds { --c: var(--ds); } .role-card.dev { --c: var(--dev); } .role-card.fde { --c: var(--fde); }
     .role-card .tag { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--c); }
     .role-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; margin: 10px 0 12px; }
     .role-card p { font-size: 15px; color: var(--muted); }
@@ -331,6 +336,7 @@
       flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--white);
       display: grid; place-items: center; font-size: 20px; font-weight: 800;
     }
+    @media (max-width: 1100px) { .roles { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 800px) { .roles { grid-template-columns: 1fr; } .common { font-size: 15px; padding: 20px; } }
 
     /* ---------- 프로그램 ---------- */
@@ -461,6 +467,7 @@
     .final-box h2 { font-size: clamp(28px, 4.4vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.3; margin-top: 14px; position: relative; }
     .final-box p { margin-top: 16px; font-size: 17px; opacity: .92; position: relative; }
     .final-box .btn { margin-top: 36px; background: var(--ink); color: var(--white); position: relative; height: 60px; padding: 0 36px; font-size: 17px; }
+    .final-box p.final-free { margin-top: 14px; font-size: 14px; font-weight: 700; }
     .final-box .btn:hover { transform: translateY(-2px); }
 
     /* ---------- 푸터 ---------- */
@@ -505,7 +512,7 @@
       <div class="wrap">
         <div class="hero-grid">
           <div>
-            <div class="hero-tag reveal"><span class="live">ONLINE</span>당신의사수 Tech Talk #1</div>
+            <div class="hero-tag reveal"><span class="live">ONLINE</span>당신의사수 Tech Talk #1<span class="free">무료</span></div>
             <h1 class="reveal">AX 시대의<br /><span class="edge">새로운 협업법</span><span class="hedge">...이랄까?</span></h1>
             <p class="sub reveal">기획자, 디자이너가 코드를 가져온다면<br />개발자는 무얼 해야 할까?</p>
             <p class="desc reveal">여러 기업의 AX 현장과 MVP를 직접 만드는 기획자의 사례에서 출발해, 세 직군이 서로의 생각을 솔직하게 나눕니다.</p>
@@ -534,7 +541,7 @@
         <dl class="meta reveal">
           <div><dt>Date</dt><dd>10월 29일 (목)<span class="dday" id="dday" hidden></span><small>2026년</small></dd></div>
           <div><dt>Time</dt><dd>오후 7시 30분<small>약 90분 진행</small></dd></div>
-          <div><dt>Where</dt><dd>온라인<small>Tech Talk</small></dd></div>
+          <div><dt>Where</dt><dd>온라인 · 무료<small>Tech Talk</small></dd></div>
           <div><dt>For</dt><dd>기획·디자인·개발<small>실무자 누구나</small></dd></div>
         </dl>
       </div>
@@ -636,6 +643,11 @@
             <div class="tag">PLANNER</div>
             <h3>기획자 · PM</h3>
             <p>바이브코딩으로 MVP까지 직접 만들어볼까 고민해본 적 있는 분</p>
+          </div>
+          <div class="role-card fde reveal">
+            <div class="tag">FDE</div>
+            <h3>FDE · 솔루션 엔지니어</h3>
+            <p>고객 현장에서 요구사항 정리부터 구현까지 오가는 분</p>
           </div>
         </div>
         <div class="common reveal">
@@ -784,6 +796,7 @@
             Tech Talk 신청하기
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
+          <p class="final-free">참가비 무료 · 부담 없이 신청하세요</p>
         </div>
       </div>
     </section>
@@ -797,7 +810,7 @@
   </footer>
 
   <div class="mobile-cta" id="mobileCta">
-    <a href="#apply" class="btn btn-primary js-apply">Tech Talk 신청하기 <small>· 10.29(목) 19:30</small></a>
+    <a href="#apply" class="btn btn-primary js-apply">Tech Talk 신청하기 <small>· 무료 · 10.29(목) 19:30</small></a>
   </div>
   <div class="toast" id="toast" role="status"></div>
 
