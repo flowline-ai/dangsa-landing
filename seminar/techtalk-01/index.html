@@ -828,6 +828,7 @@
       el.addEventListener('click', e => {
         e.preventDefault();
         if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_label: 'webinar_apply', cta_location: 'seminar_detail' });
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'techtalk-01' });
         if (APPLY_URL) { window.open(APPLY_URL, '_blank', 'noopener'); return; }
         toast.textContent = '신청 링크를 준비하고 있어요. 곧 열릴 예정이에요!';
         toast.classList.add('show');
