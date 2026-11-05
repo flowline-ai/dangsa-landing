@@ -501,6 +501,41 @@
   window.getAcquisitionParams = function () {
     return getStored() || saveAcquisition();
   };
+
+  // 이전 사이트 주소를 측정용 코드로 바꾼다 (UTM이 없는 검색·AI 유입을 구분하기 위함)
+  var SOURCE_CODES = [
+    [/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$/, "chatgpt"],
+    [/(^|\.)perplexity\.ai$/, "perplexity"],
+    [/^gemini\.google\.com$/, "gemini"],
+    [/(^|\.)claude\.ai$/, "claude"],
+    [/(^|\.)copilot\.microsoft\.com$/, "copilot"],
+    [/(^|\.)search\.naver\.com$/, "naver"],
+    [/(^|\.)blog\.naver\.com$/, "naver_blog"],
+    [/(^|\.)cafe\.naver\.com$/, "naver_cafe"],
+    [/(^|\.)google\.[a-z.]+$/, "google"],
+    [/(^|\.)bing\.com$/, "bing"],
+    [/(^|\.)daum\.net$/, "daum"],
+    [/(^|\.)flowcamp\.co\.kr$/, "direct"]
+  ];
+
+  function toSourceCode(domain) {
+    var value = (domain || "").toLowerCase();
+    for (var i = 0; i < SOURCE_CODES.length; i++) {
+      if (SOURCE_CODES[i][0].test(value)) return SOURCE_CODES[i][1];
+    }
+    return value;
+  }
+
+  // 유입 코드: 지금 주소의 UTM → 세션 첫 유입의 UTM → 이전 사이트 → direct 순서
+  // 예: meta_dev_code_Instagram_Reels / google / naver / chatgpt / direct
+  window.getAcquisitionCode = function () {
+    var q = parseQuery();
+    var p = q.utm_source ? q : window.getAcquisitionParams();
+    if (p.utm_source) {
+      return [toSourceCode(p.utm_source), p.utm_content, p.utm_term].filter(Boolean).join("_");
+    }
+    return toSourceCode(p.entry_referrer_domain) || "direct";
+  };
 })();
 
 /**
@@ -527,6 +562,31 @@
       sendGAEvent("session_start", { event_category: "engagement" });
     }
   })();
+
+  // 외부 신청 버튼 클릭 (스마트스토어·카카오·이벤터스·구글폼) — 어디서 온 사람이 눌렀는지 함께 기록
+  // 구글폼 링크에 data-source-entry="entry.숫자"를 넣으면 유입 코드 칸을 미리 채운다
+  var APPLY_HOST = /(^|\.)(smartstore\.naver\.com|pf\.kakao\.com|event-us\.kr|forms\.gle|docs\.google\.com)$/;
+  document.addEventListener("click", function (e) {
+    var el = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!el) return;
+    var code = typeof window.getAcquisitionCode === "function" ? window.getAcquisitionCode() : "direct";
+    var entry = el.getAttribute("data-source-entry");
+    if (entry) {
+      try {
+        var formUrl = new URL(el.href);
+        formUrl.searchParams.set("usp", "pp_url");
+        formUrl.searchParams.set(entry, code);
+        el.href = formUrl.toString();
+      } catch (err) {}
+    }
+    if (APPLY_HOST.test(el.hostname || "")) {
+      sendGAEvent("apply_click", {
+        acquisition_code: code,
+        link_domain: el.hostname,
+        page_path: window.location.pathname
+      });
+    }
+  }, true);
 
   // 커리어 진단 CTA 클릭 (전환) — 체크리스트로 연결되는 버튼 3개
   document.querySelectorAll('a[href*="checklist"]').forEach(function (el) {

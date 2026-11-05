@@ -819,20 +819,13 @@
     const APPLY_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSefamJ4qZh_SKEJCqD1SChS_aXRalnHOkzVCOzPJ2GOMG_sjg/viewform';
     const SOURCE_ENTRY = 'entry.897198535'; // 구글폼 '유입 코드' 칸
 
-    // 랜딩 주소의 utm 값으로 유입 코드를 만들어 구글폼에 미리 채운다
-    // 주소에 utm이 없으면 세션 첫 유입 때 script.js가 저장해 둔 utm을 쓴다 (다른 페이지를 거쳐 들어온 경우)
-    // 예: meta_dev_code_Instagram_Reels / linkedin / direct
+    // 유입 코드(utm 또는 이전 사이트)를 구글폼에 미리 채운다. 코드 생성은 script.js의 getAcquisitionCode
+    // 예: meta_dev_code_Instagram_Reels / linkedin / google / chatgpt / direct
+    function acquisitionCode() {
+      return typeof window.getAcquisitionCode === 'function' ? window.getAcquisitionCode() : 'direct';
+    }
     function buildApplyUrl() {
-      const q = new URLSearchParams(location.search);
-      const stored = typeof window.getAcquisitionParams === 'function' ? window.getAcquisitionParams() : {};
-      const p = q.get('utm_source')
-        ? { utm_source: q.get('utm_source'), utm_content: q.get('utm_content'), utm_term: q.get('utm_term') }
-        : stored;
-      const code = [
-        p.utm_source || 'direct',
-        p.utm_content,
-        p.utm_term
-      ].filter(Boolean).join('_');
+      const code = acquisitionCode();
       const url = new URL(APPLY_URL);
       url.searchParams.set('usp', 'pp_url');
       url.searchParams.set(SOURCE_ENTRY, code);
@@ -848,7 +841,7 @@
     document.querySelectorAll('.js-apply').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_label: 'webinar_apply', cta_location: 'seminar_detail' });
+        if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_label: 'webinar_apply', cta_location: 'seminar_detail', acquisition_code: acquisitionCode() });
         if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'techtalk-01' });
         if (APPLY_URL) { window.open(buildApplyUrl(), '_blank', 'noopener'); return; }
         toast.textContent = '신청 링크를 준비하고 있어요. 곧 열릴 예정이에요!';
