@@ -2,6 +2,16 @@
   "framework": null,
   "redirects": [
     {
+      "source": "/sprint",
+      "destination": "/sprint/finance/",
+      "permanent": false
+    },
+    {
+      "source": "/sprint/",
+      "destination": "/sprint/finance/",
+      "permanent": false
+    },
+    {
       "source": "/coffee-chat.html",
       "destination": "/coffee-chat/",
       "permanent": true

@@ -48,7 +48,7 @@
     ">커피챗</a>" +
     '<a href="/sprint/" class="btn btn-outline header-service-link"' +
     sprintCurrent +
-    ">2주 이직특공대</a>" +
+    ">이직특공대</a>" +
     /* 4주 이직 PT — 임시 히든
     '<a href="/job-change-pt/" class="btn btn-outline header-service-link"' +
     jobPtCurrent +

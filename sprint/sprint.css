@@ -1237,3 +1237,18 @@
     display: none;
   }
 }
+
+
+/* 이직특공대 금융권 페이지 */
+.sp2-finance-eyebrow { font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+.sp2-finance-benefit { max-width: 520px; margin: 0 auto; }
+.sp2-finance-pricing { display: block; max-width: 560px; margin: 0 auto; }
+.sp2-fit-title { font-size: 18px; font-weight: 700; margin: 40px 0 12px; }
+.sp2-fit-list { margin: 0; padding-left: 20px; line-height: 1.8; }
+.sp2-refund { max-width: 720px; }
+.sp2-refund h3 { font-size: 16px; font-weight: 700; margin: 28px 0 8px; }
+.sp2-refund p, .sp2-refund li { line-height: 1.7; }
+.sp2-refund ul { margin: 8px 0; padding-left: 20px; }
+.sp2-refund-table { width: 100%; border-collapse: collapse; margin: 12px 0; background: #fff; }
+.sp2-refund-table th, .sp2-refund-table td { border: 1px solid #e5e5e5; padding: 10px 14px; text-align: left; }
+.sp2-refund-table th { font-weight: 600; background: #f7f7f7; }
