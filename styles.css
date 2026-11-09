@@ -3081,3 +3081,17 @@ a.service-card--link:focus {
     padding: 20px;
   }
 }
+
+
+/* 메인 히어로: 고정 브랜드 제목 */
+.hero-headline--brand {
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  line-height: 1.2;
+  word-break: keep-all;
+}
+.hero-intro-text--lead {
+  color: var(--color-text);
+  font-weight: 500;
+  max-width: 560px;
+  word-break: keep-all;
+}
