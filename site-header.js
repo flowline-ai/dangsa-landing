@@ -56,7 +56,7 @@
     */
     '<a href="/career-consulting/" class="btn btn-outline header-service-link"' +
     careerCurrent +
-    ">이직 전략 컨설팅</a>" +
+    ">이직 컨설팅</a>" +
     "</nav>" +
     '<div class="header-actions">' +
     '<div class="header-cta header-cta--desktop">' +

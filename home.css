@@ -1,0 +1,705 @@
+/* 메인(/) 전용 스타일 — styles.css 다음에 불러옵니다.
+   Tech Talk #1(seminar/techtalk-01) 디자인 시스템에 맞춥니다:
+   크림 배경 · 잉크 라인 · 오렌지 포인트 · 모노 라벨 · 둥근 카드.
+   다른 페이지에는 영향이 없도록 index.html에서만 불러옵니다. */
+
+:root {
+  --color-bg: #F5F1E6;
+  --color-bg-subtle: #EDE7D8;
+  --color-text: #1A1A1A;
+  --color-primary: #1A1A1A;
+  --color-text-secondary: #6B655B;
+  --color-text-muted: #8F887B;
+  --color-border: #DDD5C4;
+  --color-accent: #FF6B47;
+  --color-orange: #FF6B47;
+  --color-orange-weak: #FFE9E2;
+  --paper: #FBF8F1;
+  --ink-2: #3A352E;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+/* ---------- 공통: 섹션 제목 ---------- */
+.home-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+}
+.home-eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+}
+.home-head {
+  margin: 0 0 48px;
+  text-align: left;
+}
+.home-h2 {
+  margin: 0;
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+.home-h2 em {
+  font-style: normal;
+  color: var(--color-orange);
+}
+.home-lead {
+  max-width: 640px;
+  margin: 16px 0 0;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* ---------- 공통: 버튼 ---------- */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.home-btn--primary {
+  background: var(--color-orange);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(255, 107, 71, 0.32);
+}
+.home-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 107, 71, 0.4);
+}
+.home-btn--ghost {
+  background: #fff;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-text);
+}
+.home-btn--ghost:hover {
+  background: var(--color-orange-weak);
+}
+
+/* ---------- 공통: 스크롤 등장 (스크립트가 없으면 그대로 보임) ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ----------------------------------------
+   ① 히어로
+---------------------------------------- */
+.hero {
+  background: var(--color-bg);
+}
+.hero-headline--brand {
+  font-weight: 900;
+  letter-spacing: -0.045em;
+}
+/* 물경력: 회색 + 주황 취소선 */
+.hero-no {
+  color: #AFA797;
+  text-decoration: line-through;
+  text-decoration-thickness: 0.07em;
+  text-decoration-color: var(--color-orange);
+}
+/* 찐경력: 주황 + 형광펜 */
+.hero-yes {
+  font-style: normal;
+  color: var(--color-orange);
+  background: linear-gradient(transparent 62%, var(--color-orange-weak) 0);
+}
+.hero-intro-text--lead {
+  color: var(--ink-2);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+/* ----------------------------------------
+   ② 성과 섹션 (#proof)
+---------------------------------------- */
+.proof-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-primary);
+  color: #fff;
+}
+.proof-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.proof-section .container {
+  position: relative;
+}
+.proof-header {
+  max-width: 760px;
+  margin: 0 0 48px;
+}
+.proof-headline {
+  margin: 0;
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+.proof-headline em {
+  font-style: normal;
+  color: var(--color-orange);
+}
+.proof-desc {
+  margin: 16px 0 0;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* 숫자 3칸: 하나로 묶인 띠 */
+.proof-stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 24px;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+.proof-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 28px 26px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+.proof-stat:last-child {
+  border-right: 0;
+}
+.proof-stat-num {
+  font-size: clamp(40px, 5.4vw, 60px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-orange);
+}
+.proof-stat-num span {
+  margin-left: 2px;
+  font-size: 0.5em;
+}
+.proof-stat-label {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* 대표 이직 사례 카드 */
+.proof-cases-wrapper {
+  margin: 0 0 72px;
+}
+.proof-cases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.proof-cases-dots {
+  display: none;
+}
+.proof-case {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 24px;
+  background: #fff;
+  color: var(--color-text);
+  border-radius: 20px;
+}
+.proof-case-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.proof-case-program {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+}
+.proof-case-tag {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.proof-case-tag--done {
+  color: #0E7A54;
+  background: #DDF3E8;
+}
+.proof-case-tag--progress {
+  color: var(--color-orange);
+  background: var(--color-orange-weak);
+}
+.proof-case-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+.proof-case-salary {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+}
+.proof-case-salary-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+.proof-case-salary-num {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-orange);
+}
+.proof-case-salary-num span {
+  margin-left: 2px;
+  font-size: 0.55em;
+}
+.proof-case-move {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.proof-case-step {
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+.proof-case-step dt {
+  margin-bottom: 2px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.proof-case-step dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.proof-case-step--before {
+  background: var(--paper);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+.proof-case-step--before dt {
+  color: var(--color-text-muted);
+}
+.proof-case-step--after {
+  background: var(--color-orange-weak);
+  border: 1.5px solid var(--color-orange);
+}
+.proof-case-step--after dt {
+  color: var(--color-orange);
+}
+.proof-case-step--after dd {
+  font-weight: 700;
+}
+.proof-case-arrow {
+  align-self: center;
+  padding: 4px 0;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--color-orange);
+}
+.proof-case-period {
+  margin: 0;
+  font-size: 14px;
+}
+.proof-case-period-label {
+  margin-right: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+.proof-case-period-hl {
+  color: var(--color-orange);
+}
+.proof-case-period-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+.proof-case-link {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.proof-case-link:hover {
+  color: var(--color-orange);
+}
+
+/* 감사 메일: 왼쪽 주황 세로선 인용 + 메일 이미지 */
+.proof-review {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 48px;
+  align-items: center;
+  margin: 0;
+}
+.proof-review-text {
+  display: flex;
+  flex-direction: column;
+}
+.proof-review-caption {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+}
+.proof-review-quote {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  border-left: 3px solid var(--color-orange);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.02em;
+}
+.proof-review-img {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+}
+
+/* ----------------------------------------
+   ③ 서비스 단계 (#how)
+---------------------------------------- */
+.how-section {
+  background: var(--paper);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: clamp(64px, 8vw, 104px);
+}
+.how-hero {
+  background: transparent;
+  border-bottom: 0;
+}
+.how-hero-inner {
+  padding: 0 24px;
+}
+.how-hero-text {
+  padding: 72px 48px 40px 0;
+}
+.how-eyebrow-sub {
+  margin: 0 0 6px;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-secondary);
+}
+.how-hero-title {
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+.how-hero-title em {
+  font-style: normal;
+  color: var(--color-orange);
+}
+.how-cards-wrap {
+  padding: 0 24px;
+}
+.how-cards {
+  gap: 16px;
+}
+.how-card,
+.how-card:last-child {
+  padding: 28px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+.how-card-step {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-orange);
+}
+.how-card-title {
+  font-size: 19px;
+}
+.how-card-desc {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ----------------------------------------
+   ④ 상품 (#services)
+---------------------------------------- */
+.services-section {
+  background: var(--color-bg);
+}
+.service-card,
+.service-card-featured {
+  background: #fff;
+  border: 1.5px solid var(--color-text);
+  border-radius: 20px;
+}
+.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(26, 26, 26, 0.08);
+}
+.service-card-title {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+.service-card-price {
+  color: var(--color-text-secondary);
+}
+.service-card-price-num {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+.service-card-price-period {
+  color: var(--color-text-secondary);
+}
+.service-card-features li {
+  color: var(--color-text);
+}
+.service-card-badge {
+  font-weight: 800;
+}
+.service-card-recommend {
+  background: var(--paper);
+  border: 1px solid var(--color-border);
+}
+.service-card-recommend strong {
+  color: var(--color-text);
+}
+.service-card-recommend p {
+  color: var(--color-text-secondary);
+}
+
+/* ----------------------------------------
+   ⑤ 멘토진 (#mentors) — 카드는 커피챗 페이지와 공유하므로 시각 요소만 맞춤
+---------------------------------------- */
+.mentors-section {
+  background: var(--paper);
+  border-top: 1px solid var(--color-border);
+}
+.mentors-header {
+  margin-bottom: 48px;
+}
+.mentors-desc {
+  margin: 16px 0 0;
+  font-size: clamp(16px, 1.6vw, 18px);
+  color: var(--color-text-secondary);
+}
+.mentor-card {
+  background: #fff;
+  border: 1.5px solid var(--color-text);
+  border-radius: 20px;
+}
+.mentor-card--featured .mentor-card-featured-company {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.mentor-card--featured .mentor-card-featured-avatar {
+  border: 1.5px solid var(--color-text);
+}
+.mentor-card-tags li {
+  background: var(--paper);
+  border: 1px solid var(--color-border);
+}
+
+/* ----------------------------------------
+   ⑥ 하단 CTA
+---------------------------------------- */
+.cta-section {
+  padding: clamp(72px, 9vw, 112px) 0;
+  overflow: hidden;
+  background: var(--color-primary);
+  color: #fff;
+}
+.cta-section .container.cta-body {
+  padding: 0 24px;
+  text-align: center;
+}
+.cta-headline {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.cta-sub {
+  margin: 0 0 32px;
+  font-size: clamp(16px, 1.6vw, 18px);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ----------------------------------------
+   반응형
+---------------------------------------- */
+@media (max-width: 900px) {
+  .proof-cases-wrapper {
+    margin: 0 -20px 56px;
+  }
+  .proof-cases {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 20px;
+    scroll-padding: 0 20px;
+  }
+  .proof-cases::-webkit-scrollbar {
+    display: none;
+  }
+  .proof-case {
+    flex: 0 0 min(340px, 85%);
+    scroll-snap-align: start;
+  }
+  .proof-cases-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .proof-cases-dots .dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+  }
+  .proof-cases-dots .dot.is-active {
+    background: var(--color-orange);
+  }
+  .proof-review {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-head {
+    margin-bottom: 32px;
+  }
+  .hero-actions {
+    margin-top: 28px;
+  }
+  .hero-actions .home-btn {
+    flex: 1 1 100%;
+  }
+  .proof-header {
+    margin-bottom: 32px;
+  }
+  .proof-stats {
+    grid-template-columns: 1fr;
+  }
+  .proof-stat {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 22px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .proof-stat:last-child {
+    border-bottom: 0;
+  }
+  .proof-stat-num {
+    min-width: 5.2ch;
+    font-size: 40px;
+  }
+  .proof-case {
+    padding: 24px 20px;
+  }
+  .how-hero-inner {
+    padding: 0 20px;
+  }
+  .how-hero-text {
+    padding: 56px 0 28px;
+  }
+  .how-cards-wrap {
+    padding: 0 20px;
+  }
+  .how-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .how-card,
+  .how-card:last-child {
+    padding: 24px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+}

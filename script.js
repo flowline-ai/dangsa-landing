@@ -46,29 +46,6 @@
 })();
 
 /**
- * 히어로 이직 후기 카드: 위아래 방향 오토 슬라이드 (한 개씩 노출)
- */
-(function () {
-  const track = document.querySelector(".hero-career-slider-track");
-  const cards = document.querySelectorAll(".hero-career-card");
-  if (!track || cards.length === 0) return;
-
-  const CARD_HEIGHT = 72;
-  const CARD_GAP = 12;
-  const STEP = CARD_HEIGHT + CARD_GAP; /* 84px */
-  const DURATION_MS = 4000;
-
-  let index = 0;
-
-  function slide() {
-    index = (index + 1) % cards.length;
-    track.style.transform = "translateY(-" + index * STEP + "px)";
-  }
-
-  setInterval(slide, DURATION_MS);
-})();
-
-/**
  * 세미나 영역: 오른쪽(전체 일정) 열 높이를 왼쪽 피처 카드와 맞추고, 목록만 스크롤
  * (CSS만으로는 동적 높이 정렬이 어려워 ResizeObserver 사용)
  */
@@ -384,6 +361,50 @@
 })();
 
 /**
+ * 대표 이직 사례 카드 (모바일 가로 스와이프): 인디케이터 점 생성 및 스크롤 동기화
+ */
+(function () {
+  const cardsEl = document.querySelector(".proof-cases");
+  const dotsEl = document.querySelector(".proof-cases-dots");
+  if (!cardsEl || !dotsEl) return;
+
+  const cards = cardsEl.querySelectorAll(".proof-case");
+  if (cards.length === 0) return;
+
+  cards.forEach(function (card, i) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("aria-label", "사례 " + (i + 1) + "로 이동");
+    dot.addEventListener("click", function () {
+      cardsEl.scrollTo({ left: card.offsetLeft - cards[0].offsetLeft, behavior: "smooth" });
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  const dots = dotsEl.querySelectorAll(".dot");
+
+  function updateActiveDot() {
+    const base = cards[0].offsetLeft;
+    let activeIndex = 0;
+    let minDist = Infinity;
+    cards.forEach(function (card, i) {
+      const dist = Math.abs(card.offsetLeft - base - cardsEl.scrollLeft);
+      if (dist < minDist) {
+        minDist = dist;
+        activeIndex = i;
+      }
+    });
+    dots.forEach(function (dot, i) {
+      dot.classList.toggle("is-active", i === activeIndex);
+    });
+  }
+
+  cardsEl.addEventListener("scroll", updateActiveDot, { passive: true });
+  window.addEventListener("resize", updateActiveDot);
+})();
+
+/**
  * 멘토 카드 슬라이드: 인디케이터 점 생성 및 스크롤 동기화
  */
 (function () {
@@ -588,10 +609,10 @@
     }
   }, true);
 
-  // 커리어 진단 CTA 클릭 (전환) — 체크리스트로 연결되는 버튼 3개
+  // 커리어 진단 CTA 클릭 (전환) — 체크리스트로 연결되는 버튼 (히어로, 하단 CTA, 헤더)
   document.querySelectorAll('a[href*="checklist"]').forEach(function (el) {
     el.addEventListener("click", function () {
-      var location = el.closest(".diag-banner") ? "diag_banner" : el.closest(".cta-section") ? "cta_bottom" : (el.closest(".header-menu-cta-wrap") || el.closest(".header-cta")) ? "header" : "other";
+      var location = el.closest(".hero") ? "hero" : el.closest(".cta-section") ? "cta_bottom" : (el.closest(".header-menu-cta-wrap") || el.closest(".header-cta")) ? "header" : "other";
       sendGAEvent("cta_click", { cta_label: "member_join", cta_location: location });
     });
   });
@@ -630,7 +651,7 @@
 })();
 
 /**
- * 헤더: 이직 전략 컨설팅 — 페이지 준비 중 안내
+ * 헤더: 이직 컨설팅 — 페이지 준비 중 안내
  */
 (function () {
   document.querySelectorAll(".js-consulting-coming-soon").forEach(function (el) {
@@ -639,4 +660,26 @@
       alert("페이지 준비중입니다");
     });
   });
+})();
+
+/**
+ * 메인 스크롤 등장 효과: .reveal 요소가 화면에 들어오면 .in 추가
+ * (html.js 클래스가 있을 때만 숨김 처리되므로 스크립트가 없어도 내용은 보임)
+ */
+(function () {
+  var items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+  if (!("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  items.forEach(function (el) { io.observe(el); });
 })();

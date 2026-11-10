@@ -79,8 +79,10 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="home.css" />
+  <script>document.documentElement.classList.add("js");</script>
   <!-- Google Analytics 4 (GA4): Measurement ID를 본인 GA4 속성 ID로 교체하세요 (예: G-N9JL32SRHV) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9JL32SRHV"></script>
   <script>
@@ -100,37 +102,11 @@
 
 <div class="hero-inner">
       <div class="hero-content">
-      <h1 class="hero-headline hero-headline--brand">IT 이직은 당신의사수,<br />물경력을 찐경력으로</h1>
+      <h1 class="hero-headline hero-headline--brand">IT 이직은 당신의사수,<br /><span class="hero-no">물경력</span>을 <em class="hero-yes">찐경력</em>으로</h1>
       <p class="hero-intro-text hero-intro-text--lead">한 일은 많은데 이력서에 쓸 성과가 없나요?<br />현직 사수와 함께 숨은 성과와 문제해결력을 찾아 합격 이력서로 만들어드려요</p>
-      <p class="hero-intro-text">
-        지난 3개월간 당신의사수를 통해<br />
-        IT 재직자들의 연봉이 <strong>22%</strong> 올랐어요
-      </p>
-      <!-- 이직 후기 카드: 위아래 오토 슬라이드 (한 개씩 노출) -->
-      <div class="hero-career-slider" role="region" aria-label="이직 후기">
-        <div class="hero-career-slider-track">
-          <article class="hero-career-card">
-            <span class="hero-career-card-member">강**님</span>
-            <p class="hero-career-card-metric">
-              서비스기획, <span class="hero-career-card-salary">연봉 <span class="hero-career-card-salary-num">400</span> 상승 🔥</span>
-            </p>
-            <span class="hero-career-card-tag hero-career-card-tag--progress">연협 진행중</span>
-          </article>
-          <article class="hero-career-card">
-            <span class="hero-career-card-member">이**님</span>
-            <p class="hero-career-card-metric">
-              UX디자인, <span class="hero-career-card-salary">연봉 <span class="hero-career-card-salary-num">700</span> 상승 🔥</span>
-            </p>
-            <span class="hero-career-card-tag hero-career-card-tag--success">이직 성공</span>
-          </article>
-          <article class="hero-career-card">
-            <span class="hero-career-card-member">김**님</span>
-            <p class="hero-career-card-metric">
-              PM, <span class="hero-career-card-salary">연봉 <span class="hero-career-card-salary-num">600</span> 상승 🔥</span>
-            </p>
-            <span class="hero-career-card-tag hero-career-card-tag--success">이직 성공</span>
-          </article>
-        </div>
+      <div class="hero-actions">
+        <a href="/checklist/" class="home-btn home-btn--primary">커리어 진단해보기 →</a>
+        <a href="#services" class="home-btn home-btn--ghost">프로그램 보기</a>
       </div>
       </div><!-- /.hero-content -->
       <div class="hero-illust" aria-hidden="true">
@@ -139,14 +115,116 @@
     </div>
   </section>
 
-  <!-- 1-1. 체크리스트 진입 배너 -->
-  <section class="diag-banner">
-    <div class="diag-banner-inner">
-      <div class="diag-banner-text">
-        <p class="diag-banner-eyebrow"><span style="color:var(--color-accent)">IT PM·기획·UX 디자이너</span> 이직 가능성 진단</p>
-        <p class="diag-banner-headline">왜 이직에 실패하는지 지금 확인해보세요</p>
+  <!-- 1-0. 성과 섹션: 신규 브랜드 신뢰 근거 (숫자는 HTML 텍스트로 유지해 AI 수집기가 읽게 함) -->
+  <section class="section proof-section" id="proof">
+    <div class="container">
+      <header class="proof-header reveal">
+        <p class="home-eyebrow">Proof · 2026.11 기준</p>
+        <h2 class="proof-headline">물경력을 <em>찐경력</em>으로<br />바꾼 기록</h2>
+        <p class="proof-desc">당신의사수는 IT 인재의 이직을 돕는 1:1 커리어 멘토링 서비스입니다<br /> 지금까지 1,000여 명이 당신의사수와 함께 했고, 이직 컨설팅 고객의 연봉은 20% 올랐어요!</p>
+      </header>
+
+      <ul class="proof-stats reveal">
+        <li class="proof-stat">
+          <strong class="proof-stat-num">1,000<span>+</span></strong>
+          <span class="proof-stat-label">당신의사수와 함께<br />이직을 준비한 IT 재직자</span>
+        </li>
+        <li class="proof-stat">
+          <strong class="proof-stat-num">1<span>주일</span></strong>
+          <span class="proof-stat-label">이직특공대 1기<br />모집 시작 후 마감까지</span>
+        </li>
+        <li class="proof-stat">
+          <strong class="proof-stat-num">20<span>%</span></strong>
+          <span class="proof-stat-label">이직 컨설팅 고객<br />연봉 상승률</span>
+        </li>
+      </ul>
+
+      <!-- 대표 이직 사례: PC 3열, 모바일 가로 스와이프 -->
+      <div class="proof-cases-wrapper reveal">
+      <div class="proof-cases" role="region" aria-label="대표 이직 사례">
+        <article class="proof-case">
+          <div class="proof-case-top">
+            <span class="proof-case-program">이직 컨설팅</span>
+            <span class="proof-case-tag proof-case-tag--done">이직 완료</span>
+          </div>
+          <h3 class="proof-case-title">에이전시에서 인하우스 프로덕트 디자이너로</h3>
+          <p class="proof-case-salary">
+            <span class="proof-case-salary-label">연봉</span>
+            <strong class="proof-case-salary-num">+25<span>%</span></strong>
+          </p>
+          <dl class="proof-case-move">
+            <div class="proof-case-step proof-case-step--before">
+              <dt>BEFORE</dt>
+              <dd>에이전시 프로덕트 디자이너</dd>
+            </div>
+            <div class="proof-case-arrow" aria-hidden="true">↓</div>
+            <div class="proof-case-step proof-case-step--after">
+              <dt>AFTER</dt>
+              <dd>인하우스 프로덕트 디자이너</dd>
+            </div>
+          </dl>
+          <p class="proof-case-period"><span class="proof-case-period-label">준비 기간</span> <strong>약 3개월</strong></p>
+          <a href="/career-consulting/" class="proof-case-link">이직 컨설팅 보기 →</a>
+        </article>
+        <article class="proof-case">
+          <div class="proof-case-top">
+            <span class="proof-case-program">이직특공대 1기</span>
+            <span class="proof-case-tag proof-case-tag--progress">정규직 수습 중</span>
+          </div>
+          <h3 class="proof-case-title">서비스 기획 인턴에서 PM 정규직으로</h3>
+          <p class="proof-case-salary">
+            <span class="proof-case-salary-label">연봉</span>
+            <strong class="proof-case-salary-num">+15<span>%</span></strong>
+          </p>
+          <dl class="proof-case-move">
+            <div class="proof-case-step proof-case-step--before">
+              <dt>BEFORE</dt>
+              <dd>에이전시 서비스 기획 인턴</dd>
+            </div>
+            <div class="proof-case-arrow" aria-hidden="true">↓</div>
+            <div class="proof-case-step proof-case-step--after">
+              <dt>AFTER</dt>
+              <dd>에이전시 PM 정규직</dd>
+            </div>
+          </dl>
+          <p class="proof-case-period"><span class="proof-case-period-label">준비 기간</span> <strong class="proof-case-period-hl">3주</strong> <span class="proof-case-period-sub">특공대 2주 + 면접 1주</span></p>
+          <a href="/sprint/" class="proof-case-link">이직특공대 모집 보기 →</a>
+        </article>
+        <article class="proof-case">
+          <div class="proof-case-top">
+            <span class="proof-case-program">이직 컨설팅</span>
+            <span class="proof-case-tag proof-case-tag--done">정규직 채용</span>
+          </div>
+          <h3 class="proof-case-title">은행 인턴에서 판교 IT 컨설팅 정규직으로</h3>
+          <p class="proof-case-salary">
+            <span class="proof-case-salary-label">연봉</span>
+            <strong class="proof-case-salary-num">+20<span>%</span></strong>
+          </p>
+          <dl class="proof-case-move">
+            <div class="proof-case-step proof-case-step--before">
+              <dt>BEFORE</dt>
+              <dd>지방 은행 인턴</dd>
+            </div>
+            <div class="proof-case-arrow" aria-hidden="true">↓</div>
+            <div class="proof-case-step proof-case-step--after">
+              <dt>AFTER</dt>
+              <dd>판교 IT 컨설팅 정규직</dd>
+            </div>
+          </dl>
+          <p class="proof-case-period"><span class="proof-case-period-label">준비 기간</span> <strong>약 3개월</strong></p>
+          <a href="/career-consulting/" class="proof-case-link">이직 컨설팅 보기 →</a>
+        </article>
       </div>
-      <a href="checklist/index.html" class="diag-banner-btn">30초 진단하기 →</a>
+        <div class="proof-cases-dots" aria-hidden="true"></div>
+      </div>
+
+      <figure class="proof-review reveal">
+        <div class="proof-review-text">
+          <figcaption class="proof-review-caption">멘티가 직접 보내온 감사 메일</figcaption>
+          <blockquote class="proof-review-quote">“여러 각도에서 제 상황을 고려해주시면서 방향을 짚어주신 덕분에 미처 생각하지도 못했던 방향에서 새로운 고민을 해볼 수 있었습니다.”</blockquote>
+        </div>
+        <img src="/asset/review1.png" alt="당신의사수 1:1 커피챗을 마친 고객이 대표에게 보낸 감사 메일" class="proof-review-img" loading="lazy" />
+      </figure>
     </div>
   </section>
 
@@ -155,9 +233,10 @@
     <!-- 상단: 텍스트 + 이미지 -->
     <div class="how-hero">
       <div class="how-hero-inner">
-      <div class="how-hero-text">
-        <p class="how-eyebrow">단순 멘토 매칭이 아닌,</p>
-        <h2 class="how-hero-title">IT 업계 유일<br />1:1 커리어 관리</h2>
+      <div class="how-hero-text reveal">
+        <p class="home-eyebrow">How it works</p>
+        <p class="how-eyebrow-sub">단순 멘토 매칭이 아닌,</p>
+        <h2 class="how-hero-title">IT 전문<br /><em>1:1 커리어 관리</em></h2>
       </div>
       <div class="how-hero-image">
         <img src="asset/career_roadmap_illustration.svg" alt="커리어 로드맵 일러스트" />
@@ -166,7 +245,7 @@
     </div>
     <!-- 하단: 3단 카드 -->
     <div class="how-cards-wrap">
-    <div class="how-cards">
+    <div class="how-cards reveal">
       <div class="how-card">
         <span class="how-card-step">01</span>
         <h3 class="how-card-title">현 상태 점검 및 로드맵 설계</h3>
@@ -189,8 +268,11 @@
   <!-- 3. 서비스 단계 설명 -->
   <section class="section services-section" id="services">
     <div class="container">
-      <h2 class="section-title"><em>나의 현재 상황에 맞는<br />단계별 이직 서비스</em></h2>
-      <p class="section-desc">커리어 진단부터 이직에 성공할 때까지 올인원 프로그램</p>
+      <header class="home-head reveal">
+        <p class="home-eyebrow">Programs</p>
+        <h2 class="home-h2">나의 현재 상황에 맞는<br /><em>단계별 이직 서비스</em></h2>
+        <p class="home-lead">커리어 진단부터 이직에 성공할 때까지 올인원 프로그램</p>
+      </header>
       <div class="service-cards-wrapper">
         <div class="service-cards" role="region" aria-label="단계별 커리큘럼 슬라이드">
         <a href="/coffee-chat/" class="service-card service-card-featured service-card--link" aria-label="1:1 커피챗 상세 페이지로 이동">
@@ -207,9 +289,9 @@
             <p>이직 고민 시작 단계, 커리어 방향 점검이 필요한 분</p>
           </div>
         </a>
-        <a href="/career-consulting/" class="service-card service-card-featured service-card--link" aria-label="이직 전략 컨설팅 상세 페이지로 이동">
+        <a href="/career-consulting/" class="service-card service-card-featured service-card--link" aria-label="이직 컨설팅 상세 페이지로 이동">
           <span class="service-card-badge">가장 인기</span>
-          <h3 class="service-card-title">이직 전략 컨설팅</h3>
+          <h3 class="service-card-title">이직 컨설팅</h3>
           <p class="service-card-price"><span class="service-card-price-num">99</span>만원 + 이직 성공 보수(%) <span class="service-card-price-period">/ 3개월</span></p>
           <ul class="service-card-features">
             <li>도메인 탐색 및 기업 분석</li>
@@ -258,9 +340,9 @@
   <!-- 2. 오늘의사수 카드 영역 -->
   <section class="section mentors-section" id="mentors">
     <div class="container">
-      <header class="mentors-header">
-        <span class="mentors-tag">지금 신청중!</span>
-        <h2 class="mentors-headline">연봉협상까지 이끌어줄<br />당신의 사수 멘토진</h2>
+      <header class="mentors-header home-head reveal">
+        <p class="home-eyebrow">Mentors · 지금 신청중</p>
+        <h2 class="mentors-headline home-h2">연봉협상까지 이끌어줄<br /><em>당신의 사수</em> 멘토진</h2>
         <p class="mentors-desc">
           이번주 <strong id="mentors-count">32명</strong>이 멘토링을 진행 중이에요 🔥
         </p>
@@ -274,26 +356,12 @@
   </section>
 
 
-  <!-- 성과 지표 섹션 -->
-  <section class="section stat-section" id="stat">
-    <div class="container">
-      <div class="stat-inner">
-        <div class="stat-content">
-<h2 class="stat-headline">당신의사수 멤버 10명중 3명은<br />연봉 22% 상승 중</h2>
-          <p class="stat-sub">콜라베어님의 솔직 후기</p>
-          <img src="/asset/review1.png" alt="수강생 후기" class="stat-review-img" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-
   <!-- 6. 마지막 CTA -->
   <section class="section cta-section">
-    <div class="container">
+    <div class="container cta-body reveal">
       <h2 class="cta-headline">혼자 하는 이직 준비는 <span class="hero-br"></span>이제 끝!</h2>
       <p class="cta-sub">지금 바로 내 커리어에 날개를 달아줄 사수를 만나보세요.</p>
-      <a href="/checklist/" class="btn btn-cta-gradient btn-xl">커리어 진단해보기</a>
+      <a href="https://pf.kakao.com/_fxdxdqX" target="_blank" rel="noopener noreferrer" class="home-btn home-btn--primary">카카오톡으로 문의하기 →</a>
     </div>
   </section>
 
