@@ -30,8 +30,8 @@ var PRODUCT_ENTRY = ""; // TODO: 예) "entry.123456789"
       el.target = "_blank";
       el.rel = "noopener noreferrer";
     } else {
-      // 폼 링크가 아직 없으면 하단 문의 섹션으로 이동
-      el.href = "#contact";
+      // 폼 링크가 아직 없으면 메인 하단 문의 섹션으로 이동 (약관 등 하위 페이지 포함)
+      el.href = document.getElementById("contact") ? "#contact" : "/#contact";
     }
     var area = el.closest("section, header, footer, .bz-sticky-cta");
     var location = area ? area.id || area.className.split(" ")[0] : "unknown";

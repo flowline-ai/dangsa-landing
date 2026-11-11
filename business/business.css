@@ -427,6 +427,35 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .bz-footer-links { display: flex; gap: 16px; }
 .bz-footer-links a { color: #C5CEE4; }
 
+/* ---------- Legal pages (이용약관·개인정보처리방침) ---------- */
+.bz-header-actions--simple { gap: 16px; }
+.bz-header-back { font-size: 14px; font-weight: 500; color: var(--muted); }
+.bz-header-back:hover { color: var(--ink); }
+
+.bz-legal { padding: 80px 0 104px; }
+.bz-legal h1 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; }
+.bz-legal-intro { margin-top: 20px; padding-bottom: 32px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.bz-legal section { padding: 32px 0; border-bottom: 1px solid var(--line); }
+.bz-legal section:last-child { border-bottom: 0; }
+.bz-legal h2 { font-size: 19px; font-weight: 800; margin-bottom: 14px; }
+.bz-legal h3 { font-size: 15px; font-weight: 700; margin: 18px 0 8px; color: var(--ink); }
+.bz-legal h3:first-of-type { margin-top: 0; }
+.bz-legal p { color: var(--text); }
+.bz-legal p + p, .bz-legal ul + p, .bz-legal ol + p, .bz-legal .bz-legal-table + p { margin-top: 12px; }
+.bz-legal p + ul { margin-top: 10px; }
+.bz-legal ol { list-style: decimal; padding-left: 22px; display: grid; gap: 8px; }
+.bz-legal ul { list-style: disc; padding-left: 20px; display: grid; gap: 6px; }
+.bz-legal ol ul { margin-top: 8px; list-style: circle; }
+.bz-legal li::marker { color: var(--faint); }
+.bz-legal strong { color: var(--ink); }
+.bz-legal a:not(.bz-btn) { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+.bz-legal-table { margin-top: 12px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.bz-legal-table table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.bz-legal-table th, .bz-legal-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.bz-legal-table th { background: var(--paper); font-size: 13px; color: var(--muted); font-weight: 700; }
+.bz-legal-table tr:last-child td { border-bottom: 0; }
+.bz-footer-links a[aria-current="page"] { color: #fff; font-weight: 700; }
+
 /* ---------- Sticky CTA (mobile) ---------- */
 .bz-sticky-cta { display: none; }
 
@@ -527,6 +556,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .bz-cta { padding: 72px 0 96px; }
   .bz-cta .bz-btn { width: 100%; }
   .bz-footer { padding-bottom: 104px; }
+  .bz-legal ~ .bz-footer { padding-bottom: 40px; }
+  .bz-legal { padding: 48px 0 72px; }
+  .bz-header-back { display: none; }
+  .bz-header-actions--simple .bz-btn { display: inline-flex; }
   .bz-footer-contact { align-items: flex-start; }
 
   .bz-sticky-cta {
