@@ -1,0 +1,9 @@
+# 당신의사수 AX Mission Lab (biz.flowcamp.co.kr)
+
+User-agent: *
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://biz.flowcamp.co.kr/sitemap.xml

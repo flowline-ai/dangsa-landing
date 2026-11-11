@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AX Mission Lab | 기업 맞춤형 AX 실행 워크숍 · 당신의사수</title>
+  <meta name="description" content="툴 교육이 아니라, 조직 내 AX 업무협업하는 방법. 우리 회사 한 팀의 반복 업무 1건을 AI로 재설계하고, 부서 간 현업에서 다시 쓰는 방법까지 만드는 기업 맞춤형 AX 워크숍입니다." />
+  <meta name="keywords" content="AX 교육, 기업 AI 교육, AI 워크숍, 생성형 AI 사내교육, AX 워크숍, AI 업무 자동화 교육, HRD, AX Mission Lab, 당신의사수" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://biz.flowcamp.co.kr/" />
+  <link rel="icon" type="image/png" href="assets/favicon_144.png" />
+  <link rel="apple-touch-icon" href="assets/favicon_144.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="당신의사수 AX Mission Lab" />
+  <meta property="og:title" content="AX Mission Lab | 기업 맞춤형 AX 실행 워크숍" />
+  <meta property="og:description" content="우리 회사 한 팀의 반복 업무 1건을 AI로 재설계하고, 부서 간 현업에서 다시 쓰는 방법까지 만듭니다." />
+  <meta property="og:url" content="https://biz.flowcamp.co.kr/" />
+  <!-- TODO: B2B 전용 OG 이미지(1200x630)를 assets/og_business.png 로 추가 -->
+  <meta property="og:image" content="https://biz.flowcamp.co.kr/assets/og_business.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "AX Mission Lab",
+    "serviceType": "기업 맞춤형 AX 실행 워크숍",
+    "provider": { "@type": "Organization", "name": "당신의사수", "url": "https://biz.flowcamp.co.kr/" },
+    "areaServed": "KR",
+    "description": "우리 회사 한 팀의 반복 업무 1건을 AI로 재설계하고, 부서 간 현업에서 다시 쓰는 방법까지 만드는 기업 맞춤형 AX 워크숍"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="business.css" />
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- GA4: B2C와 같은 속성. 보고서에서는 호스트(biz.flowcamp.co.kr)로 구분 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N9JL32SRHV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-N9JL32SRHV', { content_group: 'b2b' });
+  </script>
+</head>
+<body>
+
+  <!-- ===== B2B 전용 헤더 ===== -->
+  <header class="bz-header" id="top">
+    <div class="bz-header-inner">
+      <a href="#top" class="bz-logo" aria-label="당신의사수 AX Mission Lab 홈">
+        <img src="assets/dangsa_logo.svg" alt="당신의사수" />
+        <span class="bz-logo-divider" aria-hidden="true"></span>
+        <span class="bz-logo-sub">AX Mission Lab</span>
+      </a>
+      <nav class="bz-nav" id="bz-nav" aria-label="페이지 메뉴">
+        <a href="#why">왜 필요한가</a>
+        <a href="#how">진행 방식</a>
+        <a href="#outputs">산출물</a>
+        <a href="#pricing">상품·가격</a>
+        <a href="#mentors">사수</a>
+        <a href="#faq">FAQ</a>
+        <a href="#" class="bz-btn bz-btn--primary bz-nav-cta js-inquiry" data-product="">도입 문의하기</a>
+      </nav>
+      <div class="bz-header-actions">
+        <a href="#" class="bz-btn bz-btn--primary bz-btn--sm js-inquiry" data-product="">도입 문의하기</a>
+        <button type="button" class="bz-menu-toggle" id="bz-menu-toggle" aria-expanded="false" aria-controls="bz-nav" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero -->
+    <section class="bz-hero">
+      <div class="bz-container">
+        <p class="bz-eyebrow">B2B · AX MISSION LAB</p>
+        <h1 class="bz-hero-title">툴 교육이 아니라,<br /><em>조직 내 AX 업무협업</em>하는 방법입니다.</h1>
+        <div class="bz-hero-rule" aria-hidden="true"></div>
+        <p class="bz-hero-lead"><strong>우리 회사 한 팀의 반복 업무 1건을 선택해서</strong><br />AI로 재설계하고, 부서 간 현업에서 다시 쓰는 방법까지 만듭니다.</p>
+        <div class="bz-hero-actions">
+          <a href="#" class="bz-btn bz-btn--primary bz-btn--lg js-inquiry" data-product="">도입 문의하기</a>
+          <a href="#pricing" class="bz-btn bz-btn--ghost bz-btn--lg">상품·가격 보기</a>
+        </div>
+        <ul class="bz-hero-targets" aria-label="추천 대상">
+          <li>대표</li><li>사업부 임원</li><li>PM·UX·개발 리더</li><li>HRD</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. Problem -->
+    <section class="bz-section" id="why">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">The Problem</p>
+          <h2 class="bz-h2">교육이 끝나도 <em>업무가 그대로</em>인 이유</h2>
+          <p class="bz-lead">AI 활용 여부보다 먼저, “누가 어느 업무를 어떻게 바꿀지” 합의해야 합니다.</p>
+        </header>
+        <div class="bz-grid bz-grid--2 reveal">
+          <article class="bz-card bz-problem">
+            <span class="bz-num">01</span>
+            <h3>업무 문제 미정의</h3>
+            <p>AI를 어디에 쓸지 정하지 못해 툴 실습만 반복합니다.</p>
+          </article>
+          <article class="bz-card bz-problem">
+            <span class="bz-num">02</span>
+            <h3>직무 간 단절</h3>
+            <p>기획·디자인·개발 사이에 인수 조건과 검수 기준이 없습니다.</p>
+          </article>
+          <article class="bz-card bz-problem">
+            <span class="bz-num">03</span>
+            <h3>재사용 구조 부재</h3>
+            <p>강의에서 만든 예제가 실제 팀 프로세스로 남지 않습니다.</p>
+          </article>
+          <article class="bz-card bz-problem">
+            <span class="bz-num">04</span>
+            <h3>전후 성과 불명확</h3>
+            <p>만족도는 조사하지만 시간·재작업·사용률은 남지 않습니다.</p>
+          </article>
+        </div>
+        <p class="bz-callout reveal"><strong>AX Mission Lab은 교육의 수료가 아니라 “실제 팀의 업무 과제”를 기준으로 설계합니다.</strong></p>
+      </div>
+    </section>
+
+    <!-- 3. 역할별 기대효과 -->
+    <section class="bz-section bz-section--tint" id="roles">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">The Business Case</p>
+          <h2 class="bz-h2">대표와 리더가 <em>AX 워크숍</em>이 필요한 이유</h2>
+          <p class="bz-lead">툴 사용법이 아니라, 조직의 시간·품질·실행 리스크를 줄이는 작은 실험입니다.</p>
+        </header>
+        <div class="bz-roles reveal">
+          <div class="bz-role">
+            <p class="bz-role-who">대표 · CEO</p>
+            <p class="bz-role-goal">투자 전에 실무 효과를 확인</p>
+            <p class="bz-role-how">작은 파일럿으로 다음 투자의 근거 확보</p>
+          </div>
+          <div class="bz-role">
+            <p class="bz-role-who">사업부 임원</p>
+            <p class="bz-role-goal">협업 병목과 재작업을 줄이기</p>
+            <p class="bz-role-how">과제·책임자·검증 지표를 한 번에 정의</p>
+          </div>
+          <div class="bz-role">
+            <p class="bz-role-who">현업 팀장</p>
+            <p class="bz-role-goal">팀이 다시 쓸 실무 결과물 확보</p>
+            <p class="bz-role-how">AI 워크플로우와 검수 기준을 남김</p>
+          </div>
+          <div class="bz-role">
+            <p class="bz-role-who">HRD 담당자</p>
+            <p class="bz-role-goal">교육 이후 성과를 보고하기</p>
+            <p class="bz-role-how">완성률·사용률·후속 실행을 추적</p>
+          </div>
+        </div>
+        <ol class="bz-flow reveal" aria-label="도입 흐름">
+          <li>구매 판단</li>
+          <li>한 팀에서 검증</li>
+          <li>재사용 가능하면 조직 확대</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. How it works -->
+    <section class="bz-section" id="how">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">How it works</p>
+          <h2 class="bz-h2">한 팀, 한 병목, <em>한 가지 작동 예시</em></h2>
+          <p class="bz-lead">큰 시스템 구축부터 시작하지 않습니다. 팀이 실제 수행하는 반복 업무에서 실험합니다.</p>
+        </header>
+        <ol class="bz-timeline reveal">
+          <li class="bz-step">
+            <span class="bz-step-day">D−7</span>
+            <h3>업무 진단</h3>
+            <p>현행 흐름·빈도·시간·권한</p>
+            <span class="bz-step-out">Bottleneck Card</span>
+          </li>
+          <li class="bz-step bz-step--key">
+            <span class="bz-step-day">D-DAY</span>
+            <h3>실무 워크숍</h3>
+            <p>우선순위 결정·AI 실습</p>
+            <span class="bz-step-out">Working Prototype</span>
+          </li>
+          <li class="bz-step">
+            <span class="bz-step-day">D+7</span>
+            <h3>현업 리뷰</h3>
+            <p>사용 장애물·오류·수정</p>
+            <span class="bz-step-out">개선 체크리스트</span>
+          </li>
+          <li class="bz-step">
+            <span class="bz-step-day">D+30</span>
+            <h3>적용 검증</h3>
+            <p>실사용·시간·품질 비교</p>
+            <span class="bz-step-out">Proof Report</span>
+          </li>
+        </ol>
+        <p class="bz-note reveal">※ D+7 리뷰는 Mission Sprint 이상, D+30 성과 리포트는 Execution Lab 이상에 포함됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 5. Use cases -->
+    <section class="bz-section bz-section--tint" id="usecases">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">High-impact use cases</p>
+          <h2 class="bz-h2">무엇을 바꾸는 <em>워크숍</em>인가요?</h2>
+          <p class="bz-lead">현업이 직접 가져온 과제를 선정하고, 실행 가능한 범위로 좁힙니다.</p>
+        </header>
+        <div class="bz-table-wrap reveal">
+          <table class="bz-table">
+            <thead>
+              <tr><th scope="col">적용 직무</th><th scope="col">실습 과제 예시</th><th scope="col">검증 지표 예시</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">PM · 서비스기획</th><td>VOC 수집 → 요구사항/PRD 초안</td><td>작성 소요시간 · 리뷰 반려율</td></tr>
+              <tr><th scope="row">UX · 디자인</th><td>리서치 요약 → UX 가설·카피 검토</td><td>요약시간 · 수정 횟수</td></tr>
+              <tr><th scope="row">개발 · QA</th><td>이슈 분류 → 테스트케이스 초안</td><td>검토 대기 · 재작업시간</td></tr>
+              <tr><th scope="row">팀 간 협업</th><td>디자인 → 개발 핸드오프 표준화</td><td>재질문 · 승인 대기시간</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="bz-note reveal">고객정보·소스코드 등 민감 자료는 승인된 범위에서만 사용하며, 합성 데이터로 대체할 수 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 6. 산출물 -->
+    <section class="bz-section" id="outputs">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">What your team keeps</p>
+          <h2 class="bz-h2">워크숍 후, <em>회사에 남는 5가지</em></h2>
+          <p class="bz-lead">강의자료가 아니라 다음 주에도 사용할 수 있는 업무 산출물을 남깁니다.</p>
+        </header>
+        <div class="bz-outputs reveal">
+          <ul class="bz-output-list">
+            <li><span class="bz-num">01</span><div><h3>Bottleneck Card</h3><p>업무 병목 · 소요시간 · 책임자</p></div></li>
+            <li><span class="bz-num">02</span><div><h3>Mission Map</h3><p>기존·개선 업무 흐름과 승인 경계</p></div></li>
+            <li><span class="bz-num">03</span><div><h3>Working Prototype</h3><p>실습용 AI 템플릿 또는 작동 예시</p></div></li>
+            <li><span class="bz-num">04</span><div><h3>Adoption Checklist</h3><p>검수자 · 재사용 절차 · 중단 조건</p></div></li>
+            <li><span class="bz-num">05</span><div><h3>AX Proof Report<sup>*</sup></h3><p>실사용 · 시간 · 품질 검증 기록</p></div></li>
+          </ul>
+          <!-- 산출물 샘플: 가상의 팀 기준 예시. 실제 고객 산출물로 교체 가능 -->
+          <figure class="bz-sample" aria-label="Bottleneck Card 예시">
+            <div class="bz-sample-top">
+              <span class="bz-sample-tag">Bottleneck Card</span>
+              <span class="bz-sample-badge">예시 · 가상의 팀 기준</span>
+            </div>
+            <p class="bz-sample-title">PM팀 · VOC 정리 → PRD 초안</p>
+            <dl class="bz-sample-grid">
+              <div><dt>빈도</dt><dd>주 2회</dd></div>
+              <div><dt>1회 소요</dt><dd>3시간</dd></div>
+              <div><dt>책임자</dt><dd>PM 리드</dd></div>
+              <div><dt>검수자</dt><dd>개발 리드</dd></div>
+            </dl>
+            <div class="bz-sample-row">
+              <span class="bz-sample-label">병목</span>
+              <p>VOC 채널이 흩어져 있어 분류·요약에 시간이 가장 많이 듦. 개발 리뷰에서 요구사항 반려가 반복됨.</p>
+            </div>
+            <div class="bz-sample-row">
+              <span class="bz-sample-label">AI 적용 지점</span>
+              <p>VOC 분류·요약 → 요구사항 초안. 최종 우선순위 결정은 사람이 유지.</p>
+            </div>
+            <div class="bz-sample-row bz-sample-row--metric">
+              <span class="bz-sample-label">검증 지표</span>
+              <p><span class="bz-mono">작성 소요시간</span> · <span class="bz-mono">리뷰 반려율</span> Before → After</p>
+            </div>
+          </figure>
+        </div>
+        <p class="bz-note reveal">* D+30 AX Proof Report는 Execution Lab · Embedded 4W에 포함됩니다.</p>
+      </div>
+    </section>
+
+    <!-- 7. 상품·가격 -->
+    <section class="bz-section bz-section--tint" id="pricing">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">Products &amp; Pricing</p>
+          <h2 class="bz-h2">예산과 과제 난이도에 맞춰 <em>선택하세요</em></h2>
+          <p class="bz-lead">작게 검증하고, 결과가 확인되면 다음 단계로 확장할 수 있습니다.</p>
+        </header>
+        <div class="bz-plans-wrap reveal">
+          <div class="bz-plans" role="region" aria-label="상품 목록">
+            <article class="bz-plan">
+              <h3 class="bz-plan-name">AX Discovery</h3>
+              <p class="bz-plan-meta"><span>90분</span><span>최대 12명</span></p>
+              <p class="bz-plan-focus">과제 진단</p>
+              <p class="bz-plan-desc">우선순위 3개 도출</p>
+              <p class="bz-plan-price"><strong>150</strong>만원</p>
+              <a href="#" class="bz-btn bz-btn--ghost bz-btn--block js-inquiry" data-product="AX Discovery">이 상품으로 문의</a>
+            </article>
+            <article class="bz-plan bz-plan--featured">
+              <span class="bz-plan-badge">권장</span>
+              <h3 class="bz-plan-name">AX Mission Sprint</h3>
+              <p class="bz-plan-meta"><span>4시간</span><span>6~12명</span></p>
+              <p class="bz-plan-focus">과제 1건 실습</p>
+              <p class="bz-plan-desc">프로토타입 + D+7 리뷰</p>
+              <p class="bz-plan-price"><strong>330</strong>만원</p>
+              <a href="#" class="bz-btn bz-btn--primary bz-btn--block js-inquiry" data-product="AX Mission Sprint">이 상품으로 문의</a>
+            </article>
+            <article class="bz-plan">
+              <h3 class="bz-plan-name">AX Execution Lab</h3>
+              <p class="bz-plan-meta"><span>1일 7시간</span><span>8~16명</span></p>
+              <p class="bz-plan-focus">2개 팀별 실습</p>
+              <p class="bz-plan-desc">프로토타입 + D+30 리포트</p>
+              <p class="bz-plan-price"><strong>660</strong>만원</p>
+              <a href="#" class="bz-btn bz-btn--ghost bz-btn--block js-inquiry" data-product="AX Execution Lab">이 상품으로 문의</a>
+            </article>
+            <article class="bz-plan">
+              <h3 class="bz-plan-name">AX Embedded 4W</h3>
+              <p class="bz-plan-meta"><span>4주</span><span>최대 12명</span></p>
+              <p class="bz-plan-focus">주간 사수 리뷰</p>
+              <p class="bz-plan-desc">현업 적용·성과 검증</p>
+              <p class="bz-plan-price"><strong>1,500</strong>만원~</p>
+              <a href="#" class="bz-btn bz-btn--ghost bz-btn--block js-inquiry" data-product="AX Embedded 4W">이 상품으로 문의</a>
+            </article>
+          </div>
+        </div>
+        <p class="bz-note reveal">※ 제안가격 · VAT 별도. 인원·출장·보안·시스템 연동·커스텀 개발은 범위 협의 후 별도 견적입니다.</p>
+
+        <!-- 8. 첫 파일럿 상세 -->
+        <div class="bz-pilot reveal" id="pilot">
+          <div class="bz-pilot-head">
+            <div>
+              <p class="bz-kicker">Recommended first step</p>
+              <h3 class="bz-h3">첫 AX 파일럿은 <em>반나절</em>이면 됩니다</h3>
+              <p class="bz-pilot-meta">AX Mission Sprint · 4시간 · PM·디자인·개발 6~12명</p>
+            </div>
+            <p class="bz-pilot-price"><strong>330</strong>만원</p>
+          </div>
+          <ol class="bz-agenda">
+            <li><span class="bz-agenda-time">30분</span><h4>문제 정의</h4><p>업무 병목과 목표 합의</p></li>
+            <li><span class="bz-agenda-time">60분</span><h4>업무 재설계</h4><p>AI 적용 지점·검수 기준</p></li>
+            <li class="bz-agenda--key"><span class="bz-agenda-time">120분</span><h4>프로토타입</h4><p>현업 데이터 형태로 실습</p></li>
+            <li><span class="bz-agenda-time">30분</span><h4>공유·책임자</h4><p>사용 조건·다음 액션 확정</p></li>
+          </ol>
+          <p class="bz-pilot-includes"><strong>D+7 리뷰 포함</strong><span aria-hidden="true">|</span>결과물: Mission Brief · AI 워크플로우 · 적용 체크리스트</p>
+          <p class="bz-note">별도 범위: 사내 시스템 연동, 프로덕션 배포, 커스텀 개발, D+30 성과 분석</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. 측정 -->
+    <section class="bz-section" id="measure">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">Measurement</p>
+          <h2 class="bz-h2">교육 만족도가 아니라, <em>업무 지표</em>를 확인합니다</h2>
+          <p class="bz-lead">D0 기준선을 정하고 후속 리뷰에서 “실제로 달라졌는가”를 검증합니다.</p>
+        </header>
+        <div class="bz-grid bz-grid--2 reveal">
+          <article class="bz-card bz-metric"><div><h3>작업시간</h3><p>업무 1회당 작성·처리시간</p></div><span class="bz-metric-tag">Before → After</span></article>
+          <article class="bz-card bz-metric"><div><h3>품질·재작업</h3><p>재검토·반려·수정 횟수</p></div><span class="bz-metric-tag">Before → After</span></article>
+          <article class="bz-card bz-metric"><div><h3>현업 사용률</h3><p>실제 재사용 인원·횟수</p></div><span class="bz-metric-tag">D+7 / D+30</span></article>
+          <article class="bz-card bz-metric"><div><h3>보안·오류</h3><p>민감정보·정책 위반 및 오류</p></div><span class="bz-metric-tag">사전 승인·검수</span></article>
+        </div>
+        <p class="bz-note reveal">개선 수치는 보장하지 않습니다. 사용환경과 검수조건을 명확히 하고, 실제 근거로만 성과를 보고합니다.</p>
+      </div>
+    </section>
+
+    <!-- 10. 사수 -->
+    <section class="bz-section bz-section--tint" id="mentors">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">Why us</p>
+          <h2 class="bz-h2">사수가 실무를 알고, <em>결과물이 조직에 남습니다</em></h2>
+          <p class="bz-lead">공개된 사수 역량을 기반으로 과제에 맞는 실무 전문가를 배정합니다.</p>
+        </header>
+        <div class="bz-grid bz-grid--3 reveal">
+          <article class="bz-card bz-area"><h3>PM · 서비스기획</h3><p>요구사항·기획·핸드오프를 현업 관점에서 리뷰합니다.</p></article>
+          <article class="bz-card bz-area"><h3>AI · 데이터 · 에이전트</h3><p>업무 적용 지점과 실습 수준을 팀 역량에 맞춰 설계합니다.</p></article>
+          <article class="bz-card bz-area"><h3>UX · 협업 프로세스</h3><p>디자인·개발 간 판단 기준과 검수 흐름을 구조화합니다.</p></article>
+        </div>
+        <div class="bz-mentors reveal" role="region" aria-label="사수 소개">
+          <article class="bz-mentor">
+            <img src="assets/mento_parksoochang.jpg" alt="박수창 사수" loading="lazy" />
+            <p class="bz-mentor-field">AX Agent</p>
+            <h3>박수창</h3>
+            <p class="bz-mentor-role">LAIVDATA Agent Foundry팀 리드 · 18년차</p>
+            <ul>
+              <li>전) 현대카드 Digital CLM 팀장</li>
+              <li>전) 데이터몬드 공동대표</li>
+              <li>에이전트 도입 우선순위·단계 설계</li>
+            </ul>
+          </article>
+          <article class="bz-mentor">
+            <img src="assets/mento_simjaekwon.jpg" alt="심재권 사수" loading="lazy" />
+            <p class="bz-mentor-field">HR 전략</p>
+            <h3>심재권</h3>
+            <p class="bz-mentor-role">퍼즐웍스 대표 · 15년차</p>
+            <ul>
+              <li>대기업 전략기획 10년</li>
+              <li>스타트업 Series B~C 경영진</li>
+              <li>300명+ 채용·평가, 조직 개편 실전</li>
+            </ul>
+          </article>
+          <article class="bz-mentor">
+            <img src="assets/mento_nononi.jpg" alt="김석 사수" loading="lazy" />
+            <p class="bz-mentor-field">서비스기획</p>
+            <h3>김석</h3>
+            <p class="bz-mentor-role">서비스 기획소 · 26년차</p>
+            <ul>
+              <li>서비스기획·PM 실무 26년</li>
+              <li>요구사항·실행 기준·프로젝트 운영</li>
+              <li>기획자 커뮤니티 약 1,500명 운영</li>
+            </ul>
+          </article>
+          <article class="bz-mentor">
+            <img src="assets/mento_marcel.jpg" alt="마르셀 사수" loading="lazy" />
+            <p class="bz-mentor-field">UX 디자인</p>
+            <h3>마르셀</h3>
+            <p class="bz-mentor-role">Product &amp; UX Design Lead · 20년차</p>
+            <ul>
+              <li>헬스케어 플랫폼 디자인 리드</li>
+              <li>데이터 기반 의사결정</li>
+              <li>프로덕트 전략</li>
+            </ul>
+          </article>
+        </div>
+        <p class="bz-note reveal">실제 담당 사수·일정은 사전 협의 후 확정하며, 고객 승인 도구·가명/합성 데이터 사용을 원칙으로 합니다.</p>
+      </div>
+    </section>
+
+    <!-- 11. 도입 절차 -->
+    <section class="bz-section" id="process">
+      <div class="bz-container">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">Next step</p>
+          <h2 class="bz-h2">도입은 <em>이렇게 진행돼요</em></h2>
+        </header>
+        <ol class="bz-process reveal">
+          <li><span class="bz-num">01</span><h3>30분 기회 검토</h3><p>문의 내용을 바탕으로 우리 팀에 맞는 과제와 상품을 함께 검토합니다.</p></li>
+          <li><span class="bz-num">02</span><h3>1페이지 과제 정의</h3><p>대상 팀·반복 업무·검증 지표를 한 장으로 정리합니다.</p></li>
+          <li><span class="bz-num">03</span><h3>맞춤 견적·일정 확정</h3><p>범위와 담당 사수를 확정하고 견적과 일정을 안내합니다.</p></li>
+        </ol>
+        <div class="bz-prepare reveal">
+          <p class="bz-prepare-title">문의 시 준비하면 좋은 정보</p>
+          <ul>
+            <li>회사·조직명</li>
+            <li>참가 직무·인원</li>
+            <li>반복업무 2개</li>
+            <li>AI 사용·보안 정책</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. FAQ -->
+    <section class="bz-section bz-section--tint" id="faq">
+      <div class="bz-container bz-container--narrow">
+        <header class="bz-head reveal">
+          <p class="bz-kicker">FAQ</p>
+          <h2 class="bz-h2">자주 묻는 <em>질문</em></h2>
+        </header>
+        <!-- TODO: 진행 방식(온라인/오프라인·출장 지역), 일정 리드타임, 세금계산서·계약, 고용보험 환급 여부 확정 후 추가 -->
+        <div class="bz-faq reveal">
+          <details>
+            <summary>어떤 팀이 참여하면 좋나요?</summary>
+            <p>반복 업무를 함께 수행하는 PM·디자인·개발 등 한 팀 단위가 가장 좋습니다. 첫 파일럿인 AX Mission Sprint는 6~12명 기준으로 설계되어 있습니다.</p>
+          </details>
+          <details>
+            <summary>고객정보나 소스코드 같은 사내 자료를 써야 하나요?</summary>
+            <p>아니요. 민감 자료는 승인된 범위에서만 사용하며, 필요하면 가명·합성 데이터로 대체해 실습합니다.</p>
+          </details>
+          <details>
+            <summary>어떤 AI 도구를 사용하나요?</summary>
+            <p>고객사에서 승인한 도구 사용을 원칙으로 합니다. 사내 AI 사용·보안 정책을 문의 시 알려주시면 그에 맞춰 실습을 설계합니다.</p>
+          </details>
+          <details>
+            <summary>성과 개선 수치를 보장하나요?</summary>
+            <p>개선 수치는 보장하지 않습니다. D0 기준선과 검수 조건을 먼저 정하고, 후속 리뷰에서 실제 근거로만 성과를 보고합니다.</p>
+          </details>
+          <details>
+            <summary>가격에 포함되지 않는 항목이 있나요?</summary>
+            <p>모든 가격은 제안가격이며 VAT 별도입니다. 인원 추가·출장·보안 요건·사내 시스템 연동·프로덕션 배포·커스텀 개발은 범위 협의 후 별도 견적으로 안내드립니다.</p>
+          </details>
+          <details>
+            <summary>담당 사수와 일정은 언제 정해지나요?</summary>
+            <p>30분 기회 검토와 1페이지 과제 정의 후, 과제에 맞는 사수와 일정을 협의해 확정합니다.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. Final CTA -->
+    <section class="bz-cta" id="contact">
+      <div class="bz-container">
+        <p class="bz-eyebrow bz-eyebrow--light">Next step</p>
+        <h2 class="bz-cta-title">우리 팀의 반복업무<br />하나부터 시작하세요.</h2>
+        <p class="bz-cta-sub">문의를 남겨주시면 30분 기회 검토 일정을 안내드립니다.</p>
+        <a href="#" class="bz-btn bz-btn--light bz-btn--lg js-inquiry" data-product="">도입 문의하기</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== B2B 전용 푸터 ===== -->
+  <footer class="bz-footer">
+    <div class="bz-container">
+      <div class="bz-footer-top">
+        <div>
+          <p class="bz-footer-brand">당신의사수 <span>AX Mission Lab</span></p>
+          <p class="bz-footer-desc">기업 맞춤형 AX 실행 워크숍</p>
+        </div>
+        <div class="bz-footer-contact">
+          <!-- TODO: B2B 문의 이메일 확정 후 아래 주석 해제
+          <a href="mailto:biz@example.com">biz@example.com</a>
+          -->
+          <a href="#" class="js-inquiry" data-product="">도입 문의하기 →</a>
+        </div>
+      </div>
+      <div class="bz-footer-business" aria-label="사업자 정보">
+        <p>주식회사 제이디멘션</p>
+        <p>대표 : 손재희</p>
+        <p>사업자주소 : 13461 경기도 성남시 분당구 운중로 141, 3층</p>
+        <p>사업자등록번호 : 487-87-03132</p>
+        <p>통신판매업 신고번호 : 제 2026-성남분당A-0281호</p>
+      </div>
+      <div class="bz-footer-bottom">
+        <nav class="bz-footer-links" aria-label="정책">
+          <a href="https://www.flowcamp.co.kr/terms/">이용약관</a>
+          <a href="https://www.flowcamp.co.kr/privacy/">개인정보처리방침</a>
+        </nav>
+        <p>&copy; 2026 당신의사수. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 모바일 하단 고정 CTA -->
+  <div class="bz-sticky-cta" id="bz-sticky-cta">
+    <a href="#" class="bz-btn bz-btn--primary bz-btn--block js-inquiry" data-product="">도입 문의하기</a>
+  </div>
+
+  <script src="business.js"></script>
+</body>
+</html>

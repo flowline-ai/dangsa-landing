@@ -2,6 +2,16 @@
   "framework": null,
   "redirects": [
     {
+      "source": "/business",
+      "destination": "https://biz.flowcamp.co.kr/",
+      "permanent": false
+    },
+    {
+      "source": "/business/:path*",
+      "destination": "https://biz.flowcamp.co.kr/:path*",
+      "permanent": false
+    },
+    {
       "source": "/sprint",
       "destination": "/sprint/finance/",
       "permanent": false
