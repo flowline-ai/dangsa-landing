@@ -651,7 +651,7 @@
 })();
 
 /**
- * 헤더: 이직 컨설팅 — 페이지 준비 중 안내
+ * 헤더: 이직컨설팅 — 페이지 준비 중 안내
  */
 (function () {
   document.querySelectorAll(".js-consulting-coming-soon").forEach(function (el) {

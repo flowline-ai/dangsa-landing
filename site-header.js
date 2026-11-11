@@ -38,7 +38,7 @@
     '" alt="당신의사수" /></a>' +
     '<nav id="header-service-nav" class="header-service-nav" aria-label="주요 서비스 및 상담">' +
     '<div class="header-menu-cta-wrap">' +
-    '<a href="/checklist/" class="btn btn-primary header-menu-cta">커리어 진단해보기</a>' +
+    '<a href="/checklist/" class="btn btn-primary header-menu-cta">멘토 추천받기</a>' +
     "</div>" +
     '<a href="/seminar/" class="btn btn-outline header-service-link"' +
     seminarCurrent +
@@ -56,11 +56,11 @@
     */
     '<a href="/career-consulting/" class="btn btn-outline header-service-link"' +
     careerCurrent +
-    ">이직 컨설팅</a>" +
+    ">이직컨설팅</a>" +
     "</nav>" +
     '<div class="header-actions">' +
     '<div class="header-cta header-cta--desktop">' +
-    '<a href="/checklist/" class="btn btn-primary">커리어 진단해보기</a>' +
+    '<a href="/checklist/" class="btn btn-primary">멘토 추천받기</a>' +
     "</div>" +
     '<button type="button" class="header-menu-toggle" id="header-menu-toggle" aria-expanded="false" aria-controls="header-service-nav" aria-label="메뉴 열기">' +
     '<span class="header-menu-toggle-bars" aria-hidden="true">' +

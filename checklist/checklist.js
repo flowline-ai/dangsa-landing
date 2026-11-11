@@ -81,7 +81,7 @@ const PROGRAM_MENTORS = {
     { img: '/asset/mento_nononi.jpg', name: '노노니' },
     { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
-  '1:1 이직 컨설팅': [
+  '1:1 이직컨설팅': [
     { img: '/asset/mento_simjaekwon.jpg', name: '퍼즐맨' },
     { img: '/asset/mento_hwangseil.png', name: '마르셀' },
   ],
@@ -95,7 +95,7 @@ const TYPE_META = {
     desc: '열심히 하고 있는데 결과가 안 나오는 상태예요. 노력이 부족한 게 아니라, 지금 방법이 나에게 맞지 않을 가능성이 높습니다. 전략 자체를 다시 짜야 할 시점이에요.',
     products: [
       { rank: 1, name: '1:1 커피챗', price: '1시간 66,000원~', desc: '현직 사수와 1:1로 이직 방향과 전략을 점검합니다.', link: '/coffee-chat/' },
-      { rank: 2, name: '1:1 이직 컨설팅', price: '3개월 990,000원 ~ 3,960,000원', desc: '이직 전략 전면 재설계 · 서류 보완 · 면접 코칭 · 연봉 협상', link: '/career-consulting/' },
+      { rank: 2, name: '1:1 이직컨설팅', price: '3개월 990,000원 ~ 3,960,000원', desc: '이직 전략 전면 재설계 · 서류 보완 · 면접 코칭 · 연봉 협상', link: '/career-consulting/' },
     ],
   },
   TYPE_MID: {
