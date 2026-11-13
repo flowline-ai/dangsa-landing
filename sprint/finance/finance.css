@@ -233,7 +233,7 @@ main .btn svg { width: 18px; height: 18px; }
 }
 
 /* ---------- 멘토 ---------- */
-.mentors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+.mentors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; align-items: start; }
 .mentor { background: var(--white); border: 1.5px solid var(--ink); border-radius: 24px; padding: 32px; display: flex; gap: 24px; align-items: flex-start; }
 .mentor .avatar { flex: none; width: 96px; height: 96px; border-radius: 50%; border: 2px solid var(--ink); background: var(--orange-soft); display: grid; place-items: center; color: var(--muted); overflow: hidden; }
 .mentor .avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -242,6 +242,11 @@ main .btn svg { width: 18px; height: 18px; }
 .mentor .role-line { font-size: 14px; font-weight: 600; color: var(--ink-2); margin-top: 2px; }
 .mentor .career { font-size: 14px; color: var(--muted); margin-top: 10px; }
 .mentor .duty { display: inline-block; margin-top: 14px; background: var(--cream); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 700; }
+.mentor > div:last-child { flex: 1; min-width: 0; }
+.mentor .intro { font-size: 14px; font-weight: 600; color: var(--ink-2); margin-top: 12px; line-height: 1.6; }
+.mentor .sub-h { font-size: 13px; font-weight: 800; color: var(--orange); margin-top: 18px; }
+.mentor .sub-list { margin-top: 8px; padding-left: 18px; list-style: disc; font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+.mentor .sub-list li { margin-top: 4px; }
 .note-small { margin-top: 20px; font-size: 13px; color: var(--muted); }
 @media (max-width: 900px) { .mentors-grid { grid-template-columns: 1fr; } .mentor { padding: 24px 20px; gap: 16px; } .mentor .avatar { width: 72px; height: 72px; } }
 
@@ -362,3 +367,11 @@ main .btn svg { width: 18px; height: 18px; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* 후기 영상 */
+.reviews .video-wrap { margin-top: 48px; max-width: 880px; margin-left: auto; margin-right: auto; aspect-ratio: 16 / 9; border: 1.5px solid var(--ink); border-radius: 24px; overflow: hidden; background: var(--ink); }
+.reviews .video-thumb { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+.reviews .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reviews .video-thumb .play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: var(--orange); color: var(--white); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(255,107,71,.4); transition: transform .2s; }
+.reviews .video-thumb:hover .play { transform: translate(-50%, -50%) scale(1.08); }
+.reviews .video-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }

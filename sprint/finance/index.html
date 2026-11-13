@@ -173,7 +173,7 @@
             <div>
               <h3>모의면접 + 지원 실행</h3>
               <div class="sessions">
-            <div class="session"><div class="when"><b>4회차</b>12/15(화)<br />20:00–22:00</div><div><h4>모의면접</h4><p>S카드 임원 멘토와 모의면접을 진행합니다</p></div><span class="out">면접 피드백</span></div>
+            <div class="session"><div class="when"><b>4회차</b>12/15(화)<br />20:00–22:00</div><div><h4>모의면접</h4><p>대형 금융사 임원 멘토와 모의면접을 진행합니다</p></div><span class="out">면접 피드백</span></div>
             <div class="session"><div class="when"><b>5회차</b>12/19(토)<br />10:00–12:00</div><div><h4>지원 실행 <span class="mode">오프라인</span></h4><p>지원 우선순위를 확정하고 다음 30일 실행 계획을 세웁니다</p></div><span class="out">30일 지원 실행표</span></div>
               </div>
             </div>
@@ -194,23 +194,60 @@
               <p class="co">퍼즐웍스</p>
               <h3>심재권</h3>
               <p class="role-line">헤드헌팅 · 15년차</p>
-              <p class="career">前 LG전자 · eBay Korea 출신</p>
+              <p class="intro">LG전자·eBay 기획 출신, 현 스타트업 컴퍼니빌더·헤드헌터</p>
+              <h4 class="sub-h">주요 경력</h4>
+              <ul class="sub-list">
+                <li>現 퍼즐웍스 대표이사</li>
+                <li>前 LG전자 전략기획TF·선행리서치 파트장</li>
+                <li>前 eBay Korea 서비스기획</li>
+              </ul>
+              <h4 class="sub-h">이런 걸 봐드려요</h4>
+              <ul class="sub-list">
+                <li>내 경력에 맞는 금융권 도메인 추천</li>
+                <li>경력을 지원 포지션에 맞게 포지셔닝</li>
+                <li>이직 시점·지원 우선순위 설계</li>
+              </ul>
               <span class="duty">금융권 도메인 추천 · 커리어 설계 담당</span>
             </div>
           </article>
           <article class="mentor reveal">
             <div class="avatar" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
             <div>
-              <p class="co">S카드사</p>
-              <h3>S카드사 임원</h3>
-              <p class="role-line">임원</p>
-              <!-- TODO: 경력 입력 -->
-              <p class="career">경력 정보 준비 중</p>
+              <p class="co">국내 대형 금융사</p>
+              <h3>대형 금융사 임원 멘토</h3>
+              <p class="role-line">임원 · UX/CX 리드 · 20년차</p>
+              <p class="intro">글로벌 전자·대형 플랫폼 출신, 현 금융사 UX/CX 리더</p>
+              <h4 class="sub-h">주요 경력</h4>
+              <ul class="sub-list">
+                <li>통합 금융 플랫폼 UX/CX 전략 총괄</li>
+                <li>KPI(전환율·리텐션) 연계 서비스 개선</li>
+                <li>UX 조직 운영·인재 육성</li>
+              </ul>
+              <h4 class="sub-h">이런 걸 봐드려요</h4>
+              <ul class="sub-list">
+                <li>금융권 서류에서 내 경력이 읽히는 방식</li>
+                <li>숫자로 포트폴리오 성과 풀어내기</li>
+                <li>경영진·면접관의 의사결정 기준</li>
+              </ul>
               <span class="duty">이력서·포트폴리오 실무 피드백 · 모의면접 담당</span>
             </div>
           </article>
         </div>
         <p class="note-small">※ 참여 멘토진은 추후 변경될 수 있습니다.</p>
+      </div>
+    </section>
+
+    <!-- 후기 영상 -->
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <p class="eyebrow">Reviews</p>
+        <h2 class="h2 reveal">먼저 거쳐 간 <em>수강생 후기</em></h2>
+        <div class="video-wrap reveal">
+          <button type="button" class="video-thumb" data-video-id="dEJiyYeNvOY" aria-label="이직특공대 후기 영상 재생">
+            <img src="https://i.ytimg.com/vi/dEJiyYeNvOY/hqdefault.jpg" alt="이직특공대 수강생 후기 영상 썸네일" loading="lazy" />
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -447,6 +484,18 @@
         content_name: 'sprint-finance-2',
         button_location: el.closest('.mobile-cta') ? 'mobile_bar' : (area ? area.id : 'unknown'),
         acquisition_code: typeof window.getAcquisitionCode === 'function' ? window.getAcquisitionCode() : 'direct'
+      });
+    });
+
+    // 후기 영상: 클릭 시에만 유튜브 로드
+    document.querySelectorAll('.video-thumb').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube.com/embed/' + btn.getAttribute('data-video-id') + '?autoplay=1&rel=0';
+        f.title = '이직특공대 후기 영상';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        f.allowFullscreen = true;
+        btn.replaceWith(f);
       });
     });
 
