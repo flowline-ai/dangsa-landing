@@ -60,4 +60,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <!-- mentors:start (scripts/build-mentors.js 가 관리) -->
+  <url>
+    <loc>https://www.flowcamp.co.kr/mentors/brian/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- mentors:end -->
 </urlset>

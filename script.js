@@ -279,11 +279,20 @@
     document.body.style.overflow = "";
   }
 
+  // "/"로 시작하는 사이트 안 주소(멘토 프로필 페이지)는 같은 창, 외부 상품 페이지는 새 창
+  function openLink(link) {
+    if (link.charAt(0) === "/") {
+      window.location.href = link;
+    } else {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  }
+
   triggerCards.forEach(function (card) {
     card.addEventListener("click", function () {
       var link = card.getAttribute("data-mentor-link");
       if (link) {
-        window.open(link, "_blank", "noopener,noreferrer");
+        openLink(link);
       } else {
         openModal(card);
       }
@@ -293,7 +302,7 @@
         e.preventDefault();
         var link = card.getAttribute("data-mentor-link");
         if (link) {
-          window.open(link, "_blank", "noopener,noreferrer");
+          openLink(link);
         } else {
           openModal(card);
         }
@@ -632,11 +641,11 @@
     });
   });
 
-  // 멘토 카드 클릭 시 팝업 열림 (참여)
-  var triggerCards = document.querySelectorAll("[data-mentor-modal]");
+  // 멘토 카드 클릭 (참여) — 카드는 scripts/build-mentors.js 가 만든 정적 링크
+  var triggerCards = document.querySelectorAll("[data-mentor-id]");
   triggerCards.forEach(function (card) {
     card.addEventListener("click", function () {
-      var mentorId = card.getAttribute("data-mentor-modal") || "unknown";
+      var mentorId = card.getAttribute("data-mentor-id") || "unknown";
       sendGAEvent("mentor_card_open", { mentor_id: mentorId });
     });
   });

@@ -1,19 +1,34 @@
 /**
  * 멘토 데이터 (단일 소스)
  *
- * 메인(index.html)과 커피챗(coffee-chat/) 페이지의 멘토 카드와 상세 팝업은
- * 모두 이 파일에서 렌더링됩니다. 멘토 추가·수정·삭제는 이 배열만 고치면
- * 두 페이지에 동시에 반영됩니다.
+ * 메인(index.html)과 커피챗(coffee-chat/) 페이지의 멘토 카드는 이 배열로 만듭니다.
+ * 카드는 AI·검색 봇이 읽을 수 있도록 정적 HTML로 페이지에 직접 들어갑니다(GEO 5-5).
+ * 이 배열을 고친 뒤 반드시 아래 명령을 실행해야 두 페이지에 반영됩니다.
+ *   node scripts/build-mentors.js
  *
- * 사용법: 페이지에 <div class="mentor-cards" data-mentor-cards></div> 와
- * <div id="mentorModal" class="mentor-modal" data-mentor-modal-root></div> 를 두고,
+ * 브라우저에서는 상세 팝업(detail)만 이 파일로 그립니다.
+ * 페이지에 <div id="mentorModal" class="mentor-modal" data-mentor-modal-root></div> 를 두고,
  * script.js 보다 먼저 이 파일을 로드합니다.
  *
  * - image: 루트 기준 절대경로(/asset/...)로 적어야 하위 페이지에서도 깨지지 않습니다.
- * - link: 카드 클릭 시 이동할 상품 페이지. 비워두면 상세 팝업(detail)이 열립니다.
+ * - link: 카드 클릭 시 이동할 페이지. "/"로 시작하는 사이트 안 주소(멘토 프로필 페이지 등)는 같은 창에서,
+ *         외부 주소(스마트스토어 등)는 새 창에서 열립니다. 비워두면 상세 팝업(detail)이 열립니다.
+ * - premium: true 면 카드 오른쪽 위에 PREMIUM 배지가 붙습니다.
  * - detail: 상세 팝업 본문 HTML. 비워두면 팝업 없음.
  */
 var MENTORS = [
+  {
+    id: "brian",
+    company: "국내 대형 카드사",
+    name: "브라이언",
+    role: "UX/CX 리더 (임원) · 20년차",
+    image: "/asset/mento_executive.webp",
+    link: "/mentors/brian/",
+    linkedin: "",
+    premium: true,
+    tags: ["금융권 이직", "이력서·포트폴리오 피드백"],
+    detail: "",
+  },
   {
     id: "sim",
     company: "퍼즐웍스",
@@ -213,23 +228,6 @@ var MENTORS = [
       .replace(/"/g, "&quot;");
   }
 
-  function renderCard(m) {
-    var attrs =
-      ' data-mentor-modal="' + esc(m.id) + '"' +
-      (m.link ? ' data-mentor-link="' + esc(m.link) + '"' : "") +
-      (m.linkedin ? ' data-mentor-linkedin="' + esc(m.linkedin) + '"' : "");
-    return (
-      '<article class="mentor-card mentor-card--featured mentor-card--clickable"' + attrs +
-      ' tabindex="0" role="button" aria-label="' + esc(m.name) + ' 멘토 상세 보기">' +
-      '<span class="mentor-card-featured-company">' + esc(m.company) + "</span>" +
-      '<div class="mentor-card-featured-avatar"><img src="' + esc(m.image) + '" alt="' + esc(m.name) + ' 멘토" /></div>' +
-      '<h3 class="mentor-card-featured-name">' + esc(m.name) + "</h3>" +
-      '<p class="mentor-card-featured-role">' + esc(m.role) + "</p>" +
-      '<ul class="mentor-card-tags mentor-card-featured-tags">' +
-      m.tags.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") +
-      "</ul></article>"
-    );
-  }
 
   function renderPanel(m, isFirst) {
     // 제목 h2에 aria-labelledby용 id 부여
@@ -245,10 +243,6 @@ var MENTORS = [
 
   var LINKEDIN_ICON =
     '<svg class="mentor-modal-linkedin-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>';
-
-  document.querySelectorAll("[data-mentor-cards]").forEach(function (el) {
-    el.innerHTML = MENTORS.map(renderCard).join("");
-  });
 
   var modalRoot = document.querySelector("[data-mentor-modal-root]");
   if (modalRoot) {

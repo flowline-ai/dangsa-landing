@@ -1,0 +1,183 @@
+/* 멘토 프로필 페이지 (/mentors/{slug}/) — 공통 토큰은 /styles.css 의 :root 를 씁니다 */
+
+.mp-main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 120px;
+}
+
+
+.mp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+@media (min-width: 960px) {
+  .mp-layout { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; align-items: start; }
+}
+
+/* 히어로 */
+.mp-hero { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.mp-avatar {
+  width: 128px; height: 128px; border-radius: 50%;
+  object-fit: cover; border: 1.5px solid var(--color-text); background: #fff; flex-shrink: 0;
+}
+.mp-avatar--empty {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; font-weight: 700; color: var(--color-text-secondary);
+}
+.mp-company {
+  display: inline-block; margin: 0; padding: 4px 12px; border-radius: 20px;
+  background: var(--color-primary); color: #fff; font-size: 0.8rem; font-weight: 600;
+}
+.mp-name { margin: 0; font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; letter-spacing: -0.02em; }
+.mp-role { margin: 6px 0 0; color: var(--color-text-secondary); font-size: 1rem; }
+.mp-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 12px 0 0; padding: 0; }
+.mp-tags li {
+  padding: 4px 10px; border-radius: 6px; font-size: 0.8rem;
+  background: #fff; border: 1px solid var(--color-border); color: var(--color-text-secondary);
+}
+
+.mp-summary { margin: 28px 0 0; font-size: 1.0625rem; line-height: 1.75; }
+
+/* 탭 */
+.mp-tabs {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; gap: 4px; overflow-x: auto;
+  margin: 32px 0 0; padding: 8px 0;
+  background: var(--color-bg); border-bottom: 1px solid var(--color-border);
+}
+.mp-tabs a {
+  flex-shrink: 0; padding: 8px 14px; border-radius: 999px;
+  color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+}
+.mp-tabs a:hover { background: var(--color-bg-subtle); color: var(--color-text); }
+
+/* 섹션 */
+.mp-section { padding: 40px 0 0; scroll-margin-top: 64px; }
+.mp-h2 { margin: 0 0 20px; font-size: 1.375rem; font-weight: 700; letter-spacing: -0.02em; }
+.mp-h3 { margin: 24px 0 8px; font-size: 1rem; font-weight: 700; }
+.mp-empty { margin: 0; padding: 20px; border-radius: 16px; background: var(--color-bg-subtle); color: var(--color-text-secondary); }
+
+.mp-problems { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.mp-problems li { padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border); }
+.mp-problems h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
+.mp-problems p { margin: 0; color: var(--color-text-secondary); line-height: 1.6; }
+
+.mp-quote { margin: 20px 0 0; padding: 20px 24px; border-left: 4px solid var(--color-accent); background: var(--color-orange-weak); border-radius: 0 16px 16px 0; }
+.mp-quote blockquote { margin: 0; }
+.mp-quote p { margin: 0; font-weight: 600; line-height: 1.6; }
+.mp-quote figcaption { margin-top: 8px; font-size: 0.85rem; color: var(--color-text-secondary); }
+
+.mp-career { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--color-border); }
+.mp-career li { position: relative; display: grid; gap: 2px; padding: 0 0 18px 20px; }
+.mp-career li::before {
+  content: ""; position: absolute; left: -6px; top: 6px;
+  width: 10px; height: 10px; border-radius: 50%; background: var(--color-text);
+}
+.mp-career-period { font-size: 0.8rem; color: var(--color-text-muted); }
+.mp-career span:last-child { color: var(--color-text-secondary); }
+.mp-plain { margin: 0; padding-left: 20px; color: var(--color-text-secondary); }
+.mp-plain a { color: var(--color-text); }
+
+.mp-steps { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
+@media (min-width: 720px) { .mp-steps { grid-template-columns: repeat(3, 1fr); } }
+.mp-steps li { padding: 20px; border-radius: 16px; background: #fff; border: 1.5px solid var(--color-text); }
+.mp-step-label { font-size: 0.75rem; font-weight: 700; color: var(--color-accent); }
+.mp-steps h3 { margin: 6px 0; font-size: 1rem; font-weight: 700; }
+.mp-steps p { margin: 0; color: var(--color-text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+.mp-reviews { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.mp-reviews li { padding: 20px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border); }
+.mp-reviews blockquote { margin: 0; }
+.mp-reviews p { margin: 0; line-height: 1.6; }
+.mp-review-author { margin-top: 8px !important; font-size: 0.85rem; color: var(--color-text-secondary); }
+
+.mp-others { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.mp-others a {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px 12px;
+  border-radius: 16px; background: #fff; border: 1px solid var(--color-border);
+  text-align: center; color: inherit; text-decoration: none;
+}
+.mp-others-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; margin-bottom: 6px; }
+.mp-others .mp-avatar--empty { font-size: 1.5rem; background: var(--color-bg-subtle); }
+.mp-others span { font-size: 0.8rem; color: var(--color-text-secondary); }
+
+.mp-final { margin-top: 40px; padding: 32px 24px; border-radius: 24px; background: var(--color-primary); color: #fff; text-align: center; }
+.mp-final .mp-h2 { color: #fff; }
+.mp-final p { margin: 0 0 20px; color: rgba(255, 255, 255, 0.8); line-height: 1.6; }
+.mp-final .btn-primary { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+
+/* 신청 박스 (PC 오른쪽 고정) */
+.mp-aside { display: none; }
+@media (min-width: 960px) {
+  .mp-aside { display: block; position: sticky; top: 88px; }
+}
+.mp-aside-box { padding: 24px; border-radius: 24px; background: #fff; border: 1.5px solid var(--color-text); }
+.mp-aside-title { margin: 0 0 16px; font-weight: 700; }
+.mp-facts { margin: 0 0 20px; }
+.mp-facts-row { display: grid; grid-template-columns: 72px 1fr; gap: 8px; padding: 10px 0; border-top: 1px solid var(--color-border); font-size: 0.9rem; }
+.mp-facts dt { color: var(--color-text-muted); }
+.mp-facts dd { margin: 0; }
+.mp-apply { width: 100%; justify-content: center; }
+.btn.is-disabled { opacity: 0.4; pointer-events: none; }
+
+/* 하단 신청 바 (모바일) */
+.mp-bottom-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: #fff; border-top: 1px solid var(--color-border);
+}
+.mp-bottom-bar div { display: grid; font-size: 0.85rem; }
+.mp-bottom-bar span { color: var(--color-text-secondary); }
+@media (min-width: 960px) { .mp-bottom-bar { display: none; } }
+
+/* 카카오톡 FAB가 하단 신청 바를 가리지 않도록 */
+@media (max-width: 959px) {
+  .mp-page .fab-kakao { bottom: calc(88px + env(safe-area-inset-bottom)); }
+}
+
+.mp-checks { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; }
+.mp-checks li { position: relative; padding: 16px 16px 16px 44px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border); line-height: 1.6; }
+.mp-checks li::before { content: "✓"; position: absolute; left: 18px; top: 16px; font-weight: 700; color: var(--color-accent); }
+.mp-plain li { line-height: 1.8; }
+
+.mp-programs { display: grid; gap: 12px; list-style: none; margin: 0; padding: 0; }
+.mp-programs a { display: grid; gap: 4px; padding: 20px; border-radius: 16px; background: #fff; border: 1.5px solid var(--color-text); color: inherit; text-decoration: none; }
+.mp-programs a::after { content: "자세히 보기 ›"; font-size: 0.85rem; font-weight: 600; color: var(--color-accent); margin-top: 4px; }
+.mp-programs span { color: var(--color-text-secondary); font-size: 0.9rem; }
+
+/* 숫자 카드 */
+.mp-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; list-style: none; margin: 24px 0 0; padding: 0; }
+.mp-stats li { display: grid; gap: 4px; padding: 18px 12px; border-radius: 16px; background: #fff; border: 1.5px solid var(--color-text); text-align: center; }
+.mp-stats strong { font-size: clamp(1.125rem, 3.5vw, 1.5rem); font-weight: 800; letter-spacing: -0.02em; }
+.mp-stats span { font-size: 0.8rem; color: var(--color-text-secondary); }
+
+/* 왜 이 멘토인가 */
+.mp-why { display: grid; gap: 14px; padding: 24px; border-radius: 20px; background: #fff; border: 1px solid var(--color-border); }
+.mp-why p { margin: 0; line-height: 1.8; }
+
+/* 경력 강점 */
+.mp-career-summary { margin: 0 0 16px; font-size: 1.0625rem; line-height: 1.75; }
+.mp-highlights { display: grid; gap: 12px; list-style: none; margin: 0 0 8px; padding: 0; }
+.mp-highlights li { padding: 20px 20px 20px 24px; border-radius: 16px; background: #fff; border: 1px solid var(--color-border); border-left: 4px solid var(--color-accent); }
+.mp-highlights h3 { margin: 0 0 6px; font-size: 1rem; font-weight: 700; }
+.mp-highlights p { margin: 0; color: var(--color-text-secondary); line-height: 1.6; }
+
+/* 이름 옆 현재 직무 */
+.mp-name-job { margin-left: 6px; font-size: 0.5em; font-weight: 500; letter-spacing: 0; color: var(--color-text-secondary); vertical-align: middle; white-space: nowrap; }
+
+/* 추천 대상 강조 항목 */
+.mp-checks li.is-highlight { border: 2px solid var(--color-accent); font-weight: 700; }
+.mp-checks-note { font-weight: 400; font-size: 0.9rem; color: var(--color-text-secondary); }
+
+/* 소속 + 프리미엄 배지 */
+.mp-badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.mp-premium {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 20px;
+  background: #FBF3DC; border: 1.5px solid #C9A227; color: #7A5C00;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em;
+}
+
+.mp-aside-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }

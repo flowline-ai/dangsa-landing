@@ -348,8 +348,54 @@
         </p>
       </header>
       <div class="mentor-cards-wrapper">
-        <!-- 멘토 카드는 /mentors.js 에서 렌더링 (메인·커피챗 공통) -->
-        <div class="mentor-cards" role="region" aria-label="오늘의 사수 슬라이드" data-mentor-cards></div>
+        <!-- mentor-cards:start -->
+        <!-- 이 영역은 scripts/build-mentors.js 가 mentors.js 데이터로 만듭니다. 직접 고치지 마세요. -->
+        <div class="mentor-cards" role="region" aria-label="오늘의 사수 슬라이드">
+          <a class="mentor-card mentor-card--featured mentor-card--clickable" href="/mentors/brian/" data-mentor-id="brian">
+            <span class="mentor-card-featured-company">국내 대형 카드사</span>
+            <span class="mentor-card-premium"><span aria-hidden="true">★</span> PREMIUM</span>
+            <div class="mentor-card-featured-avatar"><img src="/asset/mento_executive.webp" alt="브라이언 멘토" loading="lazy" /></div>
+            <h3 class="mentor-card-featured-name">브라이언</h3>
+            <p class="mentor-card-featured-role">UX/CX 리더 (임원) · 20년차</p>
+            <ul class="mentor-card-tags mentor-card-featured-tags"><li>금융권 이직</li><li>이력서·포트폴리오 피드백</li></ul>
+          </a>
+          <a class="mentor-card mentor-card--featured mentor-card--clickable" href="https://smartstore.naver.com/flowcamp/products/13381436491" target="_blank" rel="noopener noreferrer" data-mentor-id="sim">
+            <span class="mentor-card-featured-company">퍼즐웍스</span>
+            <div class="mentor-card-featured-avatar"><img src="/asset/mento_simjaekwon.jpg" alt="퍼즐맨 멘토" loading="lazy" /></div>
+            <h3 class="mentor-card-featured-name">퍼즐맨</h3>
+            <p class="mentor-card-featured-role">헤드헌팅 · 15년차</p>
+            <ul class="mentor-card-tags mentor-card-featured-tags"><li>이직 전략</li><li>연봉 협상</li><li>면접 코칭</li></ul>
+          </a>
+          <a class="mentor-card mentor-card--featured mentor-card--clickable" href="https://smartstore.naver.com/flowcamp/products/13467413888" target="_blank" rel="noopener noreferrer" data-mentor-id="park">
+            <span class="mentor-card-featured-company">LAIVDATA</span>
+            <div class="mentor-card-featured-avatar"><img src="/asset/mento_parksoochang.jpg" alt="박수창 멘토" loading="lazy" /></div>
+            <h3 class="mentor-card-featured-name">박수창</h3>
+            <p class="mentor-card-featured-role">Agent Foundry팀 리드 · 18년차</p>
+            <ul class="mentor-card-tags mentor-card-featured-tags"><li>바이브코딩</li><li>데이터분석</li></ul>
+          </a>
+          <a class="mentor-card mentor-card--featured mentor-card--clickable" href="https://smartstore.naver.com/flowcamp/products/13467430048" target="_blank" rel="noopener noreferrer" data-mentor-id="jin">
+            <span class="mentor-card-featured-company">전) 카카오, 네이버</span>
+            <div class="mentor-card-featured-avatar"><img src="/asset/mento_jinyongjin.jpg" alt="진용진 멘토" loading="lazy" /></div>
+            <h3 class="mentor-card-featured-name">진용진</h3>
+            <p class="mentor-card-featured-role">PM · 16년차</p>
+            <ul class="mentor-card-tags mentor-card-featured-tags"><li>서비스 기획</li><li>PM</li></ul>
+          </a>
+          <a class="mentor-card mentor-card--featured mentor-card--clickable" href="https://smartstore.naver.com/flowcamp/products/13407690060" target="_blank" rel="noopener noreferrer" data-mentor-id="parkjw">
+            <span class="mentor-card-featured-company">서비스 기획소</span>
+            <div class="mentor-card-featured-avatar"><img src="/asset/mento_nononi.jpg" alt="김석(노노니) 멘토" loading="lazy" /></div>
+            <h3 class="mentor-card-featured-name">김석(노노니)</h3>
+            <p class="mentor-card-featured-role">서비스기획 · PM · 26년차</p>
+            <ul class="mentor-card-tags mentor-card-featured-tags"><li>서비스기획</li><li>PM</li><li>멘토링</li></ul>
+          </a>
+          <a class="mentor-card mentor-card--featured mentor-card--clickable" href="https://smartstore.naver.com/flowcamp/products/13625608160" target="_blank" rel="noopener noreferrer" data-mentor-id="hwangseil">
+            <span class="mentor-card-featured-company">헬스케어 플랫폼</span>
+            <div class="mentor-card-featured-avatar"><img src="/asset/mento_hwangseil.png" alt="마르셀 멘토" loading="lazy" /></div>
+            <h3 class="mentor-card-featured-name">마르셀</h3>
+            <p class="mentor-card-featured-role">Product &amp; UX Design Lead · 20년차</p>
+            <ul class="mentor-card-tags mentor-card-featured-tags"><li>데이터 기반 의사결정</li><li>인하우스 전환</li><li>프로덕트 전략</li></ul>
+          </a>
+        </div>
+        <!-- mentor-cards:end -->
         <div class="mentor-cards-dots" aria-hidden="true"></div>
       </div>
     </div>
