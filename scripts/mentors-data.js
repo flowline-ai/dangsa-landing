@@ -204,7 +204,7 @@ module.exports = [
     ],
     education: [],
     programs: [
-      { href: "/sprint/finance/", label: "이직특공대 2기 · 금융권 이직", desc: "이력서·포트폴리오 실무 피드백과 모의면접을 맡아요." },
+      { href: "/sprint/finance/", label: "이직특공대 2기 · 금융권 이직", desc: "이력서·포트폴리오 실무 피드백과 실전면접을 맡아요." },
     ],
     reviews: [],
   },
