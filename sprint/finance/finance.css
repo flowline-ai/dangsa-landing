@@ -382,9 +382,18 @@ main .btn svg { width: 18px; height: 18px; }
 }
 
 /* 후기 영상 */
-.reviews .video-wrap { margin-top: 48px; max-width: 880px; margin-left: auto; margin-right: auto; aspect-ratio: 16 / 9; border: 1.5px solid var(--ink); border-radius: 24px; overflow: hidden; background: var(--ink); }
+.reviews .video-slider { margin-top: 48px; }
+.reviews .video-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.reviews .video-track::-webkit-scrollbar { display: none; }
+.reviews .video-nav { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 18px; }
+.reviews .video-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--ink); background: var(--white); color: var(--ink); font-size: 16px; cursor: pointer; }
+.reviews .video-arrow:disabled { opacity: .3; cursor: default; }
+.reviews .video-count { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--muted); }
+/* 86%만 차지해 다음 영상의 왼쪽이 걸쳐 보이게 */
+.reviews .video-wrap { flex: 0 0 86%; scroll-snap-align: start; aspect-ratio: 16 / 9; border: 1.5px solid var(--ink); border-radius: 24px; overflow: hidden; background: var(--ink); }
 .reviews .video-thumb { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
 .reviews .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .reviews .video-thumb .play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: var(--orange); color: var(--white); display: grid; place-items: center; box-shadow: 0 8px 24px rgba(255,107,71,.4); transition: transform .2s; }
 .reviews .video-thumb:hover .play { transform: translate(-50%, -50%) scale(1.08); }
+.reviews .video-wrap:last-child { scroll-snap-align: end; }
 .reviews .video-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
