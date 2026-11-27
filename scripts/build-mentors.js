@@ -239,13 +239,17 @@ ${m.programs.map((p) => `          <li><a href="${esc(p.href)}"><strong>${esc(p.
 }
 
 function sectionOthers(m) {
-  const others = mentors.filter((o) => o.slug !== m.slug && o.page);
+  // others: ["slug", ...] 를 주면 그 멘토들을 순서대로, 없으면 상세 페이지가 있는 다른 멘토 전부
+  const others = m.others
+    ? m.others.map((slug) => mentors.find((o) => o.slug === slug)).filter(Boolean)
+    : mentors.filter((o) => o.slug !== m.slug && o.page);
   if (!others.length) return "";
+  const href = (o) => (o.page ? `href="/mentors/${o.slug}/"` : `href="${esc(o.link)}" target="_blank" rel="noopener noreferrer"`);
   return `
       <section class="mp-section" aria-labelledby="mp-others-h2">
         <h2 id="mp-others-h2" class="mp-h2">다른 멘토도 만나보세요</h2>
         <ul class="mp-others">
-${others.map((o) => `          <li><a href="/mentors/${o.slug}/">${avatar(o, "mp-others-avatar")}<strong>${esc(o.name)}</strong><span>${esc(o.role)}</span></a></li>`).join("\n")}
+${others.map((o) => `          <li><a ${href(o)}>${avatar(o, "mp-others-avatar")}<strong>${esc(o.name)}</strong><span>${esc(o.role)}</span></a></li>`).join("\n")}
         </ul>
       </section>`;
 }

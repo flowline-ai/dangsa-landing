@@ -138,23 +138,73 @@ module.exports = [
   },
   {
     slug: "marcel",
-    page: false,
+    page: true,
     priceHour: 90000,
     name: "마르셀",
-    company: "헬스케어 플랫폼",
+    company: "국내 대표 헬스케어 플랫폼",
     role: "Product & UX Design Lead · 20년차",
     jobTitle: "Product & UX Design Lead",
     image: "/asset/mento_hwangseil.png",
     link: "https://smartstore.naver.com/flowcamp/products/13625608160",
+    // 현재 회사명은 비공개라 링크드인(현재 회사명 노출)은 걸지 않습니다.
     sameAs: [],
-    tags: ["데이터 기반 의사결정", "인하우스 전환", "프로덕트 전략"],
-    // 7-3: 메인과 /sprint/ 의 경력 설명이 달라 공개 프로필 확정 전까지 경력은 적지 않습니다.
+    tags: ["인하우스 이직", "이력서 및 포트폴리오 피드백", "커리어 설계"],
     summary:
-      "마르셀 멘토는 헬스케어 플랫폼에서 Product & UX Design Lead를 맡고 있는 20년차 멘토예요. 당신의사수 1:1 커피챗에서 데이터 기반 의사결정, 인하우스 전환, 프로덕트 전략을 함께 이야기해요.",
-    problems: [],
-    quote: "",
-    career: [],
-    reviews: [],
+      "마르셀 멘토는 2003년부터 UX·프로덕트 디자인을 해 온 20년차 Product & UX Design Lead예요. 이베이 코리아, GS SHOP, LG전자(유럽 R&D 포함), 네이버, 라이엇 게임즈, 매스프레소, 화해글로벌을 거쳐 지금은 국내 대표 헬스케어 플랫폼에서 Product Design Chapter Lead를 맡고 있어요. 당신의사수 1:1 커피챗에서 디자이너의 인하우스 이직, 리드·매니저로의 성장, 프로덕트 디자인 포트폴리오를 함께 점검해요.",
+    stats: [
+      { value: "20년차", label: "UX·프로덕트 디자인 커리어" },
+      { value: "10년+", label: "디자인 조직 리딩" },
+      { value: "네이버·라이엇", label: "팀 리드 출신" },
+    ],
+    why: [
+      "이커머스, 대형 IT 플랫폼, 글로벌 제조사, 게임사, 고속 성장 스타트업까지 도메인과 회사 규모가 서로 다른 10곳을 거쳤어요. 내 경험이 어느 회사, 어느 도메인에서 강점이 되는지를 여러 조직을 직접 겪은 시선으로 짚어 줄 수 있어요.",
+      "네이버 Platform UX 팀장, 라이엇 게임즈 팀장, 매스프레소 Design Division Lead 등 10년 넘게 디자인 조직을 이끌며 디자이너를 직접 뽑고 키워 왔어요. 채용하는 리더가 포트폴리오와 면접에서 무엇을 보는지 그대로 알려줘요.",
+      "LG전자 유럽 R&D에서 UX 리더로 글로벌 프로젝트를 이끈 경험이 있어, 해외 협업이나 글로벌 프로덕트 커리어를 고민하는 분께도 현실적인 조언을 드려요.",
+    ],
+    recommend: [
+      "에이전시·SI를 넘어 인하우스 프로덕트 디자이너로 옮기고 싶은 분",
+      "시니어 디자이너에서 리드·매니저로 커리어를 넓히고 싶은 분",
+      "UX 기획·리서치 역량을 프로덕트 성과로 보여주고 싶은 UX 디자이너·기획자",
+      "스타트업과 대기업·플랫폼 사이에서 다음 회사를 고민하는 분",
+    ],
+    problems: [
+      { title: "인하우스 프로덕트 디자이너로의 전환", desc: "화면 결과물 위주의 경력을 문제 정의·가설·성과 중심의 프로덕트 디자인 경험으로 다시 정리해요." },
+      { title: "디자인 리드·매니저로의 성장", desc: "10년 넘게 디자인 조직을 빌딩하고 이끈 경험으로 리드에게 필요한 역할과 준비를 함께 짚어요." },
+      { title: "채용하는 리더 관점의 포트폴리오 피드백", desc: "디자이너를 직접 뽑아 온 리더가 포트폴리오와 면접에서 무엇을 보는지를 기준으로 피드백해요." },
+      { title: "사용자 리서치와 검증을 성과로 연결", desc: "리서치·사용성 검증 결과를 디자인 결정과 비즈니스 설득으로 이어 가는 방법을 실무 기준으로 정리해요." },
+      { title: "도메인·회사 규모에 맞는 이직 방향", desc: "이커머스·플랫폼·글로벌·스타트업을 모두 겪은 경험으로 나에게 맞는 다음 회사를 함께 따져봐요." },
+    ],
+    quote: "사용자의 목소리를 대변하면서도 비즈니스 목표와 균형을 맞추는 것, 그게 UX 디자이너의 역할이라고 생각해요.",
+    highlights: [
+      "20년간 이커머스·대형 IT 플랫폼·글로벌 제조사·게임·스타트업 UX/프로덕트 디자인",
+      "사용자 리서치부터 와이어프레임, UX 라이팅, 사용자 검증, 비즈니스 설득까지 전 과정 수행",
+      "10년 이상 디자인 조직 리딩과 조직 빌딩",
+      "LG전자 유럽 R&D 글로벌 UX 프로젝트 리딩",
+    ],
+    career: [
+      { period: "2025.09~현재", org: "국내 대표 헬스케어 플랫폼", role: "Product Design Chapter Lead" },
+      { period: "2022.08~2025.09", org: "화해글로벌", role: "Design Lead" },
+      { period: "2020.10~2022.08", org: "매스프레소", role: "Design Division Lead" },
+      { period: "2019.07~2020.10", org: "고영테크놀러지", role: "UX Planning Team Lead" },
+      { period: "2015.04~2019.07", org: "라이엇 게임즈", role: "Design Team Lead" },
+      { period: "이전", org: "네이버", role: "Platform UX Team Lead" },
+      { period: "이전", org: "LG전자 유럽 R&D", role: "UX Leader" },
+      { period: "이전", org: "LG전자", role: "Senior UX Designer" },
+      { period: "이전", org: "GS SHOP", role: "UX Designer & PM" },
+      { period: "2003.09~", org: "이베이 코리아", role: "UX Designer" },
+    ],
+    education: [
+      "홍익대학교 디지털미디어디자인 석사 (HCI)",
+      "스웨덴 예테보리 대학교 디자인 석사 교환학생",
+      "서울시립대학교 국어국문학 학사",
+    ],
+    programs: [
+      { href: "/sprint/agency/", label: "이직특공대 · 에이전시·SI → 인하우스", desc: "지원 기업 우선순위 검증과 30일 실행 계획 설계를 맡아요." },
+    ],
+    others: ["brian", "puzzleman"], // "다른 멘토도 만나보세요"에 보여줄 멘토
+    reviews: [
+      { quote: "도움이 되었습니다. 감사합니다.", author: "eras******* · 네이버 스마트스토어 구매 후기 · ★5 · 1시간 · 2026.06.21" },
+    ],
   },
   {
     slug: "brian",
@@ -206,6 +256,7 @@ module.exports = [
     programs: [
       { href: "/sprint/finance/", label: "이직특공대 2기 · 금융권 이직", desc: "이력서·포트폴리오 실무 피드백과 실전면접을 맡아요." },
     ],
+    others: ["marcel", "puzzleman"], // "다른 멘토도 만나보세요"에 보여줄 멘토
     reviews: [],
   },
 ];

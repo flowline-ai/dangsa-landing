@@ -208,13 +208,13 @@ var MENTORS = [
   },
   {
     id: "hwangseil",
-    company: "헬스케어 플랫폼",
+    company: "국내 대표 헬스케어 플랫폼",
     name: "마르셀",
     role: "Product & UX Design Lead · 20년차",
     image: "/asset/mento_hwangseil.png",
-    link: "https://smartstore.naver.com/flowcamp/products/13625608160",
+    link: "/mentors/marcel/",
     linkedin: "",
-    tags: ["데이터 기반 의사결정", "인하우스 전환", "프로덕트 전략"],
+    tags: ["인하우스 이직", "이력서 및 포트폴리오 피드백", "커리어 설계"],
     detail: "",
   },
 ];
